@@ -36,7 +36,12 @@ $dominio = base_url();
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
-    <script src="<?= base_url() ?>assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <!-- css custom -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
+
 </head>
 
 <body>
@@ -54,8 +59,8 @@ $dominio = base_url();
             <nav>
                 <ul class="nav navbar-nav">
                     <li><a href="#top"> <?= lang('home') ?></a></li>
-                    <li><a href="#featured"> <?= lang('proyectos') .' '. lang('recientes')  ?> </a></li>
-                    <li><a href="#projects"> <?= lang('proyectos') .' '. lang('destacados') ?> </a></li>
+                    <li><a href="#featured"> <?= lang('proyectos') . ' ' . lang('recientes')  ?> </a></li>
+                    <li><a href="#projects"> <?= lang('proyectos') . ' ' . lang('destacados') ?> </a></li>
                     <li><a href="#video">Un poco de Nosotros </a></li>
                     <li><a href="#blog"> <?= lang('blog') ?> </a></li>
                     <li><a href="#contact"> ¡Contáctenos! </a></li>
@@ -83,14 +88,14 @@ $dominio = base_url();
                     <a href="#featured">
                         <span class="rect"></span>
                         <span class="circle"></span>
-                        <?= lang('proyectos') .' '. lang('recientes') ?>
+                        <?= lang('proyectos') . ' ' . lang('recientes') ?>
                     </a>
                 </li>
                 <li>
                     <a href="#projects">
                         <span class="rect"></span>
                         <span class="circle"></span>
-                        <?= lang('proyectos') .' '. lang('destacados') ?>
+                        <?= lang('proyectos') . ' ' . lang('destacados') ?>
                     </a>
                 </li>
                 <li>
@@ -204,6 +209,7 @@ $dominio = base_url();
 
             <div class="section-content">
                 <div class="owl-carousel owl-theme">
+
                     <div class="item">
                         <div class="image">
                             <img src="<?= base_url() ?>assets/img/featured_1.jpg" alt="">
@@ -213,7 +219,6 @@ $dominio = base_url();
                         </div>
                         <div class="text-content">
                             <h4>Aqui va un titulo</h4>
-                            <span> Aqui va una frase </span>
                             <p>#1 aqui va una descripcion</p>
                         </div>
                     </div>
@@ -226,7 +231,6 @@ $dominio = base_url();
                         </div>
                         <div class="text-content">
                             <h4>Aqui va un titulo</h4>
-                            <span>Aqui va una frase</span>
                             <p>#2 aqui <strong>va</strong> un fuerte descripcion</p>
                         </div>
                     </div>
@@ -239,7 +243,6 @@ $dominio = base_url();
                         </div>
                         <div class="text-content">
                             <h4>Aqui va un titulo</h4>
-                            <span>Aqui va una frase</span>
                             <p>#3 aqui va una descripcion</p>
                         </div>
                     </div>
@@ -252,7 +255,6 @@ $dominio = base_url();
                         </div>
                         <div class="text-content">
                             <h4>Aqui va un titulo</h4>
-                            <span>Aqui va una frase</span>
                             <p>#4 aqui va una descripcion</p>
                         </div>
                     </div>
@@ -265,7 +267,6 @@ $dominio = base_url();
                         </div>
                         <div class="text-content">
                             <h4>Aqui va un titulo</h4>
-                            <span>Aqui va una frase</span>
                             <p>#5 aqui va una descripcion</p>
                         </div>
                     </div>
@@ -278,7 +279,6 @@ $dominio = base_url();
                         </div>
                         <div class="text-content">
                             <h4>Aqui va un titulos</h4>
-                            <span>Aqui va una frase</span>
                             <p>#6 aqui va una descripcion</p>
                         </div>
                     </div>
@@ -291,7 +291,6 @@ $dominio = base_url();
                         </div>
                         <div class="text-content">
                             <h4>Aqui va un titulo</h4>
-                            <span>Aqui va una frase</span>
                             <p>#7 aqui va una descripcion</p>
                         </div>
                     </div>
@@ -304,7 +303,6 @@ $dominio = base_url();
                         </div>
                         <div class="text-content">
                             <h4>Aqui va un titulo</h4>
-                            <span>Aqui va una frase</span>
                             <p>#8 aqui va una descripcion</p>
                         </div>
                     </div>
@@ -317,7 +315,6 @@ $dominio = base_url();
                         </div>
                         <div class="text-content">
                             <h4>Aqui va un titulo</h4>
-                            <span>Aqui va una frase</span>
                             <p>#9 aqui va una descripcion</p>
                         </div>
                     </div>
@@ -335,37 +332,97 @@ $dominio = base_url();
                 </p>
             </div>
             <div class="section-content">
-                <div class="masonry">
+                <div class="container">
                     <div class="row">
-                        <div class="item">
-                            <div class="col-md-8">
-                                <a href="<?= base_url() ?>assets/img/portfolio_big_1.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_1.jpg" alt="image 1"></a>
-                            </div>
-                        </div>
-                        <div class="item second-item">
-                            <div class="col-md-4">
-                                <a href="<?= base_url() ?>assets/img/portfolio_big_2.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_2.jpg" alt="image 2"></a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="col-md-4">
-                                <a href="<?= base_url() ?>assets/img/portfolio_big_3.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_3.jpg" alt="image 3"></a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="col-md-4">
-                                <a href="<?= base_url() ?>assets/img/portfolio_big_4.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_4.jpg" alt="image 4"></a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="col-md-8">
-                                <a href="<?= base_url() ?>assets/img/portfolio_big_5.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_5.jpg" alt="image 5"></a>
-                            </div>
-                        </div>
+                        <ul class="">
+                            <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 rounded-start"> <a href=""> todos</a></li>
+                            <li class="d-inline bg-light text-dark fs-2 p-2 mb-3"> <a href="">diseño</a></li>
+                            <li class="d-inline bg-light text-dark fs-2 p-2 mb-3"><a href="">impresión</a></li>
+                            <li class="d-inline bg-light text-dark fs-2  p-2 mb-3 rounded-end"><a href="">marketing</a></li>
+                        </ul>
                     </div>
+                </div>
+                <div class="masonry">
+
+
+                    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                        <div class="col">
+                            <div class="card mb-4 rounded-3 shadow-sm">
+                                <div class="card-header py-3">
+                                    <h4 class="my-0 fw-normal">Free</h4>
+                                </div>
+                                <div class="card-body">
+                                    <a href="<?= base_url() ?>assets/img/portfolio_big_1.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_1.jpg" alt="image 1" class="img-fluid img-thumbnail rounded"></a>
+                                    <h1 class="card-title pricing-card-title">$0<small class="text-muted fw-light">/mo</small></h1>
+                                    <span class="d-inline-block">
+                                        This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card mb-4 rounded-3 shadow-sm">
+                                <div class="card-header py-3">
+                                    <h4 class="my-0 fw-normal">Pro</h4>
+                                </div>
+                                <div class="card-body">
+                                    <a href="<?= base_url() ?>assets/img/portfolio_big_2.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_2.jpg" alt="image 2" class="img-fluid img-thumbnail rounded"></a>
+                                    <h1 class="card-title pricing-card-title">$15<small class="text-muted fw-light">/mo</small></h1>
+                                    <span class="d-inline-block">
+                                        This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                                <div class="card-header py-3 text-bg-primary border-primary">
+                                    <h4 class="my-0 fw-normal">Enterprise</h4>
+                                </div>
+                                <div class="card-body">
+                                    <a href="<?= base_url() ?>assets/img/portfolio_big_3.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_3.jpg" alt="image 3" class="img-fluid img-thumbnail rounded"></a>
+                                    <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
+                                    <span class="d-inline-block">
+                                        This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                                <div class="card-header py-3 text-bg-primary border-primary">
+                                    <h4 class="my-0 fw-normal">Enterprise</h4>
+                                </div>
+                                <div class="card-body">
+                                    <a href="<?= base_url() ?>assets/img/portfolio_big_4.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_4.jpg" alt="image 4" class="img-fluid img-thumbnail rounded"></a>
+                                    <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
+                                    <span class="d-inline-block">
+                                        This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                                <div class="card-header py-3 text-bg-primary border-primary">
+                                    <h4 class="my-0 fw-normal">Enterprise</h4>
+                                </div>
+                                <div class="card-body">
+                                    <a href="<?= base_url() ?>assets/img/portfolio_big_5.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_5.jpg" alt="image 5" class="img-fluid img-thumbnail rounded"></a>
+                                    <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
+                                    <span class="d-inline-block">
+                                        This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </section>
+
         <section id="video" class="content-section">
             <div class="row">
                 <div class="col-md-12">
@@ -382,7 +439,7 @@ $dominio = base_url();
                     </div>
                     <div class="col-md-12">
                         <div class="box-video">
-                            <div class="bg-video" style="background-image: url(https://unsplash.imgix.net/photo-1425036458755-dc303a604201?fit=crop&fm=jpg&q=75&w=1000);">
+                            <div class="bg-video">
                                 <div class="bt-play">Play</div>
                             </div>
                             <div class="video-container">
@@ -712,6 +769,10 @@ $dominio = base_url();
     </script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="<?= base_url() ?>assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
 
 </body>
 

@@ -30,6 +30,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/tests/
 /tests/results/
 
-# Custom
-#-----------------------
-*/system/sessions
+## archivo de Sesiones
+#----------------------------
+*/sessions/

@@ -17,17 +17,22 @@ $lang["navegation"]                 = "Navegación";
 $lang["home"]                       = "Inicio";
 $lang["proyectos"]                  = "Proyectos";
 $lang['recientes']                  = "Recientes";
-$lang["destacados"]                 = "Destacados";
+$lang["Servicios"]                  = "Servicios";
 $lang["blog"]                       = "Blog";
-$lang["apellidoUsuario"]            = "Apellidos";
-$lang["Email"]                      = "E-mail";
-$lang["tlf"]                        = "N° Teléfono";
-$lang["cel"]                        = "N° Celular";
-$lang["Username"]                   = "Nombre de usuario";
-$lang["Password"]                   = "Contraseña";
+$lang["ofrecidos"]                  = "Ofrecidos";
+$lang["Email"]                      = "Tu E-mail";
+$lang["contacta a"]                 = "Contacta a";
+$lang["equipo"]                     = "Nuestro Equipo";
+$lang["youName"]                    = "Tu Nombre";
+$lang["message"]                    = "Tu Mensaje";
+$lang["asunto"]                     = "Asunto";
+$lang["Send"]                       = "Enviar";
+$lang["more"]                       = "Más...";
 
-$lang["Permisos"]                   = "Permisos"; 
+$lang["Design"]                     = "Diseñado por:";
+
+$lang["Permisos"]                   = "Permisos";
 
 ## Etiquetas del submodulo de Usuarios
 $lang["Titulo-Configuracion"]       = "Configuración";
-?>  
+?>

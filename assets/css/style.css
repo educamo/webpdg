@@ -2,3 +2,42 @@
     min-height: 420px;
     max-height: 500px;
 }
+
+.modalUs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111111bd;
+    display: flex;
+    z-index: 20;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s;
+    --transform: translateY(-100vh);
+    --transition: transform .8s;
+}
+
+.modalUs--show {
+    opacity: 1;
+    pointer-events: unset;
+    transition: opacity .6s;
+    --transform: translateY(0);
+    --transition: transform .8s .3s;
+}
+
+.modalUs_container {
+    margin: auto;
+    width: 90%;
+    max-width: 650px;
+    max-height: 90%;
+    background-color: #ffffff;
+    border-radius: 6px;
+    padding: 3em 2.5em;
+    display: grid;
+    gap: 1em;
+    place-items: center;
+    transform: var(--transform);
+    transition: var(--transition);
+}

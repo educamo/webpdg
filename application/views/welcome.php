@@ -2,6 +2,8 @@
 $map = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d424.01823977953916!2d-72.36756770237544!3d7.693578184167264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e663e439229c16f%3A0xa0e8d1a10fc2c852!2sRubio%205030%2C%20T%C3%A1chira!5e1!3m2!1ses!2sve!4v1663280352794!5m2!1ses!2sve';
 $title = lang('title');
 $dominio = base_url();
+$company = 'CosmoImagen';
+$creador = 'C. Carrasco';
 ?>
 <!DOCTYPE html>
 <html lang="<?= lang('lang') ?>">
@@ -37,6 +39,7 @@ $dominio = base_url();
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
     <!-- CSS only -->
+    <link rel="stylesheet" href="<?= base_url('assets/bootstrap/dist/css/bootstrap.css') ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
     <!-- css custom -->
@@ -60,7 +63,7 @@ $dominio = base_url();
                 <ul class="nav navbar-nav">
                     <li><a href="#top"> <?= lang('home') ?></a></li>
                     <li><a href="#featured"> <?= lang('proyectos') . ' ' . lang('recientes')  ?> </a></li>
-                    <li><a href="#projects"> <?= lang('proyectos') . ' ' . lang('destacados') ?> </a></li>
+                    <li><a href="#projects"> <?= lang('Servicios') ?> </a></li>
                     <li><a href="#video">Un poco de Nosotros </a></li>
                     <li><a href="#blog"> <?= lang('blog') ?> </a></li>
                     <li><a href="#contact"> ¡Contáctenos! </a></li>
@@ -95,7 +98,7 @@ $dominio = base_url();
                     <a href="#projects">
                         <span class="rect"></span>
                         <span class="circle"></span>
-                        <?= lang('proyectos') . ' ' . lang('destacados') ?>
+                        <?= lang('Servicios') ?>
                     </a>
                 </li>
                 <li>
@@ -145,9 +148,6 @@ $dominio = base_url();
                             <h1>Bienvenido a <br>Cosmo Imagine</h1>
                             <p>Contamos con una gran variedad de Banner y<br>
                                 Proyectos gráficos a tu disposición</p>
-                            <div class="white-button button">
-                                <a href="#featured">¿Quienes Somos?</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -164,10 +164,6 @@ $dominio = base_url();
                             <p>Nunca sabes cuando necesites un banner ;)
                                 <br>Gracias por elegirnos
                             </p>
-
-                            <div class="white-button button">
-                                <a href="#featured">¡Mira mas aquí!</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -182,10 +178,6 @@ $dominio = base_url();
                         <div>
                             <h1>Aqui en <br> Cosmo Imagine</h1>
                             <p>Nos especializamos en diseño grafico y creacion de Banners <br> Si tu lo necesitas !Nosotros lo tenemos¡</p>
-
-                            <div class="white-button button">
-                                <a href="#featured"> ¡Mira mas aqui! </a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -326,7 +318,7 @@ $dominio = base_url();
         <!-- Seccion Proyectos Destacados -->
         <section id="projects" class="content-section">
             <div class="section-heading">
-                <h1><?= lang('proyectos') ?><br><em><?= lang('destacados') ?></em></h1>
+                <h1><?= lang('Servicios') ?><br><em><?= lang('ofrecidos') ?></em></h1>
                 <p>Aqui tenemos algunos de nuestro proyectos mas recientes,
                     <br>puedes mirarlos y decidir por tu mismo. ¿Cual es tu favorito?.
                 </p>
@@ -433,18 +425,14 @@ $dominio = base_url();
                     <div class="text-content">
                         <p>Cosmo <em>Imagine</em> te ofrece un servisio de calidad
                             cuando se trata de cumplir las espectativas del cliente en base al tipo de diseño que ha elegido <br> al igual con la eficiencia y cretividad del mismo.</p>
-                        <div class="accent-button button">
-                            <a href="#blog">Continue Reading</a>
+                        <!-- Button trigger modal -->
+                        <div class="accent-button button open-modalUs">
+                            <a href="#"> <?= lang('more') ?> </a>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="box-video">
-                            <div class="bg-video">
-                                <div class="bt-play">Play</div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
+
         </section>
         <!-- cierre Proyectos Destacados -->
 
@@ -622,7 +610,7 @@ $dominio = base_url();
                                     </li>
                                     <li>
                                         <div class="item">
-                                            <img src="img/blog_3.jpg" alt="">
+                                            <img src="<?= base_url() ?>assets/img/blog_3.jpg" alt="">
                                             <div class="text-content">
                                                 <h4>Integer ultrices augue eu</h4>
                                                 <span>24 April 2018</span>
@@ -672,38 +660,38 @@ $dominio = base_url();
         <section id="contact" class="content-section">
             <div id="contact-content">
                 <div class="section-heading">
-                    <h1>Contact<br><em>Sentra</em></h1>
+                    <h1><?= lang('contacta a') ?><br><em><?= lang('equipo') ?></em></h1>
                     <p>Curabitur hendrerit mauris mollis ipsum vulputate rutrum.
                         <br>Phasellus luctus odio eget dui imperdiet.
                     </p>
 
                 </div>
                 <div class="section-content">
-                    <form id="contact" action="#" method="post">
+                    <form id="contacto" action="#" method="post">
                         <div class="row">
                             <div class="col-md-4">
                                 <fieldset>
-                                    <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
+                                    <input name="name" type="text" class="form-control" id="name" placeholder="<?= lang('youName') ?>." required="">
                                 </fieldset>
                             </div>
                             <div class="col-md-4">
                                 <fieldset>
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="Your email..." required="">
+                                    <input name="email" type="email" class="form-control" id="email" placeholder="<?= lang('Email') ?>" required="">
                                 </fieldset>
                             </div>
                             <div class="col-md-4">
                                 <fieldset>
-                                    <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject..." required="">
+                                    <input name="subject" type="text" class="form-control" id="subject" placeholder="<?= lang('asunto') ?>." required="">
                                 </fieldset>
                             </div>
                             <div class="col-md-12">
                                 <fieldset>
-                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="<?= lang('message') ?>" required=""></textarea>
                                 </fieldset>
                             </div>
                             <div class="col-md-12">
                                 <fieldset>
-                                    <button type="submit" id="form-submit" class="btn">Send Message Now</button>
+                                    <button type="submit" id="form-submit" class="btn"><?= lang('Send') ?></button>
                                 </fieldset>
                             </div>
                         </div>
@@ -712,9 +700,27 @@ $dominio = base_url();
             </div>
         </section>
         <section class="footer">
-            <p>Copyright &copy; 2019 Company Name. Design: TemplateMo</p>
+            <p>Copyright &copy; <span id="fecha"> </span> <?= $company ?>. <?= lang('Design') ?> <?= $creador ?></p>
         </section>
     </div>
+
+     <!-- ModalUs -->
+     <div class="modalUs" id="modalUs">
+                    <div class="modalUs_container">
+                        <div>
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="btn-close modalUs-close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, neque quisquam? Et, odio quibusdam assumenda velit delectus at in possimus cum atque, ipsum recusandae aut.
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="<?= base_url() ?>assets/js/vendor/jquery-1.11.2.min.js"></script>'
@@ -725,6 +731,10 @@ $dominio = base_url();
     <script src="<?= base_url() ?>assets/js/main.js"></script>
 
     <script>
+        $(document).ready(function() {
+            var year = new Date().getFullYear();
+            $("#fecha").html(year);
+        });
         // Hide Header on on scroll down
         var didScroll;
         var lastScrollTop = 0;
@@ -767,6 +777,8 @@ $dominio = base_url();
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
     <script src="<?= base_url() ?>assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+    <script src="<?= base_url('assets/bootstrap/dist/js/bootstrap.bundle.js') ?>"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>

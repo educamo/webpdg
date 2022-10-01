@@ -114,3 +114,17 @@ jQuery(document).ready(function($) {
 
 
 });
+
+const openModal = document.querySelector('.open-modalUs');
+const modalUs = document.querySelector('.modalUs');
+const modalClose = document.querySelector('.modalUs-close');
+
+openModal.addEventListener('click', (e) => {
+    e.preventDefault();
+    modalUs.classList.add('modalUs--show');
+});
+
+modalClose.addEventListener('click', (e) => {
+    e.preventDefault();
+    modalUs.classList.remove('modalUs--show');
+});

@@ -7,8 +7,6 @@
 $lang["lang"]                       = "es";
 $lang["description"]                = "SitioWeb de la marca de diseño gráfico cosmo imagine.";
 
-$lang["title"]                      = "Cosmo Imagine - Diseñadora Gráfica";
-
 $lang["author"]                  = "Cesar Carrasco";
 
 

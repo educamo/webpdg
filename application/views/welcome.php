@@ -1,9 +1,17 @@
 <?Php
-$map = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d424.01823977953916!2d-72.36756770237544!3d7.693578184167264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e663e439229c16f%3A0xa0e8d1a10fc2c852!2sRubio%205030%2C%20T%C3%A1chira!5e1!3m2!1ses!2sve!4v1663280352794!5m2!1ses!2sve';
-$title = lang('title');
-$dominio = base_url();
-$company = 'CosmoImagen';
-$creador = 'C. Carrasco';
+/**
+ * Variables a usar dentro de la plantilla
+ */
+$map = $mapa->configValue;
+$altLogo = $logo->configName;
+$logo = $logo->configValue;
+$title = $title->configValue;
+$dominio = $domain->configValue;
+$company = $company->configValue;
+$creador = $author->configValue;
+$keyWords = $keyWords->configValue;
+$description = $description->configValue;
+$contactMail = $contactMail->configValue;;
 ?>
 <!DOCTYPE html>
 <html lang="<?= lang('lang') ?>">
@@ -13,10 +21,14 @@ $creador = 'C. Carrasco';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="author" content="<?= lang('author') ?>">
+    <meta name="author" content="<?= $creador ?>">
     <title> <?= $title ?> </title>
-
     <meta name="title" content="<?= $title ?>">
+
+    <meta name="url" content="<?= $dominio ?>" />
+    <meta name="copyright" content="<?= $company ?>" />
+
+    <meta name="contact" content="<?= $contactMail ?>" />
 
     <link rel="shortcut icon" href="<?= base_url() ?>assets/img/favicon.png" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -27,7 +39,9 @@ $creador = 'C. Carrasco';
     <meta name="generator" content="VS Code 1.71.0" />
     <link rel="shortlink" href="<?= $dominio ?>" />
 
-    <meta name="description" content="<?= lang('description') ?>">
+    <meta name="description" content="<?= $description ?>">
+
+    <meta name="Keywords" content="<?= $keyWords ?>" />
 
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-theme.min.css">
@@ -76,7 +90,7 @@ $creador = 'C. Carrasco';
     <!-- barra lateral con menu -->
     <div class="sidebar-navigation hidde-sm hidden-xs">
         <div class="logo">
-            <a href="<?= base_url() ?>">Cosmo<em>Imagine</em></a>
+            <a href="<?= base_url() ?>"><img src="<?= base_url('assets/img/'.$logo) ?>" class="img-responsive" alt="<?= $altLogo ?>"></a>
         </div>
         <nav>
             <ul>

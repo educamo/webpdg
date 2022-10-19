@@ -3,6 +3,9 @@
     max-height: 500px;
 }
 
+
+/** modal */
+
 .modalUs {
     position: fixed;
     top: 0;
@@ -40,4 +43,33 @@
     place-items: center;
     transform: var(--transform);
     transition: var(--transition);
+}
+
+
+/** categoría de servicios  */
+
+.item_list .categoryItem a {
+    width: 92%;
+    padding: 15px 0;
+    margin: 10px;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.item_list .categoryItem a:hover {
+    text-decoration: underline !important;
+    color: #ca640a;
+}
+
+.item_list .categoryItem a.active {
+    text-decoration: underline !important;
+    color: #000036;
+}
+
+.linea {
+    margin: 20px 0;
+}
+
+.card {
+    transition: all .4s;
 }

@@ -112,6 +112,50 @@ jQuery(document).ready(function($) {
         $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top - 0 }, 500, 'linear');
     });
 
+    // filtrando servicios ============================
+
+    $('.categoryItemactivo').click(function(e) {
+        e.preventDefault();
+        var category = $(this).attr('data-category');
+
+        //se remueve la clase active de todos los item y se agrega la clase al elemento seleccionado
+        $('.categoryItemactivo').removeClass('active');
+        $(this).addClass('active');
+
+        // ocultar servicios ============================
+        $('.card').css('transform', 'scale(0)');
+
+        function hideServices() {
+            $('.card').hide();
+            $('.card').parent().hide();
+        }
+        setTimeout(hideServices, 400);
+
+        //mostrar servicios por categoria segun la que selecciono =====================================
+        function showServices() {
+            $('.card[data-category="' + category + '"]').show();
+            $('.card[data-category="' + category + '"]').parent().show();
+
+            $('.card').css('transform', 'scale(1)');
+        }
+        setTimeout(showServices, 400);
+
+
+    });
+
+    // mostrar todos los servicios ================================
+
+    $('.categoryItemactivo[data-category="all"]').click(function(e) {
+
+        e.preventDefault();
+
+        function showAll() {
+            $('.card').show();
+            $('.card').parent().show();
+            $('.card').css('transform', 'scale(1)');
+        }
+        setTimeout(showAll, 400);
+    })
 
 });
 

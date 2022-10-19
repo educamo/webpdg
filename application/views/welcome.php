@@ -340,22 +340,35 @@ $contactMail = $contactMail->configValue;;
             <div class="section-content">
                 <div class="container">
                     <div class="row">
-                        <ul class="">
-                            <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 rounded-start"> <a href=""> todos</a></li>
-                            <li class="d-inline bg-light text-dark fs-2 p-2 mb-3"> <a href="">diseño</a></li>
-                            <li class="d-inline bg-light text-dark fs-2 p-2 mb-3"><a href="">impresión</a></li>
-                            <li class="d-inline bg-light text-dark fs-2  p-2 mb-3 rounded-end"><a href="">marketing</a></li>
+                        <ul class="item_list">
+                            <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 rounded-start categoryItem">
+                                <a href="#" class="categoryItemactivo active" data-category="all"> todos</a>
+                            </li>
+                            <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 categoryItem">
+                                <a href="#" class="categoryItemactivo" data-category="desing">diseño</a>
+                            </li>
+                            <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 categoryItem">
+                                <a href="#" class="categoryItemactivo" data-category="impresion">impresión</a>
+                            </li>
+                            <li class="d-inline bg-light text-dark fs-2  p-2 mb-3 rounded-end categoryItem">
+                                <a href="#" class="categoryItemactivo" data-category="marketing">marketing</a>
+                            </li>
                         </ul>
                     </div>
+
+                    <div class="row">
+                        <hr class="linea" />
+                    </div>
+
                 </div>
+
                 <div class="masonry">
-
-
                     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+
                         <div class="col">
-                            <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card mb-4 rounded-3 shadow-sm" data-category="desing">
                                 <div class="card-header py-3">
-                                    <h4 class="my-0 fw-normal">Free</h4>
+                                    <h4 class="my-0 fw-normal">Diseño</h4>
                                 </div>
                                 <div class="card-body">
                                     <a href="<?= base_url() ?>assets/img/portfolio_big_1.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_1.jpg" alt="image 1" class="img-fluid img-thumbnail rounded"></a>
@@ -366,10 +379,11 @@ $contactMail = $contactMail->configValue;;
                                 </div>
                             </div>
                         </div>
+
                         <div class="col">
-                            <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card mb-4 rounded-3 shadow-sm" data-category="desing">
                                 <div class="card-header py-3">
-                                    <h4 class="my-0 fw-normal">Pro</h4>
+                                    <h4 class="my-0 fw-normal">Diseño</h4>
                                 </div>
                                 <div class="card-body">
                                     <a href="<?= base_url() ?>assets/img/portfolio_big_2.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_2.jpg" alt="image 2" class="img-fluid img-thumbnail rounded"></a>
@@ -380,10 +394,11 @@ $contactMail = $contactMail->configValue;;
                                 </div>
                             </div>
                         </div>
+
                         <div class="col">
-                            <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                                <div class="card-header py-3 text-bg-primary border-primary">
-                                    <h4 class="my-0 fw-normal">Enterprise</h4>
+                            <div class="card mb-4 rounded-3 shadow-sm" data-category="impresion">
+                                <div class="card-header py-3">
+                                    <h4 class="my-0 fw-normal">Impresión</h4>
                                 </div>
                                 <div class="card-body">
                                     <a href="<?= base_url() ?>assets/img/portfolio_big_3.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_3.jpg" alt="image 3" class="img-fluid img-thumbnail rounded"></a>
@@ -394,10 +409,11 @@ $contactMail = $contactMail->configValue;;
                                 </div>
                             </div>
                         </div>
+
                         <div class="col">
-                            <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                                <div class="card-header py-3 text-bg-primary border-primary">
-                                    <h4 class="my-0 fw-normal">Enterprise</h4>
+                            <div class="card mb-4 rounded-3 shadow-sm" data-category="marketing">
+                                <div class="card-header py-3">
+                                    <h4 class="my-0 fw-normal">Marketing</h4>
                                 </div>
                                 <div class="card-body">
                                     <a href="<?= base_url() ?>assets/img/portfolio_big_4.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_4.jpg" alt="image 4" class="img-fluid img-thumbnail rounded"></a>
@@ -408,10 +424,26 @@ $contactMail = $contactMail->configValue;;
                                 </div>
                             </div>
                         </div>
+
                         <div class="col">
-                            <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                                <div class="card-header py-3 text-bg-primary border-primary">
-                                    <h4 class="my-0 fw-normal">Enterprise</h4>
+                            <div class="card mb-4 rounded-3 shadow-sm" data-category="marketing">
+                                <div class="card-header py-3">
+                                    <h4 class="my-0 fw-normal">Marketing</h4>
+                                </div>
+                                <div class="card-body">
+                                    <a href="<?= base_url() ?>assets/img/portfolio_big_5.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_5.jpg" alt="image 5" class="img-fluid img-thumbnail rounded"></a>
+                                    <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
+                                    <span class="d-inline-block">
+                                        This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card mb-4 rounded-3 shadow-sm" data-category="impresion">
+                                <div class="card-header py-3">
+                                    <h4 class="my-0 fw-normal">Impresión</h4>
                                 </div>
                                 <div class="card-body">
                                     <a href="<?= base_url() ?>assets/img/portfolio_big_5.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_5.jpg" alt="image 5" class="img-fluid img-thumbnail rounded"></a>

@@ -37,9 +37,25 @@ class Admin extends CI_Controller
             redirect(base_url('Admin/Login'));
         }
     }
+    public function perfil()
+    {
+        if ($this->session->userdata('userId')) {
+            $this->plantilla();
+            $this->load->view('perfil');
+            $this->footer();
+        } else {
+            redirect(base_url('Admin/Login'));
+        }
+    }
+
     public function Login()
     {
-        $this->load->view('login');
+
+        if ($this->session->userdata('userId')) {
+            redirect(base_url('Admin'));
+        } else {
+            $this->load->view('login');
+        }
     }
     public function inciarSesion()
     {
@@ -58,7 +74,7 @@ class Admin extends CI_Controller
                 redirect('admin');
             } else {
                 $this->session->set_flashdata('status', lang('mensajeErrlogin'));
-                redirect(base_url().'Admin/Login');
+                redirect(base_url() . 'Admin/Login');
             }
         }
     }

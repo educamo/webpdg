@@ -14,15 +14,15 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Cerrar sesión</h5>
+          <h5 class="modal-title" id="exampleModalLabel"><?= lang('logout') ?></h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">está seguro que desea salir.</div>
+        <div class="modal-body"><?= lang('desea-salir') ?></div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="<?= base_url() ?>Administracion/logout">Salir</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal"><?= lang('cancel') ?></button>
+          <a class="btn btn-primary" href="<?= base_url('Admin/logout') ?>"><?= lang('out') ?></a>
         </div>
       </div>
     </div>

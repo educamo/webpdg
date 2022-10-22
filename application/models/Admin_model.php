@@ -8,10 +8,11 @@ class Admin_model extends CI_Model
     public function dasboard()
     {
         $value = 1;
-        $this->db->select('moduleId');
+        $this->db->select('moduleId, moduleName');
         $this->db->from('nu_modules');
         $this->db->where('activo', $value);
         $cantModules = $this->db->count_all_results();
+
 
         $admin = $this->session->rolId;
         if ($admin == 1) {

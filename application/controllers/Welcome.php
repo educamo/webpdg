@@ -34,6 +34,7 @@ class Welcome extends CI_Controller
 		$description = $this->obtenerDescripcion();
 		$contactMail = $this->obtenerContactmail();
 		$keyWords = $this->obtenerKeywords();
+		$social = $this->obtenerRedes();
 
 		$data['mapa'] = $mapa;
 		$data['logo'] = $logo;
@@ -44,6 +45,7 @@ class Welcome extends CI_Controller
 		$data['description'] = $description;
 		$data['contactMail'] = $contactMail;
 		$data['keyWords'] = $keyWords;
+		$data['social'] = $social;
 		$this->load->view('welcome', $data);
 	}
 	/**
@@ -127,4 +129,11 @@ class Welcome extends CI_Controller
 		$keyWords = $this->Welcome_model->getKeywords($value);
 		return $keyWords;
 	}
+	private function obtenerRedes()
+	{
+		$social = $this->Welcome_model->getRedes();
+		return $social;
+	}
+
+
 }

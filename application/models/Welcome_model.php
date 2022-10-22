@@ -47,6 +47,16 @@ class Welcome_model extends CI_model
         $keyWords = $this->getConfig($value);
         return $keyWords;
     }
+    public function getRedes()
+    {
+        $datos = array(
+            'campos' => 'socialName, socialIcon, socialUrl',
+            'tabla'  => 'nu_social',
+        );
+
+        $social = $this->getData($datos);
+        return $social;
+    }
     /**
      * función getConfig
      * realiza consulta a la bd buscando la configuración según el valor que recibe
@@ -66,9 +76,21 @@ class Welcome_model extends CI_model
         $this->db->where('activo', 1);
 
         $query = $this->db->get();
-        $data = $query->row();
+        $data  = $query->row();
 
         return $data;
+    }
+    private function getData($value = '')
+    {
+        $this->db->select($value['campos']);
+        $this->db->from($value['tabla']);
+        $this->db->where('activo', 1);
+
+        $query = $this->db->get();
+        $data  = $query->result_array();
+
+        return $data;
+
     }
 
     public function __destruct()

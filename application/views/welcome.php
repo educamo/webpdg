@@ -1,4 +1,5 @@
 <?Php
+
 /**
  * Variables a usar dentro de la plantilla
  */
@@ -79,7 +80,7 @@ $contactMail = $contactMail->configValue;;
                     <li><a href="#featured"> <?= lang('proyectos') . ' ' . lang('recientes')  ?> </a></li>
                     <li><a href="#projects"> <?= lang('Servicios') ?> </a></li>
                     <li><a href="#video">Un poco de Nosotros </a></li>
-                    <li><a href="#blog"> <?= lang('blog') ?> </a></li>
+                    <li><a href="#blog" style="display: none;"> <?= lang('blog') ?> </a></li>
                     <li><a href="#contact"> ¡Contáctenos! </a></li>
                 </ul>
             </nav>
@@ -90,7 +91,7 @@ $contactMail = $contactMail->configValue;;
     <!-- barra lateral con menu -->
     <div class="sidebar-navigation hidde-sm hidden-xs">
         <div class="logo">
-            <a href="<?= base_url() ?>"><img src="<?= base_url('assets/img/'.$logo) ?>" class="img-responsive" alt="<?= $altLogo ?>"></a>
+            <a href="<?= base_url() ?>"><img src="<?= base_url('assets/img/' . $logo) ?>" class="img-responsive" alt="<?= $altLogo ?>"></a>
         </div>
         <nav>
             <ul>
@@ -122,7 +123,7 @@ $contactMail = $contactMail->configValue;;
                         Un poco de Nosotros
                     </a>
                 </li>
-                <li>
+                <li style="display: none;">
                     <a href="#blog">
                         <span class="rect"></span>
                         <span class="circle"></span>
@@ -139,12 +140,13 @@ $contactMail = $contactMail->configValue;;
             </ul>
         </nav>
         <ul class="social-icons">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+            <?Php
+            foreach ($social as $red) {
+            ?>
+                <li><a href="<?= $red['socialUrl'] ?>" target="_blank"><i class="fa <?= $red['socialIcon'] ?>"></i></a></li>
+            <?Php
+            }
+            ?>
         </ul>
     </div>
     <!-- cierre barra lateral -->
@@ -327,9 +329,9 @@ $contactMail = $contactMail->configValue;;
                 </div>
             </div>
         </section>
-        <!-- cierre seccion proyectos recientes -->
+        <!-- cierre sección proyectos recientes -->
 
-        <!-- Seccion Proyectos Destacados -->
+        <!-- Sección Servicios -->
         <section id="projects" class="content-section">
             <div class="section-heading">
                 <h1><?= lang('Servicios') ?><br><em><?= lang('ofrecidos') ?></em></h1>
@@ -460,6 +462,9 @@ $contactMail = $contactMail->configValue;;
                 </div>
             </div>
         </section>
+        <!-- cierre sección servicios ofrecidos -->
+
+        <!-- session nosotros -->
 
         <section id="video" class="content-section">
             <div class="row">
@@ -469,8 +474,8 @@ $contactMail = $contactMail->configValue;;
                         <p>¿Cual es el objetivo que tiene nuestra compañia, <em>Cosmo Imagine</em> para ofrecerte a ti? </p>
                     </div>
                     <div class="text-content">
-                        <p>Cosmo <em>Imagine</em> te ofrece un servisio de calidad
-                            cuando se trata de cumplir las espectativas del cliente en base al tipo de diseño que ha elegido <br> al igual con la eficiencia y cretividad del mismo.</p>
+                        <div> TODO: colocar la variable php </div>
+
                         <!-- Button trigger modal -->
                         <div class="accent-button button open-modalUs">
                             <a href="#"> <?= lang('more') ?> </a>
@@ -480,10 +485,10 @@ $contactMail = $contactMail->configValue;;
                 </div>
 
         </section>
-        <!-- cierre Proyectos Destacados -->
+        <!-- cierre session nosotrs -->
 
         <!-- seccion blog -->
-        <section id="blog" class="content-section">
+        <section id="blog" class="content-section" style="display: none;">
             <div class="section-heading">
                 <h1><?= lang('blog') ?><br><em>Entries</em></h1>
                 <p>Curabitur hendrerit mauris mollis ipsum vulputate rutrum.
@@ -750,23 +755,23 @@ $contactMail = $contactMail->configValue;;
         </section>
     </div>
 
-     <!-- ModalUs -->
-     <div class="modalUs" id="modalUs">
-                    <div class="modalUs_container">
-                        <div>
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="btn-close modalUs-close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, neque quisquam? Et, odio quibusdam assumenda velit delectus at in possimus cum atque, ipsum recusandae aut.
-                            </div>
-                            <div class="modal-footer">
-
-                            </div>
-                        </div>
-                    </div>
+    <!-- ModalUs -->
+    <div class="modalUs" id="modalUs">
+        <div class="modalUs_container">
+            <div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close modalUs-close"></button>
                 </div>
+                <div class="modal-body">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, neque quisquam? Et, odio quibusdam assumenda velit delectus at in possimus cum atque, ipsum recusandae aut.
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="<?= base_url() ?>assets/js/vendor/jquery-1.11.2.min.js"></script>'

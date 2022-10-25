@@ -134,6 +134,4 @@ class Welcome extends CI_Controller
 		$social = $this->Welcome_model->getRedes();
 		return $social;
 	}
-
-
 }

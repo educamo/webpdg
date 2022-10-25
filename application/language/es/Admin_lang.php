@@ -36,12 +36,19 @@ $lang['company']                    = "Datos Empresa";
 $lang['social']                     = "Redes Sociales";
 $lang['configSocial']               = "Administrar";
 $lang['about']                      = "Nosotros";
-$lang['configAbout']                = "Modificar";
 $lang['configContact']              = "Contacto";
 
 
 ## Etiquetas generales del panel administrativo
+$lang['modify']                     = "Modificar";
 $lang['cancel']                     = "Cancelar";
 $lang['out']                        = "Salir";
+$lang['visible']                    = "Visible";
+
+## etiquetas view listSocial
+$lang['title-listSocial']           = "Redes Sociales";
+$lang['socialName']                 = "Nombre";
+$lang['socialurl']                  = "Url";
+
 
 ?>

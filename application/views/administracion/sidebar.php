@@ -49,7 +49,7 @@
         <div id="collapseSocial" class="collapse" aria-labelledby="headingSocial" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header"><?= lang('about') ?></h6>
-            <a class="collapse-item" href="<?= base_url('Admin/nosotros') ?>"><?= lang('configAbout') ?></a>
+            <a class="collapse-item" href="<?= base_url('Admin/nosotros') ?>"><?= lang('modify') ?></a>
             <a class="collapse-item" href="<?= base_url('Admin/configContacto') ?>"><?= lang('configContact') ?></a>
             <h6 class="collapse-header"><?= lang('social') ?></h6>
             <a class="collapse-item" href="<?= base_url('Admin/listSocial') ?>"><?= lang('configSocial') ?></a>

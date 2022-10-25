@@ -47,7 +47,6 @@ class Admin extends CI_Controller
             redirect(base_url('Admin/Login'));
         }
     }
-
     public function Login()
     {
 
@@ -76,6 +75,17 @@ class Admin extends CI_Controller
                 $this->session->set_flashdata('status', lang('mensajeErrlogin'));
                 redirect(base_url() . 'Admin/Login');
             }
+        }
+    }
+    public function listSocial()
+    {
+        if ($this->session->userdata('userId')) {
+            $data['redes'] = $this->Admin_model->getSocial();
+            $this->plantilla();
+            $this->load->view('listSocial', $data);
+            $this->footer();
+        } else {
+            redirect(base_url('Admin/Login'));
         }
     }
     private function plantilla()

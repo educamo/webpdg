@@ -19,7 +19,6 @@ class Admin_model extends CI_Model
             $this->db->select('userId');
             $this->db->from('nu_users');
             $cantUsers = $this->db->count_all_results();
-
         } else {
             $cantUsers = 0;
         };
@@ -43,6 +42,14 @@ class Admin_model extends CI_Model
         $this->db->where('password', $password);
         $query = $this->db->get();
         return $query->result();
+    }
+    public function getSocial()
+    {
+        $this->db->select('*');
+        $this->db->from('nu_social');
+        $query = $this->db->get();
+        $data = $query->result();
+        return $data;
     }
 
     public function __destruct()

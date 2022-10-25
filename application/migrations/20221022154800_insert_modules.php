@@ -18,7 +18,7 @@ class Migration_insert_modules extends CI_Migration
             'fechaModificacion' => '0000-00-00 00:00:00',
             'ipCreacion' => '127.0.0.0',
             'ipModificacion' => '000.000.000.000',
-            'activo' => '1',
+            'activo' => 1,
         ]);
         ## slider ==============
         $this->db->insert('nu_modules', [
@@ -31,7 +31,7 @@ class Migration_insert_modules extends CI_Migration
             'fechaModificacion' => '0000-00-00 00:00:00',
             'ipCreacion' => '127.0.0.0',
             'ipModificacion' => '000.000.000.000',
-            'activo' => '1',
+            'activo' => 1,
         ]);
         ## proyectos ================
         $this->db->insert('nu_modules', [
@@ -44,7 +44,7 @@ class Migration_insert_modules extends CI_Migration
             'fechaModificacion' => '0000-00-00 00:00:00',
             'ipCreacion' => '127.0.0.0',
             'ipModificacion' => '000.000.000.000',
-            'activo' => '1',
+            'activo' => 1,
         ]);
         ## Servicios ==============
         $this->db->insert('nu_modules', [
@@ -57,7 +57,7 @@ class Migration_insert_modules extends CI_Migration
             'fechaModificacion' => '0000-00-00 00:00:00',
             'ipCreacion' => '127.0.0.0',
             'ipModificacion' => '000.000.000.000',
-            'activo' => '1',
+            'activo' => 1,
         ]);
         ## nosotros ===============
         $this->db->insert('nu_modules', [
@@ -70,7 +70,7 @@ class Migration_insert_modules extends CI_Migration
             'fechaModificacion' => '0000-00-00 00:00:00',
             'ipCreacion' => '127.0.0.0',
             'ipModificacion' => '000.000.000.000',
-            'activo' => '1',
+            'activo' => 1,
         ]);
         ##   contacto ===============
         $this->db->insert('nu_modules', [
@@ -83,7 +83,7 @@ class Migration_insert_modules extends CI_Migration
             'fechaModificacion' => '0000-00-00 00:00:00',
             'ipCreacion' => '127.0.0.0',
             'ipModificacion' => '000.000.000.000',
-            'activo' => '1',
+            'activo' => 1,
         ]);
     }
 

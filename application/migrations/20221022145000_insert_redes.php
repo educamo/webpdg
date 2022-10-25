@@ -21,7 +21,7 @@ class Migration_insert_redes extends CI_Migration
             'fechaModificacion' => '0000-00-00 00:00:00',
             'ipCreacion' => '127.0.0.0',
             'ipModificacion' => '000.000.000.000',
-            'activo' => '1',
+            'activo' => 1,
         ]);
         ## instagram ==============
         $this->db->insert('nu_social', [
@@ -37,7 +37,7 @@ class Migration_insert_redes extends CI_Migration
             'fechaModificacion' => '0000-00-00 00:00:00',
             'ipCreacion' => '127.0.0.0',
             'ipModificacion' => '000.000.000.000',
-            'activo' => '1',
+            'activo' => 1,
         ]);
         ## youtube ================
         $this->db->insert('nu_social', [
@@ -53,7 +53,7 @@ class Migration_insert_redes extends CI_Migration
             'fechaModificacion' => '0000-00-00 00:00:00',
             'ipCreacion' => '127.0.0.0',
             'ipModificacion' => '000.000.000.000',
-            'activo' => '1',
+            'activo' => 1,
         ]);
         ## linkedin ==============
         $this->db->insert('nu_social', [
@@ -69,7 +69,7 @@ class Migration_insert_redes extends CI_Migration
             'fechaModificacion' => '0000-00-00 00:00:00',
             'ipCreacion' => '127.0.0.0',
             'ipModificacion' => '000.000.000.000',
-            'activo' => '1',
+            'activo' => 1,
         ]);
         ## twitter ===============
         $this->db->insert('nu_social', [
@@ -85,7 +85,7 @@ class Migration_insert_redes extends CI_Migration
             'fechaModificacion' => '0000-00-00 00:00:00',
             'ipCreacion' => '127.0.0.0',
             'ipModificacion' => '000.000.000.000',
-            'activo' => '1',
+            'activo' => 1,
         ]);
         ##   RSS ===============
         $this->db->insert('nu_social', [
@@ -101,7 +101,7 @@ class Migration_insert_redes extends CI_Migration
             'fechaModificacion' => '0000-00-00 00:00:00',
             'ipCreacion' => '127.0.0.0',
             'ipModificacion' => '000.000.000.000',
-            'activo' => '1',
+            'activo' => 1,
         ]);
     }
 

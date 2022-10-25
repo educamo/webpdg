@@ -24,35 +24,36 @@ class Migration_Add_rol extends CI_Migration {
                         'usuarioCreacion' => array(
                             'type' => 'VARCHAR',
                             'constraint' => '16',
-                            'null' => FALSE,
+                            'null' => TRUE,
                         ),
                         'usuarioModificacion' => array(
                             'type' => 'VARCHAR',
                             'constraint' => '16',
-                            'null' => FALSE,
+                            'null' => TRUE,
                         ),
                         'fechaCreacion' => array(
                             'type' => 'DATE',
-                            'null' => FALSE,
+                            'null' => TRUE,
                         ),
                         'fechaModificacion' => array(
                             'type' => 'DATE',
-                            'null' => FALSE,
+                            'null' => TRUE,
                         ),
                         'ipCreacion' => array(
                             'type' => 'VARCHAR',
                             'constraint' => '15',
-                            'null' => FALSE,
+                            'null' => TRUE,
                         ),
                         'ipModificacion' => array(
                             'type' => 'VARCHAR',
                             'constraint' => '15',
-                            'null' => FALSE,
+                            'null' => TRUE,
                         ),
                         'activo' => array(
                             'type' => 'INT',
                             'constraint' => '1',
-                            'null' => FALSE,
+                            'null' => TRUE,
+                            'Default' => 1,
                         ),
                 ));
                 $this->dbforge->add_key('rolId', TRUE);

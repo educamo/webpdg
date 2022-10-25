@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_insert_config extends CI_Migration {
+class Migration_insert_configKywds extends CI_Migration {
 
         public function up()
         {

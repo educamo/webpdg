@@ -7,6 +7,7 @@ class Migration_Add_services extends CI_Migration
 
     public function up()
     {
+        $fecha = date('Y-m-d H:i:s');
         $this->dbforge->add_field(array(
             'serviceId' => array(
                 'type' => 'VARCHAR',
@@ -45,38 +46,38 @@ class Migration_Add_services extends CI_Migration
             'usuarioCreacion' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '16',
-                'null' => FALSE,
+                'null' => TRUE,
             ),
             'usuarioModificacion' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '16',
-                'null' => FALSE,
+                'null' => TRUE,
             ),
             'fechaCreacion' => array(
                 'type' => 'timestamp',
-                'null' => FALSE,
-                'default' =>  '0000-00-00 00:00:00',
+                'null' => TRUE,
+                'default' =>  $fecha,
             ),
             'fechaModificacion' => array(
                 'type' => 'timestamp',
-                'null' => FALSE,
-                'default' => '0000-00-00 00:00:00',
+                'null' => TRUE,
+                'default' => $fecha,
             ),
             'ipCreacion' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '15',
-                'null' => FALSE,
+                'null' => TRUE,
             ),
             'ipModificacion' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '15',
-                'null' => FALSE,
+                'null' => TRUE,
             ),
             'activo' => array(
                 'type' => 'INT',
                 'constraint' => '1',
-                'null' => FALSE,
-                'default' => '0',
+                'null' => TRUE,
+                'default' => 0,
             ),
         ));
         $this->dbforge->add_key('serviceId', TRUE);
@@ -84,17 +85,17 @@ class Migration_Add_services extends CI_Migration
 
         $this->db->query('
         ALTER TABLE nu_services
-MODIFY COLUMN fechaCreacion timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER usuarioModificacion;
+MODIFY COLUMN fechaCreacion timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP AFTER usuarioModificacion;
 ');
 
         $this->db->query('
         ALTER TABLE nu_services
-MODIFY COLUMN fechaModificacion timestamp(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) AFTER fechaCreacion;
+MODIFY COLUMN fechaModificacion timestamp(0) NULL ON UPDATE CURRENT_TIMESTAMP(0) AFTER fechaCreacion;
         ');
 
         $this->db->query('
-        ALTER TABLE `db_pdg`.`nu_services` 
-MODIFY COLUMN `servicePrice` double(20, 2) NOT NULL AFTER `serviceImagen`;
+        ALTER TABLE nu_services
+MODIFY COLUMN servicePrice double(20, 2) NULL AFTER serviceImagen;
         ');
 
     }

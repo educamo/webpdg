@@ -25,7 +25,12 @@
            <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary"><?= lang('configSocial') ?></h6>
            </div>
-           <div class="card-body">
+           <div class="card-body">  
+               <div class="row mb-2">
+                    <div class="col">
+                         <button class="btn btn-primary"><?= lang('saveModify') ?></button>
+                    </div>
+               </div>
                 <div class="table-responsive">
                      <table class="table table-bordered" id="tableRedes" width="100%" cellspacing="0">
                           <thead>
@@ -33,27 +38,27 @@
                                     <th><?= lang('socialName') ?></th>
                                     <th><?= lang('socialurl') ?></th>
                                     <th><?= lang('visible') ?></th>
-                                    <th><?= lang('modify') ?></th>
                                </tr>
                           </thead>
 
                           <tbody>
                                <?Php
                                    foreach ($redes as $red) {
+                                        $socialId = $red->socialId;
 
-                                        if ($red->activo == 1) {
+                                        if ($red->activo === "1") {
                                              $activo = 'checked';
                                         } else {
-                                             $activo = 0;
+                                             $activo = '';
                                         }
                                    ?>
                                     <tr>
                                          <td><?= $red->socialName ?></td>
-                                         <td><input type="text" id="socialUrl" name="socialUrl" value="<?= $red->socialUrl ?>"></td>
-                                         <td class="text-center"><input type="checkbox" id="activo" name="activo" checked="<?= $activo ?>"></td>
+                                         <td><input type="text" id="socialId<?= $socialId ?>" name="socialUrl<?= $socialId ?>" value="<?= $red->socialUrl ?>"></td>
                                          <td class="text-center">
-                                              <a href="<?= base_url() ?>Administracion/actualizarUsuario/<?= $red->socialId ?>" class="btn btn-warning text-ligth"> <i class="fa fa-edit"></i></a>
-                                         </td>
+                                             <input type="checkbox" id="activo<?= $socialId ?>" name="activo<?= $socialId ?>" <?= $activo ?>></td>
+                                             <input type="hidden" id="socialId<?= $socialId ?>" name="socialId<?= $socialId ?>" value="<?= $red->socialId ?>">
+                                        </td>
                                     </tr>
                                <?Php
                                    }
@@ -71,12 +76,22 @@
  <!-- End of Main Content -->
  <script>
       $(document).ready(function() {
-           $('#tableRedes').DataTable();
+          var table = $('#tableRedes').DataTable({
+        columnDefs: [
+            {
+                orderable: false,
+                targets: [1, 2],
+            },
+        ],
+     });
+         //  $('#tableRedes').DataTable();
 
-           $('button').click(function() {
-                var data = table.$('input').serialize();
-                alert('The following data would have been submitted to the server: \n\n' + data.substr(0, 120) + '...');
-                return false;
-           });
+           $('.btn-primary').click(function () {
+        var data = table.$('input').serialize();
+        alert('The following data would have been submitted to the server: \n\n' + data.substr(0, 120) + '...');
+        return false;
+    });
+
+           
       });
  </script>

@@ -91,6 +91,24 @@ class Admin_model extends CI_Model
         
         return $this->db->update('nu_modules', $datos);
     }
+    public function getRols()
+    {
+        $this->db->select('rolId, rolName');
+        $this->db->from('nu_rols');
+        $this->db->where('activo', "1");
+        
+        $query = $this->db->get();
+        $data = $query->result();
+        
+        return $data;
+        
+    }
+    public function saveUser($datos = NULL)
+    {
+        
+       return $this->db->insert('nu_users', $datos);
+        
+    }
 
     public function __destruct()
     {

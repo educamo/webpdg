@@ -151,6 +151,39 @@ class Admin extends CI_Controller
          echo json_encode($r);
          return true;
     }
+    public function nuevoUsuario()
+    {
+        if ($this->session->userdata('userId')) {
+            
+            $data['rols'] = $this->Admin_model->getRols();
+            
+            $this->plantilla();
+            $this->load->view('nuevoUsuario', $data);
+            $this->footer();
+        } else {
+            redirect(base_url('Admin/Login'));
+        }
+    }
+    public function guardarUsuario()
+    {
+        $usuarioCreacion = $this->session->userdata('userId');
+        $ipCreacion = $_SERVER['REMOTE_ADDR'];
+
+        $datos = array(
+            'userId'                  => $this->input->post('userId'),
+            'userName'                => $this->input->post('userName'),
+            'password'                => $this->input->post('password'),
+            'mail'                    => $this->input->post('mail'),
+            'rolId'                   => $this->input->post('rolId'),
+            'usuarioCreacion'          => $usuarioCreacion,
+            'ipCreacion'              => $ipCreacion,
+            'activo'                  => "1",
+         );
+
+         $r = $this->Admin_model->saveUser($datos);
+         echo json_encode($r);
+         return true;
+    }
     private function plantilla()
     {
         $datos['usuario'] = $this->session->userName;

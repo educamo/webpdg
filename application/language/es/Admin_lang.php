@@ -53,8 +53,20 @@ $lang['option']                     = "Seleccione una opcion...";
 $lang['load']                       = "Cargando... ";
 $lang['update']                     = "Se actualizaron correctamente los datos";
 $lang['error']                      = "Ha ocurrido un error al actualizar los datos";
+$lang['errorSave']                  = "Ha ocurrido un error al Guardar los datos";
+$lang['new']                        = "Se Guardaron correctamente los datos";
 
-
+## etiquetas view nuevoUsuario
+$lang['title-nuevoUsuario']         = "Usuarios";
+$lang['addUser']                    = "Nuevo";
+$lang['userId']                     = "Id del Usuario";
+$lang['userId-placeholder']         = "v00000000";
+$lang['userName']                   = "Nombre del Usuario";
+$lang['password']                   = "Contraseña";
+$lang['confirmarPass']              = "Confirmar Contraseña";
+$lang['confirmarPass-msj']          = "Las Contraseñas no son iguales";
+$lang['mailUser']                   = "Correo";
+$lang['rolUser']                    = "Rol";
 
 ## etiquetas view listSocial
 $lang['title-listSocial']           = "Redes Sociales";

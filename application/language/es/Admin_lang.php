@@ -44,11 +44,34 @@ $lang['modify']                     = "Modificar";
 $lang['cancel']                     = "Cancelar";
 $lang['out']                        = "Salir";
 $lang['visible']                    = "Visible";
+$lang['search']                     = "Buscar";
+$lang['cancel']                     = "Cancelar";
+$lang['save']                       = "Guardar";
+
+##mensajes en formularios
+$lang['option']                     = "Seleccione una opcion...";
+$lang['load']                       = "Cargando... ";
+$lang['update']                     = "Se actualizaron correctamente los datos";
+$lang['error']                      = "Ha ocurrido un error al actualizar los datos";
+
+
 
 ## etiquetas view listSocial
 $lang['title-listSocial']           = "Redes Sociales";
 $lang['socialName']                 = "Nombre";
 $lang['socialurl']                  = "Url";
+$lang['saveModify']                 = "Guardar Modificaciones";
 
+## etiquetas view listModulos
+$lang['title-listModulos']          = "Modulos";
+$lang['viewModule']                 = "Lista de Modulos";
+$lang['moduleName']                 = "Nombre Modulo";
+$lang['moduleDescription']          = "Descripcion";
 
+## etiquetas view modificarModulo
+$lang['title-listModulos']          = "Modulos";
+$lang['searchModule']               = "Buscar Modulo";
+$lang['moduleName']                 = "Nombre Modulo";
+$lang['moduleDescription']          = "Descripcion";
+$lang['select']                     = "Debe seleccionar un modulo para modificar";
 ?>

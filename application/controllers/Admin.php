@@ -88,6 +88,69 @@ class Admin extends CI_Controller
             redirect(base_url('Admin/Login'));
         }
     }
+    public function listModulos()
+    {
+        if ($this->session->userdata('userId')) {
+            $data['modulos'] = $this->Admin_model->getModules();
+            $this->plantilla();
+            $this->load->view('listModulos', $data);
+            $this->footer();
+        } else {
+            redirect(base_url('Admin/Login'));
+        }
+    }
+    public function modificarModulo()
+    {
+        if ($this->session->userdata('userId')) {
+            $filtro = "modificar";
+            $data['modulos'] = $this->Admin_model->getModules($filtro);
+            $this->plantilla();
+            $this->load->view('modificarModulos', $data);
+            $this->footer();
+        } else {
+            redirect(base_url('Admin/Login'));
+        }
+    }
+    public function consultarModulo($moduloId = NULL)
+    {
+        
+        $moduloId = $this->input->post('modulos');
+        
+        $data['modulo'] = $moduloId;
+        $data['filtro'] = "consultar";
+        
+        $data = $this->Admin_model->getModule($data);
+        
+        if (!$data) {
+            $view = 0;
+           // var_dump($view); die();
+        } else {     
+            //var_dump($data);  
+                $view = $this->load->view('updateModule', $data);
+                $this->load->view('administracion/end');
+        }
+
+        return $view;
+    }
+    public function updateModulo()
+    {
+        $usuarioModificacion = $this->session->userdata('userId');
+        $ipModificacion = $_SERVER['REMOTE_ADDR'];
+
+        $datos = array(
+            'moduleId'              => $this->input->post('moduleId'),
+            'moduleName'            => $this->input->post('moduleName'),
+            'moduleDescription'     => $this->input->post('moduleDescription'),
+            'usuarioModificacion'   => $usuarioModificacion,
+            'ipModificacion'        => $ipModificacion,
+
+         ); 
+
+         $r = $this->Admin_model->updateModule($datos);
+         
+         echo json_encode($r);
+         return true;
+    }
     private function plantilla()
     {
         $datos['usuario'] = $this->session->userName;

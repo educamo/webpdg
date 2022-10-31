@@ -51,6 +51,46 @@ class Admin_model extends CI_Model
         $data = $query->result();
         return $data;
     }
+    public function getModules($filtro = null)
+    {
+        $this->db->select('moduleId, moduleName, moduleDescription, activo');
+        
+        $this->db->from('nu_modules');
+        if ($filtro === "modificar") {
+            $this->db->where('moduleId <> 1' );    
+            $this->db->where('moduleId <> "slider"' ); 
+        }
+
+        $query = $this->db->get();
+        $data = $query->result();
+        return $data;
+    }
+    public function getModule($data = null)
+    {
+        $moduloId = $data['modulo'];
+        $filtro = $data['filtro'];
+        $value = 1;
+        $this->db->select('moduleId, moduleName, moduleDescription, activo');
+        
+        $this->db->from('nu_modules');
+        if ($filtro === "consultar") {
+            $this->db->where('moduleId', $moduloId); 
+            $this->db->where('moduleId <> 1' );     
+            $this->db->where('activo', $value);
+              
+        }
+
+        $query = $this->db->get();
+        $data = $query->row();
+        return $data;
+    }
+    public function updateModule($datos = null)
+    {
+        $value = $datos["moduleId"];
+        $this->db->where('moduleId', $value);
+        
+        return $this->db->update('nu_modules', $datos);
+    }
 
     public function __destruct()
     {

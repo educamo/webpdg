@@ -41,17 +41,17 @@
                                    foreach ($modulos as $modulo) {
                                         $moduleId = $modulo->moduleId;
 
-                                        if ($modulo->activo == 1) {
+                                        if ($modulo->activo === "1") {
                                              $activo = 'checked';
                                         } else {
-                                             $activo = 0;
+                                             $activo = '';
                                         }
                                    ?>
                                     <tr>
                                          <td><?= $modulo->moduleName ?></td>
                                          <td><?= $modulo->moduleDescription ?></td>
                                          <td class="text-center">
-                                             <input type="checkbox" id="activo<?= $moduleId ?>" name="activo<?= $moduleId ?>" checked="<?= $activo ?>"></td>
+                                             <input type="checkbox" id="activo<?= $moduleId ?>" name="activo<?= $moduleId ?>" <?= $activo ?>></td>
                                              <input type="hidden" id="moduleId<?= $moduleId ?>" name="moduleId<?= $moduleId ?>" value="<?= $modulo->moduleId ?>">
                                         </td>
                                     </tr>

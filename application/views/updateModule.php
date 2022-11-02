@@ -1,7 +1,7 @@
 <form action="#" method="post" id="frmModificar">
     <div class="row">
         <div class="col-md-6">
-            <label for="moduleID" class="form-label">Codigo del Modulo</label>
+            <label for="moduleId" class="form-label">Codigo del Modulo</label>
             <input type="text" class="form-control" name="id" id="id" value="<?= $moduleId ?>" disabled>
             <input type="hidden" class="form-control" name="moduleId" id="moduleId" value="<?= $moduleId ?>">
 
@@ -11,7 +11,7 @@
             <input type="text" class="form-control" name="moduleName" id="moduleName" value="<?= $moduleName ?>">
         </div>
         <div class="col-md-12 mt-4">
-            <label for="moduleDescription" class="form-label">Titulo del Modulo</label>
+            <label for="moduleDescription" class="form-label">Descripcion del Modulo</label>
             <textarea class="form-control" name="moduleDescription" id="moduleDescription"><?= $moduleDescription ?></textarea>
         </div>
     </div>

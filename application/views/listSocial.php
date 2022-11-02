@@ -32,7 +32,7 @@
                     </div>
                </div>
                 <div class="table-responsive">
-                     <table class="table table-bordered" id="tableRedes" width="100%" cellspacing="0">
+                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                           <thead>
                                <tr>
                                     <th><?= lang('socialName') ?></th>
@@ -76,22 +76,25 @@
  <!-- End of Main Content -->
  <script>
       $(document).ready(function() {
-          var table = $('#tableRedes').DataTable({
-        columnDefs: [
-            {
-                orderable: false,
-                targets: [1, 2],
-            },
-        ],
-     });
-         //  $('#tableRedes').DataTable();
+          // para agregar varias opciones con el mismo id de datatable
+          table.destroy();
+          
+          var table = $('#dataTable').DataTable({
+               columnDefs: [
+                    {
+                         orderable: false,
+                         targets: [1, 2],
+                    },                  
+               ],                
+          });
+
 
            $('.btn-primary').click(function () {
         var data = table.$('input').serialize();
         alert('The following data would have been submitted to the server: \n\n' + data.substr(0, 120) + '...');
         return false;
-    });
+          });
 
            
-      });
+     });
  </script>

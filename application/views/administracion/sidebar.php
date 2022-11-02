@@ -24,7 +24,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Nav Item - Pages Collapse Menu -->
+      <!-- Nav Item - contenidos Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseContents" aria-expanded="true" aria-controls="collapseContents">
           <i class="fas fa-fw fa-address-card"></i>
@@ -39,8 +39,14 @@
             <a class="collapse-item" href="<?= base_url('Admin/servicios') ?>"><?= lang('services') ?></a>
           </div>
         </div>
-      </li>
+      </li>      
 
+      <?Php
+ // de aqui en adelante se muetran los menu si tienes permisos de administrador 
+      $admin = $this->session->rolId;
+      if ($admin == 1) {
+      ?>
+       <!-- Nav Item - Datos de la Empresa Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSocial" aria-expanded="true" aria-controls="collapseSocial">
           <i class="fas fa-fw fa-building"></i>
@@ -57,11 +63,7 @@
         </div>
       </li>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <?Php
-      $admin = $this->session->rolId;
-      if ($admin == 1) {
-      ?>
+      <!-- Nav Item - Administracion Collapse Menu -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-lock"></i>
@@ -70,6 +72,7 @@
           <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header"><?= lang('admin-user') ?></h6>
+              <a class="collapse-item" href="<?= base_url('Admin/listRols') ?>"><?= lang('reg-rols') ?></a>
               <a class="collapse-item" href="<?= base_url('Admin/listUsuarios') ?>"><?= lang('reg-user') ?></a>
               <a class="collapse-item" href="<?= base_url('Admin/nuevoUsuario') ?>"><?= lang('new-user') ?></a>
               <h6 class="collapse-header"><?= lang('config') ?></h6>
@@ -78,7 +81,7 @@
           </div>
         </li>
 
-
+<!-- Nav Item - Modulos Collapse Menu -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsemodulos" aria-expanded="true" aria-controls="collapsemodulos">
             <i class="fas fa-fw fa-clipboard-list"></i>

@@ -25,7 +25,6 @@ class Admin extends CI_Controller
      */
     public function index()
     {
-        if ($this->session->userdata('userId')) {
             $datos = $this->Admin_model->dasboard();
 
             $this->plantilla();
@@ -33,19 +32,14 @@ class Admin extends CI_Controller
             $this->load->view('administracion/main', $datos);
 
             $this->footer();
-        } else {
-            redirect(base_url('Admin/Login'));
-        }
+
     }
     public function perfil()
     {
-        if ($this->session->userdata('userId')) {
             $this->plantilla();
             $this->load->view('perfil');
             $this->footer();
-        } else {
-            redirect(base_url('Admin/Login'));
-        }
+
     }
     public function Login()
     {
@@ -79,37 +73,28 @@ class Admin extends CI_Controller
     }
     public function listSocial()
     {
-        if ($this->session->userdata('userId')) {
             $data['redes'] = $this->Admin_model->getSocial();
             $this->plantilla();
             $this->load->view('listSocial', $data);
             $this->footer();
-        } else {
-            redirect(base_url('Admin/Login'));
-        }
+
     }
     public function listModulos()
     {
-        if ($this->session->userdata('userId')) {
             $data['modulos'] = $this->Admin_model->getModules();
             $this->plantilla();
             $this->load->view('listModulos', $data);
             $this->footer();
-        } else {
-            redirect(base_url('Admin/Login'));
-        }
+
     }
     public function modificarModulo()
     {
-        if ($this->session->userdata('userId')) {
             $filtro = "modificar";
             $data['modulos'] = $this->Admin_model->getModules($filtro);
             $this->plantilla();
             $this->load->view('modificarModulos', $data);
             $this->footer();
-        } else {
-            redirect(base_url('Admin/Login'));
-        }
+
     }
     public function consultarModulo($moduloId = NULL)
     {
@@ -153,16 +138,12 @@ class Admin extends CI_Controller
     }
     public function nuevoUsuario()
     {
-        if ($this->session->userdata('userId')) {
             
             $data['rols'] = $this->Admin_model->getRols();
             
             $this->plantilla();
             $this->load->view('nuevoUsuario', $data);
             $this->footer();
-        } else {
-            redirect(base_url('Admin/Login'));
-        }
     }
     public function guardarUsuario()
     {
@@ -184,8 +165,38 @@ class Admin extends CI_Controller
          echo json_encode($r);
          return true;
     }
+    public function listRols()
+    {
+            $all = "todos";
+            $data['rols'] = $this->Admin_model->getRols($all);
+            
+            $this->plantilla();
+            $this->load->view('listRols', $data);
+            $this->footer();
+       
+    }
+    public function actualizarRol($id = NULL)
+    {
+        $id = $this->uri->segment(3);
+        if ($id ===NULL) {
+            redirect(base_url('Admin/listRols'));
+            exit();
+        }
+        $data = $this->Admin_model->getRol($id);
+        $this->plantilla();
+        $this->load->view('updateRol', $data);
+        $this->footer();
+    
+
+        
+    }
     private function plantilla()
     {
+        if (!$this->session->userdata('userId')) {
+            redirect(base_url('Admin/Login'));
+            exit();
+        }
+
         $datos['usuario'] = $this->session->userName;
         $this->load->view('administracion/head');
         $this->load->view('administracion/sidebar');

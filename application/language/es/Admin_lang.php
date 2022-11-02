@@ -25,6 +25,7 @@ $lang['category']                   = "Categorías";
 $lang['services']                   = "Servicios";
 $lang['admin']                      = "Administración";
 $lang['admin-user']                 = "Usuarios";
+$lang['reg-rols']                   = "Administrar Roles";
 $lang['reg-user']                   = "Registros de Usuarios";
 $lang['new-user']                   = "Nuevo Usuario";
 $lang['config']                     = "Configuración";
@@ -55,6 +56,19 @@ $lang['update']                     = "Se actualizaron correctamente los datos";
 $lang['error']                      = "Ha ocurrido un error al actualizar los datos";
 $lang['errorSave']                  = "Ha ocurrido un error al Guardar los datos";
 $lang['new']                        = "Se Guardaron correctamente los datos";
+$lang['action']                     = "Accion";
+$lang['activo']                     = "Esta Activo";
+
+## etiquetas view listRols
+$lang['title-rols']                 = "Roles de Usuarios";
+$lang['list-rols']                  = "Lista de Roles";
+$lang['rolId']                      = "Id del Rol";
+$lang['rolName']                    = "Nombre del Rol";
+$lang['password']                   = "Contraseña";
+$lang['confirmarPass']              = "Confirmar Contraseña";
+$lang['confirmarPass-msj']          = "Las Contraseñas no son iguales";
+$lang['mailUser']                   = "Correo";
+$lang['rolUser']                    = "Rol";
 
 ## etiquetas view nuevoUsuario
 $lang['title-nuevoUsuario']         = "Usuarios";

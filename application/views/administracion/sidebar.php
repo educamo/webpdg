@@ -39,31 +39,31 @@
             <a class="collapse-item" href="<?= base_url('Admin/servicios') ?>"><?= lang('services') ?></a>
           </div>
         </div>
-      </li>      
+      </li>
 
       <?Php
- // de aqui en adelante se muetran los menu si tienes permisos de administrador 
+      // de aquí en adelante se muestran los menu si tienes permisos de administrador
       $admin = $this->session->rolId;
       if ($admin == 1) {
       ?>
-       <!-- Nav Item - Datos de la Empresa Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSocial" aria-expanded="true" aria-controls="collapseSocial">
-          <i class="fas fa-fw fa-building"></i>
-          <span><?= lang('company') ?></span>
-        </a>
-        <div id="collapseSocial" class="collapse" aria-labelledby="headingSocial" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header"><?= lang('about') ?></h6>
-            <a class="collapse-item" href="<?= base_url('Admin/nosotros') ?>"><?= lang('modify') ?></a>
-            <a class="collapse-item" href="<?= base_url('Admin/configContacto') ?>"><?= lang('configContact') ?></a>
-            <h6 class="collapse-header"><?= lang('social') ?></h6>
-            <a class="collapse-item" href="<?= base_url('Admin/listSocial') ?>"><?= lang('configSocial') ?></a>
+        <!-- Nav Item - Datos de la Empresa Collapse Menu -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSocial" aria-expanded="true" aria-controls="collapseSocial">
+            <i class="fas fa-fw fa-building"></i>
+            <span><?= lang('company') ?></span>
+          </a>
+          <div id="collapseSocial" class="collapse" aria-labelledby="headingSocial" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header"><?= lang('about') ?></h6>
+              <a class="collapse-item" href="<?= base_url('Admin/nosotros') ?>"><?= lang('modify') ?></a>
+              <a class="collapse-item" href="<?= base_url('Admin/configContacto') ?>"><?= lang('configContact') ?></a>
+              <h6 class="collapse-header"><?= lang('social') ?></h6>
+              <a class="collapse-item" href="<?= base_url('Admin/listSocial') ?>"><?= lang('configSocial') ?></a>
+            </div>
           </div>
-        </div>
-      </li>
+        </li>
 
-      <!-- Nav Item - Administracion Collapse Menu -->
+        <!-- Nav Item - Administración Collapse Menu -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-lock"></i>
@@ -81,7 +81,7 @@
           </div>
         </li>
 
-<!-- Nav Item - Modulos Collapse Menu -->
+        <!-- Nav Item - Módulos Collapse Menu -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsemodulos" aria-expanded="true" aria-controls="collapsemodulos">
             <i class="fas fa-fw fa-clipboard-list"></i>

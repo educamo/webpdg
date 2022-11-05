@@ -25,7 +25,7 @@
            <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary"><?= lang('viewModule') ?></h6>
            </div>
-           <div class="card-body">  
+           <div class="card-body">
                 <div class="table-responsive">
                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                           <thead>
@@ -51,9 +51,10 @@
                                          <td><?= $modulo->moduleName ?></td>
                                          <td><?= $modulo->moduleDescription ?></td>
                                          <td class="text-center">
-                                             <input type="checkbox" id="activo<?= $moduleId ?>" name="activo<?= $moduleId ?>" <?= $activo ?>></td>
-                                             <input type="hidden" id="moduleId<?= $moduleId ?>" name="moduleId<?= $moduleId ?>" value="<?= $modulo->moduleId ?>">
-                                        </td>
+                                              <input type="checkbox" id="activo<?= $moduleId ?>" name="activo<?= $moduleId ?>" <?= $activo ?>>
+                                         </td>
+                                         <input type="hidden" id="moduleId<?= $moduleId ?>" name="moduleId<?= $moduleId ?>" value="<?= $modulo->moduleId ?>">
+                                         </td>
                                     </tr>
                                <?Php
                                    }
@@ -72,7 +73,7 @@
  <script>
       $(document).ready(function() {
 
-         $('checkbox').click()
-           
+           $('checkbox').click()
+
       });
  </script>

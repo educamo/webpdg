@@ -170,7 +170,7 @@
      });
 
      $('#cancelNewrol').click(function() {
-       alertify.error('<?= lang('cancel-operation') ?>');
+       alertify.message('<?= lang('cancel-operation') ?>');
      });
 
 
@@ -230,7 +230,7 @@
 
          },
          function() {
-           alertify.error('Cancel');
+           alertify.message('<?= lang('cancel-operation') ?>');
          }).setting('modal', true);
      });
 

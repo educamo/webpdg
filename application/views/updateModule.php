@@ -29,7 +29,7 @@
 <script>
     $(document).ready(function() {
         $(".btn-danger").click(function() {
-            alertify.error('<?= lang('cancel-operation') ?>');
+            alertify.message('<?= lang('cancel-operation') ?>');
             location.reload();
         })
 

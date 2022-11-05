@@ -88,6 +88,11 @@ $lang['mailUser']                   = "Correo";
 $lang['rolUser']                    = "Rol";
 $lang['select-option-rol']          = "Seleccione un Rol";
 
+## etiquetas view configcontacto
+$lang['title-configContacto']       = "Configuración Formulario de Contacto";
+$lang['modifycontac']               = "Modificar Contacto";
+$lang['mailCotact']                 = "Correo de Contacto";
+
 ## etiquetas view listSocial
 $lang['title-listSocial']           = "Redes Sociales";
 $lang['socialName']                 = "Nombre";

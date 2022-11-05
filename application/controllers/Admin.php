@@ -25,21 +25,19 @@ class Admin extends CI_Controller
      */
     public function index()
     {
-            $datos = $this->Admin_model->dasboard();
+        $datos = $this->Admin_model->dasboard();
 
-            $this->plantilla();
+        $this->plantilla();
 
-            $this->load->view('administracion/main', $datos);
+        $this->load->view('administracion/main', $datos);
 
-            $this->footer();
-
+        $this->footer();
     }
     public function perfil()
     {
-            $this->plantilla();
-            $this->load->view('perfil');
-            $this->footer();
-
+        $this->plantilla();
+        $this->load->view('perfil');
+        $this->footer();
     }
     public function Login()
     {
@@ -73,46 +71,43 @@ class Admin extends CI_Controller
     }
     public function listSocial()
     {
-            $data['redes'] = $this->Admin_model->getSocial();
-            $this->plantilla();
-            $this->load->view('listSocial', $data);
-            $this->footer();
-
+        $data['redes'] = $this->Admin_model->getSocial();
+        $this->plantilla();
+        $this->load->view('listSocial', $data);
+        $this->footer();
     }
     public function listModulos()
     {
-            $data['modulos'] = $this->Admin_model->getModules();
-            $this->plantilla();
-            $this->load->view('listModulos', $data);
-            $this->footer();
-
+        $data['modulos'] = $this->Admin_model->getModules();
+        $this->plantilla();
+        $this->load->view('listModulos', $data);
+        $this->footer();
     }
     public function modificarModulo()
     {
-            $filtro = "modificar";
-            $data['modulos'] = $this->Admin_model->getModules($filtro);
-            $this->plantilla();
-            $this->load->view('modificarModulos', $data);
-            $this->footer();
-
+        $filtro = "modificar";
+        $data['modulos'] = $this->Admin_model->getModules($filtro);
+        $this->plantilla();
+        $this->load->view('modificarModulos', $data);
+        $this->footer();
     }
     public function consultarModulo($moduloId = NULL)
     {
-        
+
         $moduloId = $this->input->post('modulos');
-        
+
         $data['modulo'] = $moduloId;
         $data['filtro'] = "consultar";
-        
+
         $data = $this->Admin_model->getModule($data);
-        
+
         if (!$data) {
             $view = 0;
-           // var_dump($view); die();
-        } else {     
-            //var_dump($data);  
-                $view = $this->load->view('updateModule', $data);
-                $this->load->view('administracion/end');
+            // var_dump($view); die();
+        } else {
+            //var_dump($data);
+            $view = $this->load->view('updateModule', $data);
+            $this->load->view('administracion/end');
         }
 
         return $view;
@@ -129,21 +124,21 @@ class Admin extends CI_Controller
             'usuarioModificacion'   => $usuarioModificacion,
             'ipModificacion'        => $ipModificacion,
 
-         ); 
+        );
 
-         $r = $this->Admin_model->updateModule($datos);
-         
-         echo json_encode($r);
-         return true;
+        $r = $this->Admin_model->updateModule($datos);
+
+        echo json_encode($r);
+        return true;
     }
     public function nuevoUsuario()
     {
-            
-            $data['rols'] = $this->Admin_model->getRols();
-            
-            $this->plantilla();
-            $this->load->view('nuevoUsuario', $data);
-            $this->footer();
+
+        $data['rols'] = $this->Admin_model->getRols();
+
+        $this->plantilla();
+        $this->load->view('nuevoUsuario', $data);
+        $this->footer();
     }
     public function guardarUsuario()
     {
@@ -156,29 +151,45 @@ class Admin extends CI_Controller
             'password'                => $this->input->post('password'),
             'mail'                    => $this->input->post('mail'),
             'rolId'                   => $this->input->post('rolId'),
-            'usuarioCreacion'          => $usuarioCreacion,
+            'usuarioCreacion'         => $usuarioCreacion,
             'ipCreacion'              => $ipCreacion,
             'activo'                  => "1",
-         );
+        );
 
-         $r = $this->Admin_model->saveUser($datos);
-         echo json_encode($r);
-         return true;
+        $r = $this->Admin_model->saveUser($datos);
+        echo json_encode($r);
+        return true;
     }
     public function listRols()
     {
-            $all = "todos";
-            $data['rols'] = $this->Admin_model->getRols($all);
-            
-            $this->plantilla();
-            $this->load->view('listRols', $data);
-            $this->footer();
-       
+        $all = "todos";
+        $data['rols'] = $this->Admin_model->getRols($all);
+
+        $this->plantilla();
+        $this->load->view('listRols', $data);
+        $this->footer();
+    }
+
+    public function insertRol()
+    {
+        $usuarioCreacion = $this->session->userdata('userId');
+        $ipCreacion = $_SERVER['REMOTE_ADDR'];
+        $datos = array(
+            'rolId'             => $this->input->post('rolId'),
+            'rolName'           => $this->input->post('rolName'),
+            'rolDescription'    => $this->input->post('rolDescription'),
+            'usuarioCreacion'   => $usuarioCreacion,
+            'ipCreacion'        => $ipCreacion,
+            'activo'            => "1",
+        );
+        $r = $this->Admin_model->insertRol($datos);
+        echo json_encode($r);
+        return true;
     }
     public function actualizarRol($id = NULL)
     {
         $id = $this->uri->segment(3);
-        if ($id ===NULL) {
+        if ($id === NULL) {
             redirect(base_url('Admin/listRols'));
             exit();
         }
@@ -186,9 +197,31 @@ class Admin extends CI_Controller
         $this->plantilla();
         $this->load->view('updateRol', $data);
         $this->footer();
-    
+    }
+    public function updateRol()
+    {
+        $usuarioModificacion = $this->session->userdata('userId');
+        $ipModificacion = $_SERVER['REMOTE_ADDR'];
+        $datos = array(
+            'rolId'                 => $this->input->post('rolId'),
+            'rolName'               => $this->input->post('rolName'),
+            'rolDescription'        => $this->input->post('rolDescription'),
+            'usuarioModificacion'   => $usuarioModificacion,
+            'ipModificacion'        => $ipModificacion,
+            'activo'                => $this->input->post('activo'),
+        );
+        $r = $this->Admin_model->updateRol($datos);
 
-        
+        echo json_encode($r);
+        return true;
+    }
+    public function borrarRol($id = NULL)
+    {
+        $id = $this->input->post('rolId');
+
+        $r = $this->Admin_model->deleteRol($id);
+        echo json_encode($r);
+        return true;
     }
     private function plantilla()
     {

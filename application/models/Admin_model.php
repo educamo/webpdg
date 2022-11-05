@@ -54,11 +54,11 @@ class Admin_model extends CI_Model
     public function getModules($filtro = null)
     {
         $this->db->select('moduleId, moduleName, moduleDescription, activo');
-        
+
         $this->db->from('nu_modules');
         if ($filtro === "modificar") {
-            $this->db->where('moduleId <> 1' );    
-            $this->db->where('moduleId <> "slider"' ); 
+            $this->db->where('moduleId <> 1');
+            $this->db->where('moduleId <> "slider"');
         }
 
         $query = $this->db->get();
@@ -71,13 +71,12 @@ class Admin_model extends CI_Model
         $filtro = $data['filtro'];
         $value = 1;
         $this->db->select('moduleId, moduleName, moduleDescription, activo');
-        
+
         $this->db->from('nu_modules');
         if ($filtro === "consultar") {
-            $this->db->where('moduleId', $moduloId); 
-            $this->db->where('moduleId <> 1' );     
+            $this->db->where('moduleId', $moduloId);
+            $this->db->where('moduleId <> 1');
             $this->db->where('activo', $value);
-              
         }
 
         $query = $this->db->get();
@@ -88,7 +87,7 @@ class Admin_model extends CI_Model
     {
         $value = $datos["moduleId"];
         $this->db->where('moduleId', $value);
-        
+
         return $this->db->update('nu_modules', $datos);
     }
     public function getRols($filtro = NULL)
@@ -98,32 +97,45 @@ class Admin_model extends CI_Model
         if ($filtro !== "todos") {
             $this->db->where('activo', "1");
         }
-        
-        
+
+
         $query = $this->db->get();
         $data = $query->result();
-        
+
         return $data;
-        
     }
     public function getRol($id = NULL)
     {
-        
+
         $this->db->select('rolId, rolName, rolDescription, activo');
         $this->db->from('nu_rols');
         $this->db->where('rolId', $id);
         $query = $this->db->get();
         $data = $query->row();
-        
+
         return $data;
-        
-        
+    }
+    public function insertRol($datos = NULL)
+    {
+        return $this->db->insert('nu_rols', $datos);
+    }
+    public function updateRol($datos = NULL)
+    {
+        $value = $datos["rolId"];
+        $this->db->where('rolId', $value);
+
+        return $this->db->update('nu_rols', $datos);
+    }
+    public function deleteRol($id = NULL)
+    {
+        $value = $id;
+        $this->db->where('rolId', $value);
+
+        return $this->db->delete('nu_rols');
     }
     public function saveUser($datos = NULL)
     {
-        
-       return $this->db->insert('nu_users', $datos);
-        
+        return $this->db->insert('nu_users', $datos);
     }
 
     public function __destruct()

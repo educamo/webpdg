@@ -22,10 +22,17 @@
   <!-- Custom styles for this template-->
   <link href="<?= base_url() ?>assets/css/sb-admin-2.css" rel="stylesheet">
 
+
+  <!-- Alertify -->
+  <link rel="stylesheet" href="<?= base_url() ?>assets/alertifyjs/css/alertify.css">
+  <link rel="stylesheet" href="<?= base_url() ?>assets/alertifyjs/css//themes/bootstrap.css">
+
+  <!-- Boostrap 5.2.1 --->
+  <link rel="stylesheet" href="<?= base_url() ?>assets/bootstrap/dist/css/bootstrap.css">
+  <!-- css de los DataTables -->
+  <!-- <link href="<?= base_url() ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/datatables.min.css"/>
   <!-- Custom styles for this page -->
-
-  <link href="<?= base_url() ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
   <link href="<?= base_url() ?>assets/css/estilos.css" rel="stylesheet">
 
 

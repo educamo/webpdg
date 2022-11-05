@@ -43,6 +43,24 @@ class Admin_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function getConfig($id = NULL)
+    {
+        $this->db->select('configId, configValue');
+        $this->db->from('nu_config');
+        if ($id !== NULL) {
+            $this->db->where('configId', $id);
+            $query = $this->db->get();
+            $data = $query->row();
+        }
+        return $data;
+    }
+    public function updateConfig($datos = NULL)
+    {
+        $id = $datos["configId"];
+        $this->db->where('configId', $id);
+
+        return $this->db->update('nu_config', $datos);
+    }
     public function getSocial()
     {
         $this->db->select('*');

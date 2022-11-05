@@ -69,6 +69,30 @@ class Admin extends CI_Controller
             }
         }
     }
+    public function configContacto()
+    {
+        $configId = 'mailEmp';
+        $data['config'] = $this->Admin_model->getConfig($configId);
+        $this->plantilla();
+        $this->load->view('configContacto', $data);
+        $this->footer();
+    }
+    public function guardarContacto()
+    {
+        $usuarioModificacion = $this->session->userdata('userId');
+        $ipModificacion = $_SERVER['REMOTE_ADDR'];
+        $datos = array(
+            'configId'              => $this->input->post('configId'),
+            'configValue'           => $this->input->post('configValue'),
+            'usuarioModificacion'   => $usuarioModificacion,
+            'ipModificacion'        => $ipModificacion,
+        );
+
+        $r = $this->Admin_model->updateConfig($datos);
+
+        echo json_encode($r);
+        return true;
+    }
     public function listSocial()
     {
         $data['redes'] = $this->Admin_model->getSocial();
@@ -169,7 +193,6 @@ class Admin extends CI_Controller
         $this->load->view('listRols', $data);
         $this->footer();
     }
-
     public function insertRol()
     {
         $usuarioCreacion = $this->session->userdata('userId');

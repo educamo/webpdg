@@ -25,12 +25,12 @@
            <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary"><?= lang('configSocial') ?></h6>
            </div>
-           <div class="card-body">  
-               <div class="row mb-2">
-                    <div class="col">
-                         <button class="btn btn-primary"><?= lang('saveModify') ?></button>
-                    </div>
-               </div>
+           <div class="card-body">
+                <div class="row mb-2">
+                     <div class="col">
+                          <button class="btn btn-primary"><?= lang('saveModify') ?></button>
+                     </div>
+                </div>
                 <div class="table-responsive">
                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                           <thead>
@@ -56,9 +56,10 @@
                                          <td><?= $red->socialName ?></td>
                                          <td><input type="text" id="socialId<?= $socialId ?>" name="socialUrl<?= $socialId ?>" value="<?= $red->socialUrl ?>"></td>
                                          <td class="text-center">
-                                             <input type="checkbox" id="activo<?= $socialId ?>" name="activo<?= $socialId ?>" <?= $activo ?>></td>
-                                             <input type="hidden" id="socialId<?= $socialId ?>" name="socialId<?= $socialId ?>" value="<?= $red->socialId ?>">
-                                        </td>
+                                              <input type="checkbox" id="activo<?= $socialId ?>" name="activo<?= $socialId ?>" <?= $activo ?>>
+                                         </td>
+                                         <input type="hidden" id="socialId<?= $socialId ?>" name="socialId<?= $socialId ?>" value="<?= $red->socialId ?>">
+                                         </td>
                                     </tr>
                                <?Php
                                    }
@@ -76,25 +77,23 @@
  <!-- End of Main Content -->
  <script>
       $(document).ready(function() {
-          // para agregar varias opciones con el mismo id de datatable
-          table.destroy();
-          
-          var table = $('#dataTable').DataTable({
-               columnDefs: [
-                    {
-                         orderable: false,
-                         targets: [1, 2],
-                    },                  
-               ],                
-          });
+           // para agregar varias opciones con el mismo id de datatable
+           table.destroy();
+
+           var table = $('#dataTable').DataTable({
+                columnDefs: [{
+                     orderable: false,
+                     targets: [1, 2],
+                }, ],
+           });
 
 
-           $('.btn-primary').click(function () {
-        var data = table.$('input').serialize();
-        alert('The following data would have been submitted to the server: \n\n' + data.substr(0, 120) + '...');
-        return false;
-          });
+           $('.btn-primary').click(function() {
+                var data = table.$('input').serialize();
+                alert('The following data would have been submitted to the server: \n\n' + data.substr(0, 120) + '...');
+                return false;
+           });
 
-           
-     });
+
+      });
  </script>

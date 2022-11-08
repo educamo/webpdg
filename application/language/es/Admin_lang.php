@@ -39,6 +39,7 @@ $lang['social']                     = "Redes Sociales";
 $lang['configSocial']               = "Administrar";
 $lang['about']                      = "Nosotros";
 $lang['configContact']              = "Contacto";
+$lang['configLogo']                 = "Logo";
 
 ## Etiquetas generales del panel administrativo
 $lang['modify']                     = "Modificar";

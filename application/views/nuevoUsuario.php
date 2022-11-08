@@ -50,8 +50,8 @@
                      </div>
                      <div class="col-md-4 mb-2">
                          <label for="rolId" class="form-label"><?= lang('rolUser') ?></label>
-                         <select name="rolId" id="rolId" class="form-select">
-                             <option value="0"><?= lang('select-option-rol') ?></option>
+                         <select name="rolId" id="rolId" class="form-select" required>
+                             <option value=""><?= lang('select-option-rol') ?></option>
                              <?Php
                                 foreach ($rols as $rol) {
                                 ?>
@@ -133,4 +133,3 @@
 
      });
  </script>
- // TODO: validar campos y cuando no este ningún rol activo

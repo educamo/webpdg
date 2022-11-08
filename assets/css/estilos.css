@@ -1,0 +1,10 @@
+.parrafo {
+    width: 500px;
+    text-align: center;
+    max-width: 450px;
+}
+
+form .error {
+    color: #ff0000;
+    font-size: 1em;
+}

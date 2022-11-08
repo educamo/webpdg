@@ -51,7 +51,7 @@
                                          <td><?= $modulo->moduleName ?></td>
                                          <td><?= $modulo->moduleDescription ?></td>
                                          <td class="text-center">
-                                              <input type="checkbox" id="activo<?= $moduleId ?>" name="activo<?= $moduleId ?>" <?= $activo ?>>
+                                              <input type="checkbox" class="active" data-code="<?= $modulo->moduleId ?>" value="<?= $modulo->activo ?>" id="activo<?= $moduleId ?>" name="activo<?= $moduleId ?>" <?= $activo ?>>
                                          </td>
                                          <input type="hidden" id="moduleId<?= $moduleId ?>" name="moduleId<?= $moduleId ?>" value="<?= $modulo->moduleId ?>">
                                          </td>
@@ -72,8 +72,43 @@
  <!-- End of Main Content -->
  <script>
       $(document).ready(function() {
+           var urlbase = "<?= base_url() ?>";
 
-           $('checkbox').click()
+           $('.active').click(function() {
+                const codigo = $(this).attr('data-code');
+                const valor = $(this).val();
+
+                //creo variable con la url del ajax
+                var urlajax = urlbase + "Admin/verModulo";
+                // Run $.ajax() here
+                // Using the core $.ajax() method
+                $.ajax({
+
+                     // The URL for the request
+                     url: urlajax,
+
+                     // The data to send (will be converted to a query string)
+                     data: {
+                          moduleId: codigo,
+                          activo: valor
+                     },
+
+                     // Whether this is a POST or GET request
+                     method: "POST",
+
+                     dataType: "json",
+
+                     success: function(r) {
+                          alertify.success('<?= lang("update") ?>');
+                          setTimeout("location.reload(true);", 3000);
+
+                     },
+                     error: function(r) {
+                          alertify.error('<?= lang("errorSave") ?>');
+                          setTimeout("location.reload(true);", 3000);
+                     }
+                })
+           });
 
       });
  </script>

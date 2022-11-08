@@ -45,12 +45,17 @@ class Admin_model extends CI_Model
     }
     public function getConfig($id = NULL)
     {
-        $this->db->select('configId, configValue');
+        $this->db->select('configId, configValue, configDescription');
         $this->db->from('nu_config');
         if ($id !== NULL) {
             $this->db->where('configId', $id);
             $query = $this->db->get();
             $data = $query->row();
+        } else {
+            $this->db->where('configId <> "Logo"');
+            $this->db->where('configId <> "mailEmp"');
+            $query = $this->db->get();
+            $data = $query->result();
         }
         return $data;
     }
@@ -60,6 +65,10 @@ class Admin_model extends CI_Model
         $this->db->where('configId', $id);
 
         return $this->db->update('nu_config', $datos);
+    }
+    public function insertConfig($datos = NULL)
+    {
+        return $this->db->insert('nu_config', $datos);
     }
     public function getSocial()
     {
@@ -150,6 +159,37 @@ class Admin_model extends CI_Model
         $this->db->where('rolId', $value);
 
         return $this->db->delete('nu_rols');
+    }
+    public function getUsers()
+    {
+        $this->db->select('nu_users.userId, nu_users.userName, nu_users.mail, nu_users.activo, nu_rols.rolId, nu_rols.rolName');
+        $this->db->from('nu_users');
+        $this->db->join('nu_rols', 'nu_users.rolId = nu_rols.rolId', 'inner');
+        $query = $this->db->get();
+        $data = $query->result();
+        return $data;
+    }
+    public function getUser($id = NULL)
+    {
+        $this->db->select('userId, userName, mail, rolId, activo');
+        $this->db->from('nu_users');
+        $this->db->where('userId', $id);
+        $query = $this->db->get();
+        $data = $query->row();
+        return $data;
+    }
+    public function updateUser($datos = NULL)
+    {
+        $value = $datos["userId"];
+        $this->db->where('userId', $value);
+
+        return $this->db->update('nu_users', $datos);
+    }
+    public function deleteUser($id = NULL)
+    {
+        $value = $id;
+        $this->db->where('userId', $value);
+        return $this->db->delete('nu_users');
     }
     public function saveUser($datos = NULL)
     {

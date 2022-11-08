@@ -155,6 +155,82 @@ class Admin extends CI_Controller
         echo json_encode($r);
         return true;
     }
+    public function verModulo()
+    {
+        $usuarioModificacion = $this->session->userdata('userId');
+        $ipModificacion = $_SERVER['REMOTE_ADDR'];
+
+        $activo = $this->input->post('activo');
+        if ($activo === "1") {
+            $activo = 0;
+        } else {
+            $activo = 1;
+        }
+
+        $datos = array(
+            'moduleId'              => $this->input->post('moduleId'),
+            'activo'                => $activo,
+            'usuarioModificacion'   => $usuarioModificacion,
+            'ipModificacion'        => $ipModificacion,
+
+        );
+
+        $r = $this->Admin_model->updateModule($datos);
+
+        echo json_encode($r);
+        return true;
+    }
+    public function listUsuarios()
+    {
+        $data['users'] = $this->Admin_model->getUsers();
+
+        $data['session'] = $this->session->userdata('userId');
+
+        $this->plantilla();
+        $this->load->view('listUsuarios', $data);
+        $this->footer();
+    }
+    public function actualizaruser($id = NULL)
+    {
+        $id = $this->uri->segment(3);
+        if ($id === NULL) {
+            redirect(base_url('Admin/listUsuarios'));
+            exit();
+        }
+        $data = $this->Admin_model->getUser($id);
+        $rol = $this->Admin_model->getRols();
+
+        $data->rols = $rol;
+        $this->plantilla();
+        $this->load->view('actualizarUser', $data);
+        $this->footer();
+    }
+    public function actualizarUsuario()
+    {
+        $usuarioModificacion = $this->session->userdata('userId');
+        $ipModificacion = $_SERVER['REMOTE_ADDR'];
+        $datos = array(
+            'userId'                => $this->input->post('userId'),
+            'userName'              => $this->input->post('userName'),
+            'mail'                  => $this->input->post('mail'),
+            'rolId'                 => $this->input->post('rolId'),
+            'usuarioModificacion'   => $usuarioModificacion,
+            'ipModificacion'        => $ipModificacion,
+            'activo'                => $this->input->post('activo'),
+        );
+        $r = $this->Admin_model->updateUser($datos);
+
+        echo json_encode($r);
+        return true;
+    }
+    public function borrarUsuario($id = NULL)
+    {
+        $id = $this->input->post('userId');
+
+        $r = $this->Admin_model->deleteUser($id);
+        echo json_encode($r);
+        return true;
+    }
     public function nuevoUsuario()
     {
 
@@ -192,6 +268,59 @@ class Admin extends CI_Controller
         $this->plantilla();
         $this->load->view('listRols', $data);
         $this->footer();
+    }
+    public function listconfig()
+    {
+        $data['configs'] = $this->Admin_model->getConfig();
+
+        $this->plantilla();
+        $this->load->view('listconfig', $data);
+        $this->footer();
+    }
+    public function actualizarConfig($id = NULL)
+    {
+        $id = $this->uri->segment(3);
+        if ($id === NULL) {
+            redirect(base_url('Admin/listconfig'));
+            exit();
+        }
+        $data = $this->Admin_model->getConfig($id);
+        $this->plantilla();
+        $this->load->view('actualizarConfig', $data);
+        $this->footer();
+    }
+    public function insertConfig()
+    {
+        $usuarioCreacion = $this->session->userdata('userId');
+        $ipCreacion = $_SERVER['REMOTE_ADDR'];
+        $datos = array(
+            'configId'          => $this->input->post('configId'),
+            'configValue'       => $this->input->post('configValue'),
+            'configDescription' => $this->input->post('configDescription'),
+            'usuarioCreacion'   => $usuarioCreacion,
+            'ipCreacion'        => $ipCreacion,
+            'activo'            => "1",
+        );
+        $r = $this->Admin_model->insertConfig($datos);
+        echo json_encode($r);
+        return true;
+    }
+    public function updateConfig()
+    {
+        $usuarioModificacion = $this->session->userdata('userId');
+        $ipModificacion = $_SERVER['REMOTE_ADDR'];
+        $datos = array(
+            'configId'              => $this->input->post('configId'),
+            'configValue'          => $this->input->post('configValue'),
+            'configDescription'     => $this->input->post('configDescription'),
+            'usuarioModificacion'   => $usuarioModificacion,
+            'ipModificacion'        => $ipModificacion,
+            'activo'                => $this->input->post('activo'),
+        );
+        $r = $this->Admin_model->updateConfig($datos);
+
+        echo json_encode($r);
+        return true;
     }
     public function insertRol()
     {

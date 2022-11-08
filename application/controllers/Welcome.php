@@ -25,17 +25,19 @@ class Welcome extends CI_Controller
 	 */
 	public function index()
 	{
-		$mapa = $this->obtenerMapa();
-		$logo = $this->obtenerLogo();
-		$title = $this->obtenerTitle();
-		$author = $this->obtenerAuthor();
-		$company = $this->obtenerCompany();
-		$domain = $this->obtenerDominio();
-		$description = $this->obtenerDescripcion();
-		$contactMail = $this->obtenerContactmail();
-		$keyWords = $this->obtenerKeywords();
-		$social = $this->obtenerRedes();
+		$mapa 		    = $this->obtenerMapa();
+		$logo 			= $this->obtenerLogo();
+		$title 			= $this->obtenerTitle();
+		$author 		= $this->obtenerAuthor();
+		$company 		= $this->obtenerCompany();
+		$domain 		= $this->obtenerDominio();
+		$description 	= $this->obtenerDescripcion();
+		$contactMail 	= $this->obtenerContactmail();
+		$keyWords 		= $this->obtenerKeywords();
+		$social 		= $this->obtenerRedes();
+		$modules 		= $this->obtenerModules();
 
+		$data['modules'] = $modules;
 		$data['mapa'] = $mapa;
 		$data['logo'] = $logo;
 		$data['title'] = $title;
@@ -133,5 +135,10 @@ class Welcome extends CI_Controller
 	{
 		$social = $this->Welcome_model->getRedes();
 		return $social;
+	}
+	private function obtenerModules()
+	{
+		$modules = $this->Welcome_model->getModules();
+		return $modules;
 	}
 }

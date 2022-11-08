@@ -57,6 +57,15 @@ class Welcome_model extends CI_model
         $social = $this->getData($datos);
         return $social;
     }
+    public function getModules()
+    {
+        $datos = array(
+            'campos' => 'moduleId, moduleName, moduleDescription',
+            'tabla'  => 'nu_modules',
+         );
+         $modules = $this->getData($datos);
+         return $modules;
+    }
     /**
      * función getConfig
      * realiza consulta a la bd buscando la configuración según el valor que recibe

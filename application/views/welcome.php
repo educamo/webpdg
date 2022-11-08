@@ -3,16 +3,47 @@
 /**
  * Variables a usar dentro de la plantilla
  */
-$map = $mapa->configValue;
-$altLogo = $logo->configName;
-$logo = $logo->configValue;
-$title = $title->configValue;
-$dominio = $domain->configValue;
-$company = $company->configValue;
-$creador = $author->configValue;
-$keyWords = $keyWords->configValue;
-$description = $description->configValue;
-$contactMail = $contactMail->configValue;;
+$map            = $mapa->configValue;
+$altLogo        = $logo->configName;
+$logo           = $logo->configValue;
+$title          = $title->configValue;
+$dominio        = $domain->configValue;
+$company        = $company->configValue;
+$creador        = $author->configValue;
+$keyWords       = $keyWords->configValue;
+$description    = $description->configValue;
+$contactMail    = $contactMail->configValue;
+
+$titleProjects  = NULL;
+$titleContact   = NULL;
+$titleServices  = NULL;
+$titleUs        = NULL;
+
+foreach ($modules as $module) {
+    $i = $module['moduleId'];
+    switch ($i) {
+
+        case 'featured':
+            $titleProjects       = $module['moduleName'];
+            $descriptionProjects = $module['moduleDescription'];
+            break;
+
+        case 'projects':
+            $titleServices       = $module['moduleName'];
+            $descriptionServices = $module['moduleDescription'];
+            break;
+
+        case 'video':
+            $titleUs       = $module['moduleName'];
+            $descriptionUs = $module['moduleDescription'];
+            break;
+
+        case 'contact':
+            $titleContact       = $module['moduleName'];
+            $descriptionContact = $module['moduleDescription'];
+            break;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="<?= lang('lang') ?>">
@@ -59,6 +90,7 @@ $contactMail = $contactMail->configValue;;
 
     <!-- css custom -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/estilos.css">
 
 </head>
 
@@ -77,11 +109,39 @@ $contactMail = $contactMail->configValue;;
             <nav>
                 <ul class="nav navbar-nav">
                     <li><a href="#top"> <?= lang('home') ?></a></li>
-                    <li><a href="#featured"> <?= lang('proyectos') . ' ' . lang('recientes')  ?> </a></li>
-                    <li><a href="#projects"> <?= lang('Servicios') ?> </a></li>
-                    <li><a href="#video">Un poco de Nosotros </a></li>
+                    <?Php
+                    if ($titleProjects) {
+                    ?>
+                        <li><a href="#featured"> <?= lang('proyectos') . ' ' . lang('recientes')  ?> </a></li>
+                    <?Php
+                    }
+                    ?>
+
+                    <?Php
+                    if ($titleServices) {
+                    ?>
+                        <li><a href="#projects"> <?= lang('Servicios').' '. lang('ofrecidos') ?> </a></li>
+                    <?Php
+                    }
+                    ?>
+
+                    <?Php
+                    if ($titleUs) {
+                    ?>
+                        <li><a href="#video"> <?= lang('aboutUs') ?> </a></li>
+                    <?Php
+                    }
+                    ?>
+
                     <li><a href="#blog" style="display: none;"> <?= lang('blog') ?> </a></li>
-                    <li><a href="#contact"> ¡Contáctenos! </a></li>
+
+                    <?Php
+                    if ($titleContact) {
+                    ?>
+                        <li><a href="#contact"> <?= lang('contact') ?> </a></li>
+                    <?Php
+                    }
+                    ?>
                 </ul>
             </nav>
         </div>
@@ -102,27 +162,48 @@ $contactMail = $contactMail->configValue;;
                         <?= lang('home') ?>
                     </a>
                 </li>
-                <li>
-                    <a href="#featured">
-                        <span class="rect"></span>
-                        <span class="circle"></span>
-                        <?= lang('proyectos') . ' ' . lang('recientes') ?>
-                    </a>
-                </li>
-                <li>
-                    <a href="#projects">
-                        <span class="rect"></span>
-                        <span class="circle"></span>
-                        <?= lang('Servicios') ?>
-                    </a>
-                </li>
-                <li>
-                    <a href="#video">
-                        <span class="rect"></span>
-                        <span class="circle"></span>
-                        Un poco de Nosotros
-                    </a>
-                </li>
+                <?Php
+                if ($titleProjects) {
+                ?>
+                    <li>
+                        <a href="#featured">
+                            <span class="rect"></span>
+                            <span class="circle"></span>
+                            <?= lang('proyectos') . ' ' . lang('recientes') ?>
+                        </a>
+                    </li>
+                <?Php
+                }
+                ?>
+
+                <?Php
+                if ($titleServices) {
+                ?>
+                    <li>
+                        <a href="#projects">
+                            <span class="rect"></span>
+                            <span class="circle"></span>
+                            <?= lang('Servicios'). ' '. lang('ofrecidos') ?>
+                        </a>
+                    </li>
+                <?Php
+                }
+                ?>
+
+                <?Php
+                if ($titleUs) {
+                ?>
+                    <li>
+                        <a href="#video">
+                            <span class="rect"></span>
+                            <span class="circle"></span>
+                            <?= lang('aboutUs') ?>
+                        </a>
+                    </li>
+                <?Php
+                }
+                ?>
+
                 <li style="display: none;">
                     <a href="#blog">
                         <span class="rect"></span>
@@ -130,13 +211,20 @@ $contactMail = $contactMail->configValue;;
                         <?= lang('blog') ?>
                     </a>
                 </li>
-                <li>
-                    <a href="#contact">
-                        <span class="rect"></span>
-                        <span class="circle"></span>
-                        ¡Contáctenos!
-                    </a>
-                </li>
+
+                <?Php
+                if ($titleContact) {
+                ?>
+                    <li>
+                        <a href="#contact">
+                            <span class="rect"></span>
+                            <span class="circle"></span>
+                            <?= lang('contact') ?>
+                        </a>
+                    </li>
+                <?Php
+                }
+                ?>
             </ul>
         </nav>
         <ul class="social-icons">
@@ -207,284 +295,304 @@ $contactMail = $contactMail->configValue;;
     <div class="page-content">
 
         <!-- sección proyectos recientes -->
-        <section id="featured" class="content-section">
-            <div class="section-heading">
-                <h1><?= lang('proyectos') ?><br><em><?= lang('recientes') ?></em></h1>
-                <p>Estos son solo algunos de nuestros tabajos de mayor calidad
-                    <br>Puedes darles un vistazo y decidirlo tu mismo.
-                </p>
-            </div>
+        <?Php
+        if ($titleProjects) {
+            $titulo = explode("-", $titleProjects);
+        ?>
+            <section id="featured" class="content-section">
+                <div class="section-heading">
+                    <h1><?= $titulo[0] ?><br><em><?= $titulo[1] ?></em></h1>
+                    <p class="parrafo"> <?= $descriptionProjects ?> </p>
+                </div>
 
-            <div class="section-content">
-                <div class="owl-carousel owl-theme">
+                <div class="section-content">
+                    <div class="owl-carousel owl-theme">
 
-                    <div class="item">
-                        <div class="image">
-                            <img src="<?= base_url() ?>assets/img/featured_1.jpg" alt="">
-                            <div class="featured-button button">
-                                <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                        <div class="item">
+                            <div class="image">
+                                <img src="<?= base_url() ?>assets/img/featured_1.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Aqui va un titulo</h4>
+                                <p>#1 aqui va una descripcion</p>
                             </div>
                         </div>
-                        <div class="text-content">
-                            <h4>Aqui va un titulo</h4>
-                            <p>#1 aqui va una descripcion</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="image">
-                            <img src="<?= base_url() ?>assets/img/featured_2.jpg" alt="">
-                            <div class="featured-button button">
-                                <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                        <div class="item">
+                            <div class="image">
+                                <img src="<?= base_url() ?>assets/img/featured_2.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Aqui va un titulo</h4>
+                                <p>#2 aqui <strong>va</strong> un fuerte descripcion</p>
                             </div>
                         </div>
-                        <div class="text-content">
-                            <h4>Aqui va un titulo</h4>
-                            <p>#2 aqui <strong>va</strong> un fuerte descripcion</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="image">
-                            <img src="<?= base_url() ?>assets/img/featured_3.jpg" alt="">
-                            <div class="featured-button button">
-                                <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                        <div class="item">
+                            <div class="image">
+                                <img src="<?= base_url() ?>assets/img/featured_3.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Aqui va un titulo</h4>
+                                <p>#3 aqui va una descripcion</p>
                             </div>
                         </div>
-                        <div class="text-content">
-                            <h4>Aqui va un titulo</h4>
-                            <p>#3 aqui va una descripcion</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="image">
-                            <img src="<?= base_url() ?>assets/img/featured_2.jpg" alt="">
-                            <div class="featured-button button">
-                                <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                        <div class="item">
+                            <div class="image">
+                                <img src="<?= base_url() ?>assets/img/featured_2.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Aqui va un titulo</h4>
+                                <p>#4 aqui va una descripcion</p>
                             </div>
                         </div>
-                        <div class="text-content">
-                            <h4>Aqui va un titulo</h4>
-                            <p>#4 aqui va una descripcion</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="image">
-                            <img src="<?= base_url() ?>assets/img/featured_1.jpg" alt="">
-                            <div class="featured-button button">
-                                <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                        <div class="item">
+                            <div class="image">
+                                <img src="<?= base_url() ?>assets/img/featured_1.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Aqui va un titulo</h4>
+                                <p>#5 aqui va una descripcion</p>
                             </div>
                         </div>
-                        <div class="text-content">
-                            <h4>Aqui va un titulo</h4>
-                            <p>#5 aqui va una descripcion</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="image">
-                            <img src="<?= base_url() ?>assets/img/featured_3.jpg" alt="">
-                            <div class="featured-button button">
-                                <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                        <div class="item">
+                            <div class="image">
+                                <img src="<?= base_url() ?>assets/img/featured_3.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Aqui va un titulos</h4>
+                                <p>#6 aqui va una descripcion</p>
                             </div>
                         </div>
-                        <div class="text-content">
-                            <h4>Aqui va un titulos</h4>
-                            <p>#6 aqui va una descripcion</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="image">
-                            <img src="<?= base_url() ?>assets/img/featured_2.jpg" alt="">
-                            <div class="featured-button button">
-                                <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                        <div class="item">
+                            <div class="image">
+                                <img src="<?= base_url() ?>assets/img/featured_2.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Aqui va un titulo</h4>
+                                <p>#7 aqui va una descripcion</p>
                             </div>
                         </div>
-                        <div class="text-content">
-                            <h4>Aqui va un titulo</h4>
-                            <p>#7 aqui va una descripcion</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="image">
-                            <img src="<?= base_url() ?>assets/img/featured_1.jpg" alt="">
-                            <div class="featured-button button">
-                                <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                        <div class="item">
+                            <div class="image">
+                                <img src="<?= base_url() ?>assets/img/featured_1.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Aqui va un titulo</h4>
+                                <p>#8 aqui va una descripcion</p>
                             </div>
                         </div>
-                        <div class="text-content">
-                            <h4>Aqui va un titulo</h4>
-                            <p>#8 aqui va una descripcion</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="image">
-                            <img src="<?= base_url() ?>assets/img/featured_3.jpg" alt="">
-                            <div class="featured-button button">
-                                <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                        <div class="item">
+                            <div class="image">
+                                <img src="<?= base_url() ?>assets/img/featured_3.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="text-content">
-                            <h4>Aqui va un titulo</h4>
-                            <p>#9 aqui va una descripcion</p>
+                            <div class="text-content">
+                                <h4>Aqui va un titulo</h4>
+                                <p>#9 aqui va una descripcion</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        <?Php
+        }
+        ?>
         <!-- cierre sección proyectos recientes -->
 
         <!-- Sección Servicios -->
-        <section id="projects" class="content-section">
-            <div class="section-heading">
-                <h1><?= lang('Servicios') ?><br><em><?= lang('ofrecidos') ?></em></h1>
-                <p>Aqui tenemos algunos de nuestro proyectos mas recientes,
-                    <br>puedes mirarlos y decidir por tu mismo. ¿Cual es tu favorito?.
-                </p>
-            </div>
-            <div class="section-content">
-                <div class="container">
-                    <div class="row">
-                        <ul class="item_list">
-                            <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 rounded-start categoryItem">
-                                <a href="#" class="categoryItemactivo active" data-category="all"> todos</a>
-                            </li>
-                            <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 categoryItem">
-                                <a href="#" class="categoryItemactivo" data-category="desing">diseño</a>
-                            </li>
-                            <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 categoryItem">
-                                <a href="#" class="categoryItemactivo" data-category="impresion">impresión</a>
-                            </li>
-                            <li class="d-inline bg-light text-dark fs-2  p-2 mb-3 rounded-end categoryItem">
-                                <a href="#" class="categoryItemactivo" data-category="marketing">marketing</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="row">
-                        <hr class="linea" />
-                    </div>
-
+        <?Php
+        if ($titleServices) {
+            $titulo = explode("-", $titleServices);
+        ?>
+            <section id="projects" class="content-section">
+                <div class="section-heading">
+                    <h1><?= $titulo[0] ?><br><em><?= $titulo[1] ?></em></h1>
+                    <p class="parrafo"> <?= $descriptionServices ?> </p>
                 </div>
-
-                <div class="masonry">
-                    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-
-                        <div class="col">
-                            <div class="card mb-4 rounded-3 shadow-sm" data-category="desing">
-                                <div class="card-header py-3">
-                                    <h4 class="my-0 fw-normal">Diseño</h4>
-                                </div>
-                                <div class="card-body">
-                                    <a href="<?= base_url() ?>assets/img/portfolio_big_1.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_1.jpg" alt="image 1" class="img-fluid img-thumbnail rounded"></a>
-                                    <h1 class="card-title pricing-card-title">$0<small class="text-muted fw-light">/mo</small></h1>
-                                    <span class="d-inline-block">
-                                        This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
-                                    </span>
-                                </div>
-                            </div>
+                <div class="section-content">
+                    <div class="container">
+                        <div class="row">
+                            <ul class="item_list">
+                                <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 rounded-start categoryItem">
+                                    <a href="#" class="categoryItemactivo active" data-category="all"> todos</a>
+                                </li>
+                                <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 categoryItem">
+                                    <a href="#" class="categoryItemactivo" data-category="desing">diseño</a>
+                                </li>
+                                <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 categoryItem">
+                                    <a href="#" class="categoryItemactivo" data-category="impresion">impresión</a>
+                                </li>
+                                <li class="d-inline bg-light text-dark fs-2  p-2 mb-3 rounded-end categoryItem">
+                                    <a href="#" class="categoryItemactivo" data-category="marketing">marketing</a>
+                                </li>
+                            </ul>
                         </div>
 
-                        <div class="col">
-                            <div class="card mb-4 rounded-3 shadow-sm" data-category="desing">
-                                <div class="card-header py-3">
-                                    <h4 class="my-0 fw-normal">Diseño</h4>
-                                </div>
-                                <div class="card-body">
-                                    <a href="<?= base_url() ?>assets/img/portfolio_big_2.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_2.jpg" alt="image 2" class="img-fluid img-thumbnail rounded"></a>
-                                    <h1 class="card-title pricing-card-title">$15<small class="text-muted fw-light">/mo</small></h1>
-                                    <span class="d-inline-block">
-                                        This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card mb-4 rounded-3 shadow-sm" data-category="impresion">
-                                <div class="card-header py-3">
-                                    <h4 class="my-0 fw-normal">Impresión</h4>
-                                </div>
-                                <div class="card-body">
-                                    <a href="<?= base_url() ?>assets/img/portfolio_big_3.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_3.jpg" alt="image 3" class="img-fluid img-thumbnail rounded"></a>
-                                    <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
-                                    <span class="d-inline-block">
-                                        This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card mb-4 rounded-3 shadow-sm" data-category="marketing">
-                                <div class="card-header py-3">
-                                    <h4 class="my-0 fw-normal">Marketing</h4>
-                                </div>
-                                <div class="card-body">
-                                    <a href="<?= base_url() ?>assets/img/portfolio_big_4.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_4.jpg" alt="image 4" class="img-fluid img-thumbnail rounded"></a>
-                                    <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
-                                    <span class="d-inline-block">
-                                        This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card mb-4 rounded-3 shadow-sm" data-category="marketing">
-                                <div class="card-header py-3">
-                                    <h4 class="my-0 fw-normal">Marketing</h4>
-                                </div>
-                                <div class="card-body">
-                                    <a href="<?= base_url() ?>assets/img/portfolio_big_5.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_5.jpg" alt="image 5" class="img-fluid img-thumbnail rounded"></a>
-                                    <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
-                                    <span class="d-inline-block">
-                                        This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card mb-4 rounded-3 shadow-sm" data-category="impresion">
-                                <div class="card-header py-3">
-                                    <h4 class="my-0 fw-normal">Impresión</h4>
-                                </div>
-                                <div class="card-body">
-                                    <a href="<?= base_url() ?>assets/img/portfolio_big_5.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_5.jpg" alt="image 5" class="img-fluid img-thumbnail rounded"></a>
-                                    <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
-                                    <span class="d-inline-block">
-                                        This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
-                                    </span>
-                                </div>
-                            </div>
+                        <div class="row">
+                            <hr class="linea" />
                         </div>
 
                     </div>
 
+                    <div class="masonry">
+                        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+
+                            <div class="col">
+                                <div class="card mb-4 rounded-3 shadow-sm" data-category="desing">
+                                    <div class="card-header py-3">
+                                        <h4 class="my-0 fw-normal">Diseño</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="<?= base_url() ?>assets/img/portfolio_big_1.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_1.jpg" alt="image 1" class="img-fluid img-thumbnail rounded"></a>
+                                        <h1 class="card-title pricing-card-title">$0<small class="text-muted fw-light">/mo</small></h1>
+                                        <span class="d-inline-block">
+                                            This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card mb-4 rounded-3 shadow-sm" data-category="desing">
+                                    <div class="card-header py-3">
+                                        <h4 class="my-0 fw-normal">Diseño</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="<?= base_url() ?>assets/img/portfolio_big_2.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_2.jpg" alt="image 2" class="img-fluid img-thumbnail rounded"></a>
+                                        <h1 class="card-title pricing-card-title">$15<small class="text-muted fw-light">/mo</small></h1>
+                                        <span class="d-inline-block">
+                                            This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card mb-4 rounded-3 shadow-sm" data-category="impresion">
+                                    <div class="card-header py-3">
+                                        <h4 class="my-0 fw-normal">Impresión</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="<?= base_url() ?>assets/img/portfolio_big_3.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_3.jpg" alt="image 3" class="img-fluid img-thumbnail rounded"></a>
+                                        <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
+                                        <span class="d-inline-block">
+                                            This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card mb-4 rounded-3 shadow-sm" data-category="marketing">
+                                    <div class="card-header py-3">
+                                        <h4 class="my-0 fw-normal">Marketing</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="<?= base_url() ?>assets/img/portfolio_big_4.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_4.jpg" alt="image 4" class="img-fluid img-thumbnail rounded"></a>
+                                        <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
+                                        <span class="d-inline-block">
+                                            This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card mb-4 rounded-3 shadow-sm" data-category="marketing">
+                                    <div class="card-header py-3">
+                                        <h4 class="my-0 fw-normal">Marketing</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="<?= base_url() ?>assets/img/portfolio_big_5.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_5.jpg" alt="image 5" class="img-fluid img-thumbnail rounded"></a>
+                                        <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
+                                        <span class="d-inline-block">
+                                            This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card mb-4 rounded-3 shadow-sm" data-category="impresion">
+                                    <div class="card-header py-3">
+                                        <h4 class="my-0 fw-normal">Impresión</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="<?= base_url() ?>assets/img/portfolio_big_5.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_5.jpg" alt="image 5" class="img-fluid img-thumbnail rounded"></a>
+                                        <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
+                                        <span class="d-inline-block">
+                                            This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        <?Php
+        }
+        ?>
         <!-- cierre sección servicios ofrecidos -->
 
         <!-- session nosotros -->
+        <?Php
+        if ($titleUs) {
+            $titulo = explode("-", $titleUs);
 
-        <section id="video" class="content-section">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-heading">
-                        <h1>Cual es el objetivo de nuesra <em>Compañia</em>.</h1>
-                        <p>¿Cual es el objetivo que tiene nuestra compañia, <em>Cosmo Imagine</em> para ofrecerte a ti? </p>
-                    </div>
-                    <div class="text-content">
-                        <div> TODO: colocar la variable php </div>
-
-                        <!-- Button trigger modal -->
-                        <div class="accent-button button open-modalUs">
-                            <a href="#"> <?= lang('more') ?> </a>
+        ?>
+            <section id="video" class="content-section">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-heading">
+                            <h1><?= $titulo[0] ?> <em><?= $titulo[1] ?></em>.</h1>
+                            <p class="parrafo"> <?= $descriptionUs ?> </p>
                         </div>
+                        <div class="text-content">
+                            <div>
+                                <?Php
+                                //TODO: colocar la variable php que contine la informacion desde la bd
+                                ?>
+                            </div>
+                            <!-- Button trigger modal -->
+                            <div class="accent-button button open-modalUs">
+                                <a href="#"> <?= lang('more') ?> </a>
+                            </div>
+                        </div>
+
                     </div>
 
-                </div>
-
-        </section>
+            </section>
+        <?Php
+        }
+        ?>
         <!-- cierre session nosotrs -->
 
         <!-- seccion blog -->
@@ -708,48 +816,56 @@ $contactMail = $contactMail->configValue;;
             </div>
         </section>
 
-        <section id="contact" class="content-section">
-            <div id="contact-content">
-                <div class="section-heading">
-                    <h1><?= lang('contacta a') ?><br><em><?= lang('equipo') ?></em></h1>
-                    <p>Curabitur hendrerit mauris mollis ipsum vulputate rutrum.
-                        <br>Phasellus luctus odio eget dui imperdiet.
-                    </p>
+        <!-- Seccion de Contacto -->
+        <?Php
+        if ($titleContact) {
+            $titulo = explode("-", $titleContact);
+        ?>
+            <section id="contact" class="content-section">
+                <div id="contact-content">
+                    <div class="section-heading">
+                        <h1><?= $titulo[0] ?><br><em><?= $titulo[1] ?></em></h1>
+                        <p class="parrafo"> <?= $descriptionContact ?> </p>
 
+                    </div>
+                    <div class="section-content">
+                        <form id="contacto" action="#" method="post">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <fieldset>
+                                        <input name="name" type="text" class="form-control" id="name" placeholder="<?= lang('youName') ?>." required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-4">
+                                    <fieldset>
+                                        <input name="email" type="email" class="form-control" id="email" placeholder="<?= lang('Email') ?>" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-4">
+                                    <fieldset>
+                                        <input name="subject" type="text" class="form-control" id="subject" placeholder="<?= lang('asunto') ?>." required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <textarea name="message" rows="6" class="form-control" id="message" placeholder="<?= lang('message') ?>" required=""></textarea>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <button type="submit" id="form-submit" class="btn"><?= lang('Send') ?></button>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="section-content">
-                    <form id="contacto" action="#" method="post">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <fieldset>
-                                    <input name="name" type="text" class="form-control" id="name" placeholder="<?= lang('youName') ?>." required="">
-                                </fieldset>
-                            </div>
-                            <div class="col-md-4">
-                                <fieldset>
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="<?= lang('Email') ?>" required="">
-                                </fieldset>
-                            </div>
-                            <div class="col-md-4">
-                                <fieldset>
-                                    <input name="subject" type="text" class="form-control" id="subject" placeholder="<?= lang('asunto') ?>." required="">
-                                </fieldset>
-                            </div>
-                            <div class="col-md-12">
-                                <fieldset>
-                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="<?= lang('message') ?>" required=""></textarea>
-                                </fieldset>
-                            </div>
-                            <div class="col-md-12">
-                                <fieldset>
-                                    <button type="submit" id="form-submit" class="btn"><?= lang('Send') ?></button>
-                                </fieldset>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
+            </section>
+        <?Php
+        }
+        ?>
+        <!-- cierre sección de contacto -->
+
         <section class="footer">
             <p>Copyright &copy; <span id="fecha"> </span> <?= $company ?>. <?= lang('Design') ?> <?= $creador ?></p>
         </section>

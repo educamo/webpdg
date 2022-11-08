@@ -70,7 +70,7 @@ $lang['confirm-message']            = "¿Esta Seguro de Eliminar el Registro?";
 $lang['title-rols']                 = "Roles de Usuarios";
 $lang['list-rols']                  = "Lista de Roles";
 $lang['modify-rols']                = "Modificar Rol";
-$lang['new-rol']                   = "Nuevo Rol";
+$lang['new-rol']                    = "Nuevo Rol";
 $lang['rolId']                      = "Código del Rol";
 $lang['rolName']                    = "Nombre del Rol";
 $lang['rolDescription']             = "Descripción del Rol";
@@ -87,6 +87,21 @@ $lang['confirmarPass-msj']          = "Las Contraseñas no son iguales";
 $lang['mailUser']                   = "Correo";
 $lang['rolUser']                    = "Rol";
 $lang['select-option-rol']          = "Seleccione un Rol";
+## etiquetas view listUsuarios
+$lang['list-user']                  = "Lista de Usuarios";
+$lang['cancel-deleteUser']          = "No puede Eliminar un Usuario con una Session Activa";
+## etiquetas view actualizarUsuarios
+$lang['modifyUser']                 = "Modificar Usuario";
+
+## etiquetas view listconfig
+$lang['title-config']               = "Configuraciones Generales";
+$lang['list-config']                = "Lista de Configuraciones";
+$lang['configId']                   = "Código de la Configuración";
+$lang['configValue']                = "Configuración";
+$lang['configDescription']          = "Descripción de la Configuración";
+$lang['new-config']                 = "Nueva Configuración";
+$lang['title-modify-config']       = "Configuración";
+$lang['modify-config']              = "Modificar";
 
 ## etiquetas view configcontacto
 $lang['title-configContacto']       = "Configuración Formulario de Contacto";

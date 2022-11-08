@@ -12,11 +12,11 @@ $lang["home"]                       = "Inicio";
 $lang["proyectos"]                  = "Proyectos";
 $lang['recientes']                  = "Recientes";
 $lang["Servicios"]                  = "Servicios";
-$lang["blog"]                       = "Blog";
 $lang["ofrecidos"]                  = "Ofrecidos";
+$lang["aboutUs"]                    = "Un poco de Nosotros";
+$lang["blog"]                       = "Blog";
+$lang["contact"]                    = "¡Contáctenos!";
 $lang["Email"]                      = "Tu E-mail";
-$lang["contacta a"]                 = "Contacta a";
-$lang["equipo"]                     = "Nuestro Equipo";
 $lang["youName"]                    = "Tu Nombre";
 $lang["message"]                    = "Tu Mensaje";
 $lang["asunto"]                     = "Asunto";
@@ -25,8 +25,4 @@ $lang["more"]                       = "Más...";
 
 $lang["Design"]                     = "Diseñado por:";
 
-$lang["Permisos"]                   = "Permisos";
-
-## Etiquetas del submodulo de Usuarios
-$lang["Titulo-Configuracion"]       = "Configuración";
 ?>

@@ -82,8 +82,8 @@
          var urlbase = "<?= base_url() ?>";
 
          $(".btn-danger").click(function() {
-             location.href = urlbase + 'Admin/listRols';
              alertify.message('<?= lang('cancel-operation') ?>')
+             location.href = urlbase + 'Admin/listRols';
          })
 
 

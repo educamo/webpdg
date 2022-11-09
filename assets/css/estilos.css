@@ -8,3 +8,12 @@ form .error {
     color: #ff0000;
     font-size: 1em;
 }
+
+.dimension {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.050rem;
+    font-weight: bold;
+    font-style: italic;
+    color: #2656b1;
+}

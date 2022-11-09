@@ -43,6 +43,31 @@ class Admin_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function getSlider($id = NULL)
+    {
+        $this->db->select('sliderId, sliderImagen, sliderTitle, activo');
+        $this->db->from('nu_slider');
+        if ($id !== NULL) {
+            $this->db->where('sliderId', $id);
+            $query = $this->db->get();
+            $data = $query->row();
+        } else {
+            $query = $this->db->get();
+            $data = $query->result();
+        }
+        return $data;
+    }
+    public function saveSlider($datos = NULL)
+    {
+        return $this->db->insert('nu_slider', $datos);
+    }
+    public function deleteSlider($id = NULL)
+    {
+        $value = $id;
+        $this->db->where('sliderId', $value);
+
+        return $this->db->delete('nu_slider');
+    }
     public function getConfig($id = NULL)
     {
         $this->db->select('configId, configValue, configDescription');

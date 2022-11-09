@@ -69,6 +69,123 @@ class Admin extends CI_Controller
             }
         }
     }
+    public function slider()
+    {
+        $data['sliders'] = $this->Admin_model->getSlider();
+        $this->plantilla();
+        $this->load->view('slider', $data);
+        $this->footer();
+    }
+    public function nuevoSlider()
+    {
+        $this->plantilla();
+        $this->load->view('nuevoSlider');
+        $this->footer();
+    }
+    /**
+     * Function: guardarSlider()
+     * Description: función encargada de validar y subir la imagen del slider
+     * a demas de guardar los datos en la BD
+     * @author César Carrasco <educamo@hotmail.com>
+     *
+     * @return void echo (json)
+     * @date: 09/11/2022
+     */
+    public function guardarSlider()
+    {
+        // obtenemos el usuario y la ip de modificación
+        $usuarioCreacion = $this->session->userdata('userId');
+        $ipCreacion = $_SERVER['REMOTE_ADDR'];
+
+        // se asigna la ruta del directorio en el server donde sa subirá la image
+        $root = $_SERVER['DOCUMENT_ROOT'];
+        $target_dir =  $root . '/webpdg/assets/img/';
+        // se crea la ruta completa del archivo a subir
+        $target_file = $target_dir . basename($_FILES["sliderImagen"]["name"]);
+
+        // se obtiene la extension del archivo a subir en minúscula
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check si la el archivo a subir es una imagen permitida y si ees de las dimensiones permitidas
+        $check = getimagesize($_FILES["sliderImagen"]["tmp_name"]);
+        if ($check !== false) {
+            $width_file = $check[0];
+            $height_file = $check[1];
+        } else {
+            echo  json_encode(lang('noImagen'));
+            return false;
+            exit();
+        }
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+
+            echo json_encode(lang('exists'));
+            return false;
+            exit();
+        }
+
+        // Check file size menor a 1Mb
+        if ($_FILES["sliderImagen"]["size"] > 1130304) {
+            echo json_encode(lang('size'));
+            return false;
+            exit();
+        }
+
+        // Allow certain file formats
+        if ($imageFileType != "jpg" && $imageFileType != "jpeg") {
+            echo json_encode(lang('onlyJpeg'));
+            return false;
+            exit();
+        }
+        //se verifican las dimensiones de la imagen
+        if ($width_file !== 1400 && $height_file !== 750) {
+            echo json_encode(lang('noDimension'));
+            return false;
+            exit();
+        }
+
+        // if everything is ok, try to upload file
+        if (move_uploaded_file($_FILES["sliderImagen"]["tmp_name"], $target_file)) {
+
+            $sliderTitle = $_POST["sliderTitle"];
+            $sliderText = $_POST["sliderText"];
+            $sliderImagen = $_FILES["sliderImagen"]["name"];
+            $datos = array(
+                'sliderImagen'      => $sliderImagen,
+                'sliderTitle'       => $sliderTitle,
+                'sliderText'        => $sliderText,
+                'moduleId'          => "slider",
+                'usuarioCreacion'   => $usuarioCreacion,
+                'ipCreacion'        => $ipCreacion,
+                'activo'            => "1",
+            );
+            $r = $this->Admin_model->saveSlider($datos);
+            echo json_encode($r);
+            return true;
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+            return false;
+        }
+    }
+    public function borrarSlider($id = NULL)
+    {
+        $id = $this->input->post('sliderId');
+        $slider = $this->Admin_model->getSlider($id);
+
+        //borramos el archivo del servidor
+        // se asigna la ruta del directorio en el server donde sa subirá la image
+        $root = $_SERVER['DOCUMENT_ROOT'];
+        $target_dir =  $root . '/webpdg/assets/img/';
+        $imagen = $target_dir . $slider->sliderImagen;
+        // var_dump($imagen); die();
+        unlink($imagen);
+
+        $r = $this->Admin_model->deleteSlider($id);
+        echo json_encode($r);
+        return true;
+
+    }
     public function configContacto()
     {
         $configId = 'mailEmp';

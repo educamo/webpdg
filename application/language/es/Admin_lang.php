@@ -67,6 +67,22 @@ $lang['activo']                     = "Esta Activo";
 $lang['confirm']                    = "Mensaje de Confirmación";
 $lang['confirm-message']            = "¿Esta Seguro de Eliminar el Registro?";
 
+## etiquetas de la view slider
+$lang['title-slider']               = "Slider";
+$lang['list-slider']                = "Lista de Slider";
+$lang['sliderId']                   = "Código del Slider";
+$lang['sliderTitle']                = "Titulo del Slider";
+$lang['sliderText']                 = "Texto del Slider";
+$lang['sliderImagenpreview']        = "Imagen";
+$lang['sliderImagen']               = "Selecciona una imagen en formato JPG de tamaño inferior a 1MB.";
+$lang['new-slider']                 = "Nuevo Slider";
+$lang['dimension-slider']           = "(1400px X 750px)";
+$lang['noImagen']                   = "El archivo no es una imagen.";
+$lang['exists']                     = "El archivo ya existe.";
+$lang['size']                       = "Su archivo es demasiado grande.";
+$lang['onlyJpeg']                   = "Solo se permiten archivos JPG y JPEG.";
+$lang['noDimension']                = "El archivo no es de 1400px X 750px";
+
 ## etiquetas view listRols
 $lang['title-rols']                 = "Roles de Usuarios";
 $lang['list-rols']                  = "Lista de Roles";

@@ -47,10 +47,10 @@
                          <select name="activo" id="activo" class="form-select">
                              <option value="1" <?Php if ($activo == "1") {
                                                     echo "selected";
-                                                } ?>>Si</option>
+                                                } ?>><?= lang('yes') ?></option>
                              <option value="0" <?Php if ($activo == "0") {
                                                     echo "selected";
-                                                } ?>>No</option>
+                                                } ?>><?= lang('no') ?></option>
                          </select>
                      </div>
                  </div>

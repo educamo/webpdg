@@ -69,6 +69,8 @@ class Admin extends CI_Controller
             }
         }
     }
+
+    //  ----------------- SLIDERS -------------------------
     public function slider()
     {
         $data['sliders'] = $this->Admin_model->getSlider();
@@ -286,6 +288,222 @@ class Admin extends CI_Controller
             return false;
         }
     }
+    //------------------- PROYECTOS ------------------
+    public function proyectos()
+    {
+        $data['projects'] = $this->Admin_model->getProyectos();
+        $this->plantilla();
+        $this->load->view('proyectos', $data);
+        $this->footer();
+    }
+    public function nuevoproject()
+    {
+        $this->plantilla();
+        $this->load->view('nuevopPoject');
+        $this->footer();
+    }
+    public function guardarproject()
+    {
+        // obtenemos el usuario y la ip de modificación
+        $usuarioCreacion = $this->session->userdata('userId');
+        $ipCreacion = $_SERVER['REMOTE_ADDR'];
+
+        // se asigna la ruta del directorio en el server donde sa subirá la image
+        $root = $_SERVER['DOCUMENT_ROOT'];
+        $target_dir =  $root . '/webpdg/assets/img/';
+        // se crea la ruta completa del archivo a subir
+        $target_file = $target_dir . basename($_FILES["projectImagen"]["name"]);
+
+        // se obtiene la extension del archivo a subir en minúscula
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check si la el archivo a subir es una imagen permitida y si ees de las dimensiones permitidas
+        $check = getimagesize($_FILES["projectImagen"]["tmp_name"]);
+        if ($check !== false) {
+            $width_file = $check[0];
+            $height_file = $check[1];
+        } else {
+            echo  json_encode(lang('noImagen-project'));
+            return false;
+            exit();
+        }
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+
+            echo json_encode(lang('exists-project'));
+            return false;
+            exit();
+        }
+
+        // Check file size menor a 1Mb
+        if ($_FILES["projectImagen"]["size"] > 1130304) {
+            echo json_encode(lang('size-project'));
+            return false;
+            exit();
+        }
+
+        // Allow certain file formats
+        if ($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png") {
+            echo json_encode(lang('onlyJpeg-png-project'));
+            return false;
+            exit();
+        }
+        //se verifican las dimensiones de la imagen
+        if ($width_file !== 306 && $height_file !== 360) {
+            echo json_encode(lang('noDimension-project'));
+            return false;
+            exit();
+        }
+
+        // if everything is ok, try to upload file
+        if (move_uploaded_file($_FILES["projectImagen"]["tmp_name"], $target_file)) {
+
+            $projectId          = $this->input->post('projectId');
+            $projectTitle       = $_POST["projectTitle"];
+            $projectDescription = $_POST["projectDescription"];
+            $projectImagen      = $_FILES["projectImagen"]["name"];
+
+            $datos = array(
+                'projectId'             => $projectId,
+                'projectImagen'         => $projectImagen,
+                'projectTitle'          => $projectTitle,
+                'projectDescription'    => $projectDescription,
+                'moduleId'              => "featured",
+                'usuarioCreacion'       => $usuarioCreacion,
+                'ipCreacion'            => $ipCreacion,
+                'activo'                => "1",
+            );
+            $r = $this->Admin_model->saveProject($datos);
+            echo json_encode($r);
+            return true;
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+            return false;
+        }
+    }
+    public function borrarproject($id = NULL)
+    {
+        $id = $this->input->post('projectId');
+        $project = $this->Admin_model->getProyectos($id);
+
+        //borramos el archivo del servidor
+        // se asigna la ruta del directorio en el server donde sa subirá la image
+        $root = $_SERVER['DOCUMENT_ROOT'];
+        $target_dir =  $root . '/webpdg/assets/img/';
+        $imagen = $target_dir . $project->projectImagen;
+        // var_dump($imagen); die();
+        unlink($imagen);
+
+        $r = $this->Admin_model->deleteProject($id);
+        echo json_encode($r);
+        return true;
+    }
+    public function actualizarproject($id = NULL)
+    {
+        $id = $this->uri->segment(3);
+        // var_dump($id);
+        if ($id === NULL) {
+            redirect(base_url('Admin/proyectos'));
+            exit();
+        }
+        $data = $this->Admin_model->getProyectos($id);
+
+        $this->plantilla();
+        $this->load->view('updateProjects', $data);
+        $this->footer();
+    }
+    public function modificarPoject()
+    {
+        // obtenemos el usuario y la ip de modificación
+        $usuarioModificacion = $this->session->userdata('userId');
+        $ipModificacion = $_SERVER['REMOTE_ADDR'];
+
+        // se asigna la ruta del directorio en el server donde sa subirá la image
+        $root = $_SERVER['DOCUMENT_ROOT'];
+        $target_dir =  $root . '/webpdg/assets/img/';
+        // se crea la ruta completa del archivo a subir
+        $target_file = $target_dir . basename($_FILES["projectImagen"]["name"]);
+
+        // se obtiene la extension del archivo a subir en minúscula
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check si la el archivo a subir es una imagen permitida y si ees de las dimensiones permitidas
+        $check = getimagesize($_FILES["projectImagen"]["tmp_name"]);
+        if ($check !== false) {
+            $width_file = $check[0];
+            $height_file = $check[1];
+        } else {
+            echo  json_encode(lang('noImagen-project'));
+            return false;
+            exit();
+        }
+
+        // se borrar la imagen antigua del servidor antes de subir la nueva
+        $imagenVieja = $_POST["imagenVieja"];
+        $imagen = $target_dir . $imagenVieja;
+        unlink($imagen);
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+
+            echo json_encode(lang('exists-project'));
+            return false;
+            exit();
+        }
+
+        // Check file size menor a 1Mb
+        if ($_FILES["projectImagen"]["size"] > 1130304) {
+            echo json_encode(lang('size-project'));
+            return false;
+            exit();
+        }
+
+        // Allow certain file formats
+        if ($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png") {
+            echo json_encode(lang('onlyJpeg-png-project'));
+            return false;
+            exit();
+        }
+        //se verifican las dimensiones de la imagen
+        if ($width_file !== 306 && $height_file !== 360) {
+            echo json_encode(lang('noDimension-project'));
+            return false;
+            exit();
+        }
+
+        // if everything is ok, try to upload file
+        if (move_uploaded_file($_FILES["projectImagen"]["tmp_name"], $target_file)) {
+
+            $projectTitle           = $_POST["projectTitle"];
+            $projectDescription     = $_POST["projectDescription"];
+            $projectId              = $_POST["projectId"];
+            $activo                 = $this->input->post('activo');
+            $id                     = $this->input->post('Id');
+
+            $projectImagen = $_FILES["projectImagen"]["name"];
+
+            $datos = array(
+                'projectId'             => $projectId,
+                'projectImagen'         => $projectImagen,
+                'projectTitle'          => $projectTitle,
+                'projectDescription'    => $projectDescription,
+                'moduleId'              => "featured",
+                'usuarioModificacion'   => $usuarioModificacion,
+                'ipModificacion'        => $ipModificacion,
+                'activo'                => $activo,
+                'id'                    => $id,
+            );
+            $r = $this->Admin_model->updateProject($datos);
+            echo json_encode($r);
+            return true;
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+            return false;
+        }
+    }
+
+    // ---------------- CONFIG CONTACTO  ----------------------
     public function configContacto()
     {
         $configId = 'mailEmp';
@@ -310,6 +528,8 @@ class Admin extends CI_Controller
         echo json_encode($r);
         return true;
     }
+
+    //  -------------- CONFIG LOGO --------------------------
     public function configLogo()
     {
         $configId = 'Logo';
@@ -399,6 +619,8 @@ class Admin extends CI_Controller
             return false;
         }
     }
+
+    //  --------------- REDES SOCIALES ----------------
     public function listSocial()
     {
         $data['redes'] = $this->Admin_model->getSocial();
@@ -406,6 +628,8 @@ class Admin extends CI_Controller
         $this->load->view('listSocial', $data);
         $this->footer();
     }
+
+    //  -------------------- MODULOS -----------------
     public function listModulos()
     {
         $data['modulos'] = $this->Admin_model->getModules();
@@ -486,6 +710,8 @@ class Admin extends CI_Controller
         echo json_encode($r);
         return true;
     }
+
+    //  ---------------- USUARIOS ------------------------------
     public function listUsuarios()
     {
         $data['users'] = $this->Admin_model->getUsers();
@@ -566,15 +792,8 @@ class Admin extends CI_Controller
         echo json_encode($r);
         return true;
     }
-    public function listRols()
-    {
-        $all = "todos";
-        $data['rols'] = $this->Admin_model->getRols($all);
 
-        $this->plantilla();
-        $this->load->view('listRols', $data);
-        $this->footer();
-    }
+    //  ----------------- CONFIGURACIONES -----------------
     public function listconfig()
     {
         $data['configs'] = $this->Admin_model->getConfig();
@@ -627,6 +846,17 @@ class Admin extends CI_Controller
 
         echo json_encode($r);
         return true;
+    }
+
+    //  --------------- ROLES ------------------
+    public function listRols()
+    {
+        $all = "todos";
+        $data['rols'] = $this->Admin_model->getRols($all);
+
+        $this->plantilla();
+        $this->load->view('listRols', $data);
+        $this->footer();
     }
     public function insertRol()
     {

@@ -74,6 +74,47 @@ class Admin_model extends CI_Model
         $this->db->where('sliderId', $id);
         return $this->db->update('nu_slider', $datos);
     }
+    public function getProyectos($id = NULL)
+    {
+        $this->db->select('projectId, projectImagen, projectTitle, projectDescription, activo');
+        $this->db->from('nu_projects');
+        if ($id !== NULL) {
+            $this->db->where('projectId', $id);
+            $query = $this->db->get();
+            $data = $query->row();
+        } else {
+
+            $query = $this->db->get();
+            $data = $query->result();
+        }
+        return $data;
+    }
+    public function saveProject($datos = NULL)
+    {
+        return $this->db->insert('nu_projects', $datos);
+    }
+    public function deleteProject($id = NULL)
+    {
+        $value = $id;
+        $this->db->where('projectId', $value);
+        return $this->db->delete('nu_projects');
+    }
+    public function updateProject($datos = NULL)
+    {
+        $value = $datos['id'];
+        $datos = array(
+            'projectId'             => $datos['projectId'],
+            'projectImagen'         => $datos['projectImagen'],
+            'projectTitle'          => $datos['projectTitle'],
+            'projectDescription'    => $datos['projectDescription'],
+            'moduleId'              => $datos['moduleId'],
+            'usuarioModificacion'   => $datos['usuarioModificacion'],
+            'ipModificacion'        => $datos['ipModificacion'],
+            'activo'                => $datos['activo'],
+        );
+        $this->db->where('projectId', $value);
+       return $this->db->update('nu_projects', $datos);
+    }
     public function getConfig($id = NULL)
     {
         $this->db->select('configId, configValue, configDescription');

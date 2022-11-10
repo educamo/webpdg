@@ -84,6 +84,23 @@ $lang['size']                       = "Su archivo es demasiado grande.";
 $lang['onlyJpeg']                   = "Solo se permiten archivos JPG y JPEG.";
 $lang['noDimension']                = "El archivo no es de 1400px X 750px";
 
+## etiquetas de la view project
+$lang['title-project']              = "Proyectos";
+$lang['list-project']               = "Lista de Proyectos";
+$lang['mod-Project']                = "Modificar Proyecto";
+$lang['projectId']                  = "Código del Proyecto";
+$lang['projectTitle']               = "Titulo del Proyecto";
+$lang['projectDescription']         = "Descripción del Proyecto";
+$lang['projectImagenpreview']       = "Imagen";
+$lang['projectImagen']              = "Selecciona una imagen en formato JPG o PNG de tamaño inferior a 1MB.";
+$lang['new-project']                = "Nuevo Proyecto";
+$lang['dimension-project']          = "(306px X 360px)";
+$lang['noImagen-project']           = "El archivo no es una imagen.";
+$lang['exists-project']             = "El archivo ya existe.";
+$lang['sizeproject']                = "Su archivo es demasiado grande.";
+$lang['onlyJpeg-png-project']       = "Solo se permiten archivos JPG, JPEG y PNG.";
+$lang['noDimension-project']        = "El archivo no es de 306px X 360px";
+
 ## etiquetas view listRols
 $lang['title-rols']                 = "Roles de Usuarios";
 $lang['list-rols']                  = "Lista de Roles";

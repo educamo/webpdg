@@ -16,7 +16,6 @@
             header('Refresh: 2');
         endif;
         ?>
-<!-- //TODO: falta terminar el modulo de proyectos -->
      <!-- Page Heading -->
      <h1 class="h3 mb-2 text-gray-800"><?= lang('title-project') ?></h1>
 

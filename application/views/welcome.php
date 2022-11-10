@@ -289,114 +289,28 @@ foreach ($modules as $module) {
                 <div class="section-content">
                     <div class="owl-carousel owl-theme">
 
-                        <div class="item">
-                            <div class="image">
-                                <img src="<?= base_url() ?>assets/img/featured_1.jpg" alt="">
-                                <div class="featured-button button">
-                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                        <?Php
+                        foreach ($projects as $project) {
+
+
+                        ?>
+
+                            <div class="item">
+                                <div class="image">
+                                    <img src="<?= base_url('assets/img/').$project['projectImagen'] ?>" alt="">
+                                    <div class="featured-button button">
+                                        <a href="#projects">¿Quieres ver lo mas reciente?</a>
+                                    </div>
+                                </div>
+                                <div class="text-content">
+                                    <h4><?= $project['projectTitle'] ?></h4>
+                                    <p><?= $project['projectDescription'] ?></p>
                                 </div>
                             </div>
-                            <div class="text-content">
-                                <h4>Aqui va un titulo</h4>
-                                <p>#1 aqui va una descripcion</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="image">
-                                <img src="<?= base_url() ?>assets/img/featured_2.jpg" alt="">
-                                <div class="featured-button button">
-                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
-                                </div>
-                            </div>
-                            <div class="text-content">
-                                <h4>Aqui va un titulo</h4>
-                                <p>#2 aqui <strong>va</strong> un fuerte descripcion</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="image">
-                                <img src="<?= base_url() ?>assets/img/featured_3.jpg" alt="">
-                                <div class="featured-button button">
-                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
-                                </div>
-                            </div>
-                            <div class="text-content">
-                                <h4>Aqui va un titulo</h4>
-                                <p>#3 aqui va una descripcion</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="image">
-                                <img src="<?= base_url() ?>assets/img/featured_2.jpg" alt="">
-                                <div class="featured-button button">
-                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
-                                </div>
-                            </div>
-                            <div class="text-content">
-                                <h4>Aqui va un titulo</h4>
-                                <p>#4 aqui va una descripcion</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="image">
-                                <img src="<?= base_url() ?>assets/img/featured_1.jpg" alt="">
-                                <div class="featured-button button">
-                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
-                                </div>
-                            </div>
-                            <div class="text-content">
-                                <h4>Aqui va un titulo</h4>
-                                <p>#5 aqui va una descripcion</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="image">
-                                <img src="<?= base_url() ?>assets/img/featured_3.jpg" alt="">
-                                <div class="featured-button button">
-                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
-                                </div>
-                            </div>
-                            <div class="text-content">
-                                <h4>Aqui va un titulos</h4>
-                                <p>#6 aqui va una descripcion</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="image">
-                                <img src="<?= base_url() ?>assets/img/featured_2.jpg" alt="">
-                                <div class="featured-button button">
-                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
-                                </div>
-                            </div>
-                            <div class="text-content">
-                                <h4>Aqui va un titulo</h4>
-                                <p>#7 aqui va una descripcion</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="image">
-                                <img src="<?= base_url() ?>assets/img/featured_1.jpg" alt="">
-                                <div class="featured-button button">
-                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
-                                </div>
-                            </div>
-                            <div class="text-content">
-                                <h4>Aqui va un titulo</h4>
-                                <p>#8 aqui va una descripcion</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="image">
-                                <img src="<?= base_url() ?>assets/img/featured_3.jpg" alt="">
-                                <div class="featured-button button">
-                                    <a href="#projects">¿Quieres ver lo mas reciente?</a>
-                                </div>
-                            </div>
-                            <div class="text-content">
-                                <h4>Aqui va un titulo</h4>
-                                <p>#9 aqui va una descripcion</p>
-                            </div>
-                        </div>
+                        <?Php
+                        }
+                        ?>
+
                     </div>
                 </div>
             </section>
@@ -934,3 +848,19 @@ foreach ($modules as $module) {
 </body>
 
 </html>
+
+<?Php
+
+unset(
+    $map,
+    $altLogo,
+    $logo,
+    $title,
+    $dominio,
+    $company,
+    $creador,
+    $keyWords,
+    $description,
+    $contactMail
+);
+?>

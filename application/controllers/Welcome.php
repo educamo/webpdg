@@ -37,6 +37,7 @@ class Welcome extends CI_Controller
 		$social 		= $this->obtenerRedes();
 		$modules 		= $this->obtenerModules();
 		$slider			= $this->obtenerSlider();
+		$projects		= $this->obtenerProjects();
 
 		$data['modules'] 		= $modules;
 		$data['mapa'] 			= $mapa;
@@ -50,6 +51,7 @@ class Welcome extends CI_Controller
 		$data['keyWords'] 		= $keyWords;
 		$data['social'] 		= $social;
 		$data['sliders'] 		= $slider;
+		$data['projects']		= $projects;
 
 		$this->load->view('welcome', $data);
 	}
@@ -148,5 +150,10 @@ class Welcome extends CI_Controller
 	{
 		$slider = $this->Welcome_model->getSlider();
 		return $slider;
+	}
+	private function obtenerProjects()
+	{
+		$projects = $this->Welcome_model->getProjects();
+		return $projects;
 	}
 }

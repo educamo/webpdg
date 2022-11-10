@@ -75,6 +75,15 @@ class Welcome_model extends CI_model
         $slider = $this->getData($datos);
         return $slider;
     }
+    public function getProjects()
+    {
+        $datos = array(
+            'campos' => "projectImagen, projectTitle, projectDescription",
+            'tabla'  => "nu_projects",
+        );
+        $projects = $this->getData($datos);
+        return $projects;
+    }
     /**
      * función getConfig
      * realiza consulta a la bd buscando la configuración según el valor que recibe

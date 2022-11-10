@@ -132,7 +132,7 @@
  </div>
  <!-- /.container-fluid -->
 
-<!-- //TODO: falta hacer que al validar el formulario no guarde datos si algún campo es invalido -->
+<!-- //FIXME: falta hacer que al validar el formulario no guarde datos si algún campo es invalido -->
 
  <script>
      $(document).ready(function() {

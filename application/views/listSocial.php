@@ -75,6 +75,7 @@
 
  </div>
  <!-- End of Main Content -->
+ <!-- // FIXME: falta hacer que guarde los cambios  -->
  <script>
       $(document).ready(function() {
            // para agregar varias opciones con el mismo id de datatable

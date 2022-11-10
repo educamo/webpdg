@@ -35,7 +35,7 @@
                          </div>
                          <div class="col-md-4">
                              <label for="sliderText" class="form-label"><?= lang('sliderText') ?></label>
-                             <input type="text" id="sliderText" name="sliderText" class="form-control" required>
+                             <textarea name="sliderText" id="sliderText" cols="30" rows="4" class="form-control" maxlength="100" required></textarea>
                          </div>
                          <div class="col-md-8 mt-4">
                              <label for="sliderImagen" class="form-label"><?= lang('sliderImagen') ?> <span class="dimension"><?= lang('dimension-slider') ?></span></label>

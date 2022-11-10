@@ -3,6 +3,7 @@
 /**
  * Variables a usar dentro de la plantilla
  */
+// ------- configuraciones ---------
 $map            = $mapa->configValue;
 $altLogo        = $logo->configName;
 $logo           = $logo->configValue;
@@ -14,6 +15,7 @@ $keyWords       = $keyWords->configValue;
 $description    = $description->configValue;
 $contactMail    = $contactMail->configValue;
 
+// -------- modulos --------
 $titleProjects  = NULL;
 $titleContact   = NULL;
 $titleServices  = NULL;
@@ -44,6 +46,9 @@ foreach ($modules as $module) {
             break;
     }
 }
+
+// -------- contenido de cada modulo -------
+
 ?>
 <!DOCTYPE html>
 <html lang="<?= lang('lang') ?>">
@@ -120,7 +125,7 @@ foreach ($modules as $module) {
                     <?Php
                     if ($titleServices) {
                     ?>
-                        <li><a href="#projects"> <?= lang('Servicios').' '. lang('ofrecidos') ?> </a></li>
+                        <li><a href="#projects"> <?= lang('Servicios') . ' ' . lang('ofrecidos') ?> </a></li>
                     <?Php
                     }
                     ?>
@@ -183,7 +188,7 @@ foreach ($modules as $module) {
                         <a href="#projects">
                             <span class="rect"></span>
                             <span class="circle"></span>
-                            <?= lang('Servicios'). ' '. lang('ofrecidos') ?>
+                            <?= lang('Servicios') . ' ' . lang('ofrecidos') ?>
                         </a>
                     </li>
                 <?Php
@@ -242,51 +247,27 @@ foreach ($modules as $module) {
     <!-- slider -->
     <div class="slider">
         <div class="Modern-Slider content-section" id="top">
+            <?Php
+            foreach ($sliders as $slider) {
+                $titleSlider = explode("-", $slider['sliderTitle'])
+            ?>
 
-            <!-- Esto es un Item -->
-            <div class="item item-1">
-                <div class="img-fill">
-                    <div class="image" style="background-image: url(<?= base_url() ?>assets/img/slide_1.jpg);"></div>
-                    <div class="info">
-                        <div>
-                            <h1>Bienvenido a <br>Cosmo Imagine</h1>
-                            <p>Contamos con una gran variedad de Banner y<br>
-                                Proyectos gráficos a tu disposición</p>
+                <!-- Esto es un Item -->
+                <div class="item item-1">
+                    <div class="img-fill">
+                        <div class="image" style="background-image: url(<?= base_url('assets/img/') . $slider['sliderImagen'] ?>);"></div>
+                        <div class="info">
+                            <div>
+                                <h1><?= $titleSlider[0] ?> <br><?= $titleSlider[1] ?></h1>
+                                <p class="parrafo"><?= $slider['sliderText'] ?></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Aqui van los Items -->
-
-            <div class="item item-2">
-                <div class="img-fill">
-                    <div class="image" style="background-image: url(<?= base_url() ?>assets/img/slide_2.jpg);"></div>
-                    <div class="info">
-                        <div>
-                            <h1> Invita <br>a tus Amigos</h1>
-                            <p>Nunca sabes cuando necesites un banner ;)
-                                <br>Gracias por elegirnos
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Aqui van mas Items -->
-
-            <div class="item item-3">
-                <div class="img-fill">
-                    <div class="image" style="background-image: url(<?= base_url() ?>assets/img/slide_3.jpg);"></div>
-                    <div class="info">
-                        <div>
-                            <h1>Aqui en <br> Cosmo Imagine</h1>
-                            <p>Nos especializamos en diseño grafico y creacion de Banners <br> Si tu lo necesitas !Nosotros lo tenemos¡</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- // Item -->
+                <!-- --- end Item --- -->
+            <?Php
+            }
+            ?>
         </div>
     </div>
     <!-- cierre slider-->

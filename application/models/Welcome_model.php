@@ -62,9 +62,18 @@ class Welcome_model extends CI_model
         $datos = array(
             'campos' => 'moduleId, moduleName, moduleDescription',
             'tabla'  => 'nu_modules',
-         );
-         $modules = $this->getData($datos);
-         return $modules;
+        );
+        $modules = $this->getData($datos);
+        return $modules;
+    }
+    public function getSlider()
+    {
+        $datos = array(
+            'campos' => "sliderImagen, sliderTitle, sliderText",
+            'tabla'  => "nu_slider",
+        );
+        $slider = $this->getData($datos);
+        return $slider;
     }
     /**
      * función getConfig
@@ -99,7 +108,6 @@ class Welcome_model extends CI_model
         $data  = $query->result_array();
 
         return $data;
-
     }
 
     public function __destruct()

@@ -36,18 +36,21 @@ class Welcome extends CI_Controller
 		$keyWords 		= $this->obtenerKeywords();
 		$social 		= $this->obtenerRedes();
 		$modules 		= $this->obtenerModules();
+		$slider			= $this->obtenerSlider();
 
-		$data['modules'] = $modules;
-		$data['mapa'] = $mapa;
-		$data['logo'] = $logo;
-		$data['title'] = $title;
-		$data['author'] = $author;
-		$data['company'] = $company;
-		$data['domain'] = $domain;
-		$data['description'] = $description;
-		$data['contactMail'] = $contactMail;
-		$data['keyWords'] = $keyWords;
-		$data['social'] = $social;
+		$data['modules'] 		= $modules;
+		$data['mapa'] 			= $mapa;
+		$data['logo'] 			= $logo;
+		$data['title'] 			= $title;
+		$data['author'] 		= $author;
+		$data['company'] 		= $company;
+		$data['domain'] 		= $domain;
+		$data['description'] 	= $description;
+		$data['contactMail'] 	= $contactMail;
+		$data['keyWords'] 		= $keyWords;
+		$data['social'] 		= $social;
+		$data['sliders'] 		= $slider;
+
 		$this->load->view('welcome', $data);
 	}
 	/**
@@ -140,5 +143,10 @@ class Welcome extends CI_Controller
 	{
 		$modules = $this->Welcome_model->getModules();
 		return $modules;
+	}
+	private function obtenerSlider()
+	{
+		$slider = $this->Welcome_model->getSlider();
+		return $slider;
 	}
 }

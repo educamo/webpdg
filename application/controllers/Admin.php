@@ -310,6 +310,95 @@ class Admin extends CI_Controller
         echo json_encode($r);
         return true;
     }
+    public function configLogo()
+    {
+        $configId = 'Logo';
+        $data['config'] = $this->Admin_model->getConfig($configId);
+        $this->plantilla();
+        $this->load->view('configLogo', $data);
+        $this->footer();
+    }
+    public function modificarLogo()
+    {
+        // obtenemos el usuario y la ip de modificación
+        $usuarioModificacion = $this->session->userdata('userId');
+        $ipModificacion = $_SERVER['REMOTE_ADDR'];
+
+        // se asigna la ruta del directorio en el server donde sa subirá la image
+        $root = $_SERVER['DOCUMENT_ROOT'];
+        $target_dir =  $root . '/webpdg/assets/img/';
+        // se crea la ruta completa del archivo a subir
+        $target_file = $target_dir . basename($_FILES["configValue"]["name"]);
+
+        // se obtiene la extension del archivo a subir en minúscula
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check si la el archivo a subir es una imagen permitida y si ees de las dimensiones permitidas
+        $check = getimagesize($_FILES["configValue"]["tmp_name"]);
+        if ($check !== false) {
+            $width_file = $check[0];
+            $height_file = $check[1];
+        } else {
+            echo  json_encode(lang('noImagen-logo'));
+            return false;
+            exit();
+        }
+
+        // se borrar la imagen antigua del servidor antes de subir la nueva
+        $imagenVieja = $_POST["imagenVieja"];
+        $imagen = $target_dir . $imagenVieja;
+        unlink($imagen);
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+
+            echo json_encode(lang('exists-logo'));
+            return false;
+            exit();
+        }
+
+        // Check file size menor a 1Mb
+        if ($_FILES["configValue"]["size"] > 1130304) {
+            echo json_encode(lang('size-logo'));
+            return false;
+            exit();
+        }
+
+        // Allow certain file formats
+        if ($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png") {
+            echo json_encode(lang('onlyJpeg-png'));
+            return false;
+            exit();
+        }
+        //se verifican las dimensiones de la imagen
+        if ($width_file !== 259 && $height_file !== 91) {
+            echo json_encode(lang('noDimension-logo'));
+            return false;
+            exit();
+        }
+
+        // if everything is ok, try to upload file
+        if (move_uploaded_file($_FILES["configValue"]["tmp_name"], $target_file)) {
+
+            $configId       = $_POST["configId"];
+            $activo         = "1";
+            $configValue    = $_FILES["configValue"]["name"];
+
+            $datos = array(
+                'configId'              => $configId,
+                'configValue'           => $configValue,
+                'usuarioModificacion'   => $usuarioModificacion,
+                'ipModificacion'        => $ipModificacion,
+                'activo'                => $activo,
+            );
+            $r = $this->Admin_model->updateLogo($datos);
+            echo json_encode($r);
+            return true;
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+            return false;
+        }
+    }
     public function listSocial()
     {
         $data['redes'] = $this->Admin_model->getSocial();

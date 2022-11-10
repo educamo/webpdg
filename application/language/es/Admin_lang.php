@@ -125,6 +125,14 @@ $lang['modify-config']              = "Modificar";
 $lang['title-configContacto']       = "Configuración Formulario de Contacto";
 $lang['modifycontac']               = "Modificar Contacto";
 $lang['mailCotact']                 = "Correo de Contacto";
+## etiquetas view configlogo
+$lang['logo']                       = "Selecciona una Imagen de Logo menor a 1MB.";
+$lang['dimension-logo']             = "(259px X 91px)";
+$lang['noImagen-logo']              = "El archivo no es una imagen.";
+$lang['exists-logo']                = "El logo ya existe.";
+$lang['size-logo']                  = "Su logo es demasiado grande.";
+$lang['onlyJpeg-png']               = "Solo se permiten archivos JPG, JPEG y PNG.";
+$lang['noDimension-logo']           = "El archivo no es de 259px X 91px";
 
 ## etiquetas view listSocial
 $lang['title-listSocial']           = "Redes Sociales";

@@ -101,6 +101,12 @@ class Admin_model extends CI_Model
     {
         return $this->db->insert('nu_config', $datos);
     }
+    public function updateLogo($datos = NULL)
+    {
+        $id = $datos['configId'];
+        $this->db->where('configId', $id);
+        return $this->db->update('nu_config', $datos);
+    }
     public function getSocial()
     {
         $this->db->select('*');

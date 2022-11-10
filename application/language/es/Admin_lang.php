@@ -70,6 +70,7 @@ $lang['confirm-message']            = "¿Esta Seguro de Eliminar el Registro?";
 ## etiquetas de la view slider
 $lang['title-slider']               = "Slider";
 $lang['list-slider']                = "Lista de Slider";
+$lang['mod-slider']                 = "Modificar Slider";
 $lang['sliderId']                   = "Código del Slider";
 $lang['sliderTitle']                = "Titulo del Slider";
 $lang['sliderText']                 = "Texto del Slider";

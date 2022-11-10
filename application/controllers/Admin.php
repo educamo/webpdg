@@ -184,7 +184,105 @@ class Admin extends CI_Controller
         $r = $this->Admin_model->deleteSlider($id);
         echo json_encode($r);
         return true;
+    }
+    public function actualizarSlider($id = NULL)
+    {
+        $id = $this->uri->segment(3);
+        // var_dump($id);
+        if ($id === NULL) {
+            redirect(base_url('Admin/slider'));
+            exit();
+        }
+        $data = $this->Admin_model->getSlider($id);
 
+        $this->plantilla();
+        $this->load->view('updateSlider', $data);
+        $this->footer();
+    }
+    public function modificarSlider()
+    {
+        // obtenemos el usuario y la ip de modificación
+        $usuarioModificacion = $this->session->userdata('userId');
+        $ipModificacion = $_SERVER['REMOTE_ADDR'];
+
+        // se asigna la ruta del directorio en el server donde sa subirá la image
+        $root = $_SERVER['DOCUMENT_ROOT'];
+        $target_dir =  $root . '/webpdg/assets/img/';
+        // se crea la ruta completa del archivo a subir
+        $target_file = $target_dir . basename($_FILES["sliderImagen"]["name"]);
+
+        // se obtiene la extension del archivo a subir en minúscula
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check si la el archivo a subir es una imagen permitida y si ees de las dimensiones permitidas
+        $check = getimagesize($_FILES["sliderImagen"]["tmp_name"]);
+        if ($check !== false) {
+            $width_file = $check[0];
+            $height_file = $check[1];
+        } else {
+            echo  json_encode(lang('noImagen'));
+            return false;
+            exit();
+        }
+
+        // se borrar la imagen antigua del servidor antes de subir la nueva
+        $imagenVieja = $_POST["imagenVieja"];
+        $imagen = $target_dir .$imagenVieja;
+        unlink($imagen);
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+
+            echo json_encode(lang('exists'));
+            return false;
+            exit();
+        }
+
+        // Check file size menor a 1Mb
+        if ($_FILES["sliderImagen"]["size"] > 1130304) {
+            echo json_encode(lang('size'));
+            return false;
+            exit();
+        }
+
+        // Allow certain file formats
+        if ($imageFileType != "jpg" && $imageFileType != "jpeg") {
+            echo json_encode(lang('onlyJpeg'));
+            return false;
+            exit();
+        }
+        //se verifican las dimensiones de la imagen
+        if ($width_file !== 1400 && $height_file !== 750) {
+            echo json_encode(lang('noDimension'));
+            return false;
+            exit();
+        }
+
+        // if everything is ok, try to upload file
+        if (move_uploaded_file($_FILES["sliderImagen"]["tmp_name"], $target_file)) {
+
+            $sliderTitle = $_POST["sliderTitle"];
+            $sliderText = $_POST["sliderText"];
+            $sliderId = $_POST["sliderId"];
+            $sliderImagen = $_FILES["sliderImagen"]["name"];
+
+            $datos = array(
+                'sliderId'              => $sliderId,
+                'sliderImagen'          => $sliderImagen,
+                'sliderTitle'           => $sliderTitle,
+                'sliderText'            => $sliderText,
+                'moduleId'              => "slider",
+                'usuarioModificacion'   => $usuarioModificacion,
+                'ipModificacion'        => $ipModificacion,
+                'activo'                => "1",
+            );
+            $r = $this->Admin_model->updateSlider($datos);
+            echo json_encode($r);
+            return true;
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+            return false;
+        }
     }
     public function configContacto()
     {

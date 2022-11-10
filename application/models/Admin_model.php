@@ -45,7 +45,7 @@ class Admin_model extends CI_Model
     }
     public function getSlider($id = NULL)
     {
-        $this->db->select('sliderId, sliderImagen, sliderTitle, activo');
+        $this->db->select('sliderId, sliderImagen, sliderTitle, sliderText, activo');
         $this->db->from('nu_slider');
         if ($id !== NULL) {
             $this->db->where('sliderId', $id);
@@ -67,6 +67,12 @@ class Admin_model extends CI_Model
         $this->db->where('sliderId', $value);
 
         return $this->db->delete('nu_slider');
+    }
+    public function updateSlider($datos = NULL)
+    {
+        $id = $datos['sliderId'];
+        $this->db->where('sliderId', $id);
+        return $this->db->update('nu_slider', $datos);
     }
     public function getConfig($id = NULL)
     {

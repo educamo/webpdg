@@ -179,7 +179,7 @@
                  },
                  success: function(r) {
                      if (r === true) {
-                         $("#mensaje").html('<div class="alert alert-success" role="alert"><strong><?= lang("new") ?></strong></div>');
+                         $("#mensaje").html('<div class="alert alert-success" role="alert"><strong><?= lang("update") ?></strong></div>');
                          setTimeout(function() {
                              location.href = urlbase + 'Admin/slider';
                          }, 3000);
@@ -193,8 +193,8 @@
                      }
                  },
                  error: function(r) {
-                     $("#mensaje").html('<div class="alert alert-danger" role="alert"><strong><?= lang("errorSave") ?></strong></div>');
-                     //  setTimeout("location.reload(true);", 3000);
+                     $("#mensaje").html('<div class="alert alert-danger" role="alert"><strong><?= lang("error") ?></strong></div>');
+                      setTimeout("location.reload(true);", 3000);
                      $(".btn-success").removeAttr('disabled');
 
                  }

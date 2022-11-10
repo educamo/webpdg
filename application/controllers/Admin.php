@@ -227,7 +227,7 @@ class Admin extends CI_Controller
 
         // se borrar la imagen antigua del servidor antes de subir la nueva
         $imagenVieja = $_POST["imagenVieja"];
-        $imagen = $target_dir .$imagenVieja;
+        $imagen = $target_dir . $imagenVieja;
         unlink($imagen);
 
         // Check if file already exists
@@ -261,9 +261,11 @@ class Admin extends CI_Controller
         // if everything is ok, try to upload file
         if (move_uploaded_file($_FILES["sliderImagen"]["tmp_name"], $target_file)) {
 
-            $sliderTitle = $_POST["sliderTitle"];
-            $sliderText = $_POST["sliderText"];
-            $sliderId = $_POST["sliderId"];
+            $sliderTitle    = $_POST["sliderTitle"];
+            $sliderText     = $_POST["sliderText"];
+            $sliderId       = $_POST["sliderId"];
+            $activo         = $this->input->post('activo');
+
             $sliderImagen = $_FILES["sliderImagen"]["name"];
 
             $datos = array(
@@ -274,7 +276,7 @@ class Admin extends CI_Controller
                 'moduleId'              => "slider",
                 'usuarioModificacion'   => $usuarioModificacion,
                 'ipModificacion'        => $ipModificacion,
-                'activo'                => "1",
+                'activo'                => $activo,
             );
             $r = $this->Admin_model->updateSlider($datos);
             echo json_encode($r);

@@ -30,9 +30,20 @@
                  <form action="#" method="POST" enctype="multipart/form-data" id="frmModslider">
                      <div class="row">
                          <div class="col-md-4">
-                            <input type="hidden" id="sliderId" name="sliderId" value="<?= $sliderId ?>" required>
+                             <input type="hidden" id="sliderId" name="sliderId" value="<?= $sliderId ?>" required>
                              <label for="sliderTitle" class="form-label"><?= lang('sliderTitle') ?></label>
                              <input type="text" id="sliderTitle" name="sliderTitle" class="form-control" maxlength="100" value="<?= $sliderTitle ?>" required>
+                         </div>
+                         <div class="col-md-4">
+                             <label for="activo" class="form-label"><?= lang('activo') ?></label>
+                             <select name="activo" id="activo" class="form-select">
+                                 <option value="1" <?Php if ($activo == "1") {
+                                                        echo "selected";
+                                                    } ?>><?= lang('yes') ?></option>
+                                 <option value="0" <?Php if ($activo == "0") {
+                                                        echo "selected";
+                                                    } ?>><?= lang('no') ?></option>
+                             </select>
                          </div>
                          <div class="col-md-4">
                              <label for="sliderText" class="form-label"><?= lang('sliderText') ?></label>
@@ -44,7 +55,7 @@
                              <input type="file" name="sliderImagen" id="sliderImagen" class="form-control" accept="image/jpeg" required>
                          </div>
                          <div class="col-md-4 mt-4">
-                             <div id="preview"><img src="<?= base_url('assets/img/').$sliderImagen ?>" class="img-fluid img-thumbnail" width="200" height="125"></div>
+                             <div id="preview"><img src="<?= base_url('assets/img/') . $sliderImagen ?>" class="img-fluid img-thumbnail" width="200" height="125"></div>
                          </div>
                      </div>
                      <div class="row mt-5">
@@ -127,7 +138,7 @@
              location.href = urlbase + 'Admin/slider';
          });
 
-/**
+         /**
           * function en jquery que se dispara con el evento submit del formulario
           * Descripción: función Ajax que envía los datos del formulario en un objeto formData
           * para ser procesados en el controlador
@@ -183,7 +194,7 @@
                  },
                  error: function(r) {
                      $("#mensaje").html('<div class="alert alert-danger" role="alert"><strong><?= lang("errorSave") ?></strong></div>');
-                    //  setTimeout("location.reload(true);", 3000);
+                     //  setTimeout("location.reload(true);", 3000);
                      $(".btn-success").removeAttr('disabled');
 
                  }

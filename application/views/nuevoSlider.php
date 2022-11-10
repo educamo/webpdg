@@ -31,11 +31,11 @@
                      <div class="row">
                          <div class="col-md-4">
                              <label for="sliderTitle" class="form-label"><?= lang('sliderTitle') ?></label>
-                             <input type="text" id="sliderTitle" name="sliderTitle" class="form-control" required>
+                             <input type="text" id="sliderTitle" name="sliderTitle" class="form-control" maxlength="100" required>
                          </div>
                          <div class="col-md-4">
                              <label for="sliderText" class="form-label"><?= lang('sliderText') ?></label>
-                             <textarea name="sliderText" id="sliderText" cols="30" rows="4" class="form-control" maxlength="100" required></textarea>
+                             <textarea name="sliderText" id="sliderText" cols="30" rows="4" class="form-control" maxlength="150" required></textarea>
                          </div>
                          <div class="col-md-8 mt-4">
                              <label for="sliderImagen" class="form-label"><?= lang('sliderImagen') ?> <span class="dimension"><?= lang('dimension-slider') ?></span></label>

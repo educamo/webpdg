@@ -291,13 +291,11 @@ foreach ($modules as $module) {
 
                         <?Php
                         foreach ($projects as $project) {
-
-
                         ?>
 
                             <div class="item">
                                 <div class="image">
-                                    <img src="<?= base_url('assets/img/').$project['projectImagen'] ?>" alt="">
+                                    <img src="<?= base_url('assets/img/') . $project['projectImagen'] ?>" alt="">
                                     <div class="featured-button button">
                                         <a href="#projects">¿Quieres ver lo mas reciente?</a>
                                     </div>
@@ -336,15 +334,21 @@ foreach ($modules as $module) {
                                 <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 rounded-start categoryItem">
                                     <a href="#" class="categoryItemactivo active" data-category="all"> todos</a>
                                 </li>
-                                <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 categoryItem">
-                                    <a href="#" class="categoryItemactivo" data-category="desing">diseño</a>
-                                </li>
-                                <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 categoryItem">
+                                <?Php
+                                foreach ($categorys as $category) {
+                                ?>
+                                    <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 rounded-end categoryItem">
+                                        <a href="#" class="categoryItemactivo" data-category="<?= $category['categoryId'] ?>"><?= $category['categoryName'] ?></a>
+                                    </li>
+                                <?Php
+                                }
+                                ?>
+                                <!-- <li class="d-inline bg-light text-dark fs-2 p-2 mb-3 categoryItem">
                                     <a href="#" class="categoryItemactivo" data-category="impresion">impresión</a>
                                 </li>
                                 <li class="d-inline bg-light text-dark fs-2  p-2 mb-3 rounded-end categoryItem">
                                     <a href="#" class="categoryItemactivo" data-category="marketing">marketing</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
 
@@ -861,6 +865,9 @@ unset(
     $creador,
     $keyWords,
     $description,
-    $contactMail
+    $contactMail,
+    $sliders,
+    $projects,
+    $categorys,
 );
 ?>

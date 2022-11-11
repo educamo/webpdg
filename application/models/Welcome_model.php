@@ -84,6 +84,15 @@ class Welcome_model extends CI_model
         $projects = $this->getData($datos);
         return $projects;
     }
+    public function getCategorys()
+    {
+        $datos = array(
+            'campos' => "categoryId, categoryName",
+            'tabla'  => "nu_categorys",
+        );
+        $categorys = $this->getData($datos);
+        return $categorys;
+    }
     /**
      * función getConfig
      * realiza consulta a la bd buscando la configuración según el valor que recibe

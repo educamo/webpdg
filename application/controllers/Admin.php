@@ -503,6 +503,78 @@ class Admin extends CI_Controller
         }
     }
 
+    // ---------------------- CATEGORIAS -------------------
+    public function categorias()
+    {
+        $data['categorys'] = $this->Admin_model->getcategorys();
+        $this->plantilla();
+        $this->load->view('categorias', $data);
+        $this->footer();
+    }
+    public function nuevocategory()
+    {
+        $this->plantilla();
+        $this->load->view('nuevocategory');
+        $this->footer();
+    }
+    public function guardarCategoria()
+    {
+        $usuarioCreacion = $this->session->userdata('userId');
+        $ipCreacion = $_SERVER['REMOTE_ADDR'];
+
+        $datos = array(
+            'categoryId'              => $this->input->post('categoryId'),
+            'categoryName'            => $this->input->post('categoryName'),
+            'categoryDescription'     => $this->input->post('categoryDescription'),
+            'usuarioCreacion'         => $usuarioCreacion,
+            'ipCreacion'              => $ipCreacion,
+            'activo'                  => "1",
+        );
+
+        $r = $this->Admin_model->saveCategory($datos);
+        echo json_encode($r);
+        return true;
+    }
+    public function actualizarcategory($id = NULL)
+    {
+        $id = $this->uri->segment(3);
+        if ($id === NULL) {
+            redirect(base_url('Admin/categorias'));
+            exit();
+        }
+        $data = $this->Admin_model->getCategorys($id);
+
+        $this->plantilla();
+        $this->load->view('actualizarcategory', $data);
+        $this->footer();
+    }
+    public function updateCategoria($datos = NULL)
+    {
+        $usuarioModificacion = $this->session->userdata('userId');
+        $ipModificacion = $_SERVER['REMOTE_ADDR'];
+        $datos = array(
+            'categoryId'               => $this->input->post('categoryId'),
+            'categoryName'              => $this->input->post('categoryName'),
+            'categoryDescription'       => $this->input->post('categoryDescription'),
+            'id'                        => $this->input->post('Id'),
+            'usuarioModificacion'       => $usuarioModificacion,
+            'ipModificacion'            => $ipModificacion,
+            'activo'                    => $this->input->post('activo'),
+        );
+
+        $r = $this->Admin_model->updateCategory($datos);
+
+        echo json_encode($r);
+        return true;
+    }
+    public function borrarcategory($id = NULL)
+    {
+        $id = $this->input->post('categoryId');
+        $r = $this->Admin_model->deleteCategory($id);
+        echo json_encode($r);
+        return true;
+    }
+
     // ---------------- CONFIG CONTACTO  ----------------------
     public function configContacto()
     {

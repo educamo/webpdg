@@ -113,7 +113,45 @@ class Admin_model extends CI_Model
             'activo'                => $datos['activo'],
         );
         $this->db->where('projectId', $value);
-       return $this->db->update('nu_projects', $datos);
+        return $this->db->update('nu_projects', $datos);
+    }
+    public function getcategorys($id = NULL)
+    {
+        $this->db->select('categoryId, categoryName, categoryDescription, activo');
+        $this->db->from('nu_categorys');
+        if ($id !== NULL) {
+            $this->db->where('categoryId', $id);
+            $query = $this->db->get();
+            $data = $query->row();
+        } else {
+            $query = $this->db->get();
+            $data = $query->result();
+        }
+        return $data;
+    }
+    public function saveCategory($datos = NULL)
+    {
+        return $this->db->insert('nu_categorys', $datos);
+    }
+    public function updateCategory($datos = NULL)
+    {
+        $id = $datos["id"];
+        $datos = array(
+            'categoryId'            => $datos['categoryId'],
+            'categoryName'          => $datos['categoryName'],
+            'categoryDescription'   => $datos['categoryDescription'],
+            'usuarioModificacion'   => $datos['usuarioModificacion'],
+            'ipModificacion'        => $datos['ipModificacion'],
+            'activo'                => $datos['activo'],
+        );
+        $this->db->where('categoryId', $id);
+
+        return $this->db->update('nu_categorys', $datos);
+    }
+    public function deleteCategory($id = NULL)
+    {
+        $this->db->where('categoryId', $id);
+        return $this->db->delete('nu_categorys');
     }
     public function getConfig($id = NULL)
     {

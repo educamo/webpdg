@@ -101,6 +101,15 @@ $lang['sizeproject']                = "Su archivo es demasiado grande.";
 $lang['onlyJpeg-png-project']       = "Solo se permiten archivos JPG, JPEG y PNG.";
 $lang['noDimension-project']        = "El archivo no es de 306px X 360px";
 
+## etiquetas de la view category
+$lang['title-category']             = "Categorías";
+$lang['list-category']              = "Lista de Categorías";
+$lang['new-category']               = "Nueva Categoría ";
+$lang['categoryId']                 = "Código de la Categoría";
+$lang['categoryName']               = "Nombre de la Categorías";
+$lang['categoryDescription']        = "Descripción de la Categorías";
+$lang['mod-category']               = "Modificar Categoría";
+
 ## etiquetas view listRols
 $lang['title-rols']                 = "Roles de Usuarios";
 $lang['list-rols']                  = "Lista de Roles";

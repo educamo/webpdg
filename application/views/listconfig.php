@@ -132,8 +132,6 @@
  </div>
  <!-- /.container-fluid -->
 
-<!-- //FIXME: falta hacer que al validar el formulario no guarde datos si algún campo es invalido -->
-
  <script>
      $(document).ready(function() {
 
@@ -141,46 +139,6 @@
 
          var urlbase = "<?= base_url() ?>";
 
-         $('#frmNewconfig').submit(function(event) {
-             event.preventDefault();
-
-
-             //creo variable con la url del ajax
-             var urlajax = urlbase + "Admin/insertConfig";
-             // Run $.ajax() here
-             // Using the core $.ajax() method
-             $.ajax({
-
-                 // The URL for the request
-                 url: urlajax,
-
-                 // The data to send (will be converted to a query string)
-                 data: $('#frmNewconfig').serializeArray(),
-
-                 // Whether this is a POST or GET request
-                 method: "POST",
-
-                 dataType: "json",
-
-
-                 beforeSend: function(objeto) {
-                     var cargando = '<div class="alert alert-info" role="alert"><strong><?= lang("process") ?></strong><div class="spinner-border ms-auto text-primary text-end ml-5" role="status" aria-hidden="true"></div></div>';
-                     $("#mensaje").html(cargando);
-                 },
-                 success: function(r) {
-                     $("#mensaje").html('<div class="alert alert-success" role="alert"><strong><?= lang("new") ?></strong></div>');
-                     setTimeout("location.reload(true);", 4000);
-                     location.href = urlbase + 'Admin/listconfig';
-
-                 },
-                 error: function(r) {
-
-                     $("#mensaje").html('<div class="alert alert-danger" role="alert"><strong><?= lang("errorSave") ?></strong></div>');
-                     setTimeout("location.reload(true);", 3000);
-                 }
-             })
-
-         });
 
          $(function() {
 
@@ -241,8 +199,40 @@
 
                  submitHandler: function(form) {
 
+                     //creo variable con la url del ajax
+                     var urlajax = urlbase + "Admin/insertConfig";
+                     // Run $.ajax() here
+                     // Using the core $.ajax() method
+                     $.ajax({
 
-                     form.submit();
+                         // The URL for the request
+                         url: urlajax,
+
+                         // The data to send (will be converted to a query string)
+                         data: $('#frmNewconfig').serializeArray(),
+
+                         // Whether this is a POST or GET request
+                         method: "POST",
+
+                         dataType: "json",
+
+
+                         beforeSend: function(objeto) {
+                             var cargando = '<div class="alert alert-info" role="alert"><strong><?= lang("process") ?></strong><div class="spinner-border ms-auto text-primary text-end ml-5" role="status" aria-hidden="true"></div></div>';
+                             $("#mensaje").html(cargando);
+                         },
+                         success: function(r) {
+                             $("#mensaje").html('<div class="alert alert-success" role="alert"><strong><?= lang("new") ?></strong></div>');
+                             setTimeout("location.reload(true);", 4000);
+                             location.href = urlbase + 'Admin/listconfig';
+
+                         },
+                         error: function(r) {
+
+                             $("#mensaje").html('<div class="alert alert-danger" role="alert"><strong><?= lang("errorSave") ?></strong></div>');
+                             setTimeout("location.reload(true);", 3000);
+                         }
+                     })
 
                  }
 

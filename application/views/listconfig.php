@@ -135,8 +135,6 @@
  <script>
      $(document).ready(function() {
 
-
-
          var urlbase = "<?= base_url() ?>";
 
 

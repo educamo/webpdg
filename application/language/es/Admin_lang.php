@@ -110,6 +110,25 @@ $lang['categoryName']               = "Nombre de la Categorías";
 $lang['categoryDescription']        = "Descripción de la Categorías";
 $lang['mod-category']               = "Modificar Categoría";
 
+## etiquetas view service
+$lang['title-service']              = "Servicios";
+$lang['list-service']               = "Lista de Servicios";
+$lang['new-service']                = "Nuevo Servicio ";
+$lang['mod-service']                = "Modificar Servicio ";
+$lang['serviceTitle']               = "Titulo del Servicio";
+$lang['serviceImagenpreview']       = "Imagen del Servicio";
+$lang['serviceId']                  = "Código del Servicio";
+$lang['serviceImagen']              = "Selecciona una imagen en formato JPG de tamaño inferior a 1MB.";
+$lang['dimension-service']          = "(750px X 500px)";
+$lang['serviceDescription']         = "Descripción del Servicio";
+$lang['servicePrice']               = "Precio del Servicio";
+$lang['select-category']            = "Seleccione una categoría";
+$lang['noImagen-service']           = "El archivo no es una imagen.";
+$lang['exists-service']             = "El archivo ya existe.";
+$lang['size-service']               = "Su archivo es demasiado grande.";
+$lang['onlyJpeg-service']           = "Solo se permiten archivos JPG y JPEG.";
+$lang['noDimension-service']        = "El archivo no es de 750px X 500px";
+
 ## etiquetas view listRols
 $lang['title-rols']                 = "Roles de Usuarios";
 $lang['list-rols']                  = "Lista de Roles";

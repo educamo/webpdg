@@ -575,6 +575,222 @@ class Admin extends CI_Controller
         return true;
     }
 
+    // ----------------- SERVICIOS ---------------------
+    public function servicios()
+    {
+        $data['services'] = $this->Admin_model->getServicios();
+        $this->plantilla();
+        $this->load->view('listservicios', $data);
+        $this->footer();
+    }
+    public function nuevoService()
+    {
+        $data['categorys'] = $this->Admin_model->getCategorys();
+        $this->plantilla();
+        $this->load->view('nuevoService', $data);
+        $this->footer();
+    }
+    public function guardarService()
+    {
+        // obtenemos el usuario y la ip de modificación
+        $usuarioCreacion = $this->session->userdata('userId');
+        $ipCreacion = $_SERVER['REMOTE_ADDR'];
+
+        // se asigna la ruta del directorio en el server donde sa subirá la image
+        $root = $_SERVER['DOCUMENT_ROOT'];
+        $target_dir =  $root . '/webpdg/assets/img/';
+        // se crea la ruta completa del archivo a subir
+        $target_file = $target_dir . basename($_FILES["serviceImagen"]["name"]);
+
+        // se obtiene la extension del archivo a subir en minúscula
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check si la el archivo a subir es una imagen permitida y si ees de las dimensiones permitidas
+        $check = getimagesize($_FILES["serviceImagen"]["tmp_name"]);
+        if ($check !== false) {
+            $width_file = $check[0];
+            $height_file = $check[1];
+        } else {
+            echo  json_encode(lang('noImagen-service'));
+            return false;
+            exit();
+        }
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+
+            echo json_encode(lang('exists-service'));
+            return false;
+            exit();
+        }
+
+        // Check file size menor a 1Mb
+        if ($_FILES["serviceImagen"]["size"] > 1130304) {
+            echo json_encode(lang('size-service'));
+            return false;
+            exit();
+        }
+
+        // Allow certain file formats
+        if ($imageFileType != "jpg" && $imageFileType != "jpeg") {
+            echo json_encode(lang('onlyJpeg-service'));
+            return false;
+            exit();
+        }
+        //se verifican las dimensiones de la imagen
+        if ($width_file !== 750 && $height_file !== 500) {
+            echo json_encode(lang('noDimension-service'));
+            return false;
+            exit();
+        }
+
+        // if everything is ok, try to upload file
+        if (move_uploaded_file($_FILES["serviceImagen"]["tmp_name"], $target_file)) {
+
+            $serviceId          = $_POST["serviceId"];
+            $serviceTitle       = $_POST["serviceTitle"];
+            $serviceImagen      = $_FILES["serviceImagen"]["name"];
+            $servicePrice       = $_POST["servicePrice"];
+            $serviceDescription = $_POST["serviceDescription"];
+            $categoryId         = $_POST["categoryId"];
+
+            $datos = array(
+                'serviceId'             => $serviceId,
+                'serviceTitle'          => $serviceTitle,
+                'serviceImagen'         => $serviceImagen,
+                'servicePrice'          => $servicePrice,
+                'serviceDescription'    => $serviceDescription,
+                'categoryId'            => $categoryId,
+                'moduleId'              => "projects",
+                'usuarioCreacion'       => $usuarioCreacion,
+                'ipCreacion'            => $ipCreacion,
+                'activo'                => "1",
+            );
+            $r = $this->Admin_model->saveService($datos);
+            echo json_encode($r);
+            return true;
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+            return false;
+        }
+    }
+    public function actualizarService($id = NULL)
+    {
+        $id = $this->uri->segment(3);
+        // var_dump($id);
+        if ($id === NULL) {
+            redirect(base_url('Admin/servicios'));
+            exit();
+        }
+        $data = $this->Admin_model->getServicios($id);
+
+        $idservicio = $data->categoryId;
+
+        $data->categorys = $this->Admin_model->getcategorys();
+
+        $this->plantilla();
+        $this->load->view('updateService', $data);
+        $this->footer();
+    }
+    public function updateService()
+    {
+        // obtenemos el usuario y la ip de modificación
+        $usuarioModificacion = $this->session->userdata('userId');
+        $ipModificacion = $_SERVER['REMOTE_ADDR'];
+
+        // se asigna la ruta del directorio en el server donde sa subirá la image
+        $root = $_SERVER['DOCUMENT_ROOT'];
+        $target_dir =  $root . '/webpdg/assets/img/';
+        // se crea la ruta completa del archivo a subir
+        $target_file = $target_dir . basename($_FILES["serviceImagen"]["name"]);
+
+        // se obtiene la extension del archivo a subir en minúscula
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check si la el archivo a subir es una imagen permitida y si ees de las dimensiones permitidas
+        $check = getimagesize($_FILES["serviceImagen"]["tmp_name"]);
+        if ($check !== false) {
+            $width_file = $check[0];
+            $height_file = $check[1];
+        } else {
+            echo  json_encode(lang('noImagen-service'));
+            return false;
+            exit();
+        }
+
+        // se borrar la imagen antigua del servidor antes de subir la nueva
+        $imagenVieja = $_POST["imagenVieja"];
+        $imagen = $target_dir . $imagenVieja;
+        unlink($imagen);
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+
+            echo json_encode(lang('exists-service'));
+            return false;
+            exit();
+        }
+
+        // Check file size menor a 1Mb
+        if ($_FILES["serviceImagen"]["size"] > 1130304) {
+            echo json_encode(lang('size-servicet'));
+            return false;
+            exit();
+        }
+
+        // Allow certain file formats
+        if ($imageFileType != "jpg" && $imageFileType != "jpeg") {
+            echo json_encode(lang('onlyJpeg-service'));
+            return false;
+            exit();
+        }
+        //se verifican las dimensiones de la imagen
+        if ($width_file !== 750 && $height_file !== 500) {
+            echo json_encode(lang('noDimension-service'));
+            return false;
+            exit();
+        }
+
+        // if everything is ok, try to upload file
+        if (move_uploaded_file($_FILES["serviceImagen"]["tmp_name"], $target_file)) {
+
+            $serviceId          = $_POST["serviceId"];
+            $serviceTitle       = $_POST["serviceTitle"];
+            $serviceImagen      = $_FILES["serviceImagen"]["name"];
+            $servicePrice       = $_POST["servicePrice"];
+            $serviceDescription = $_POST["serviceDescription"];
+            $categoryId         = $_POST["categoryId"];
+            $activo             = $this->input->post('activo');
+            $id                 = $this->input->post('Id');
+
+            $datos = array(
+                'serviceId'             => $serviceId,
+                'serviceTitle'          => $serviceTitle,
+                'serviceImagen'         => $serviceImagen,
+                'servicePrice'          => $servicePrice,
+                'serviceDescription'    => $serviceDescription,
+                'categoryId'            => $categoryId,
+                'usuarioModificacion'   => $usuarioModificacion,
+                'ipModificacion'        => $ipModificacion,
+                'activo'                => $activo,
+                'id'                    => $id,
+            );
+            $r = $this->Admin_model->updateService($datos);
+            echo json_encode($r);
+            return true;
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+            return false;
+        }
+    }
+    public function borrarService($id = NULL)
+    {
+        $id = $this->input->post('serviceId');
+        $r = $this->Admin_model->deleteService($id);
+        echo json_encode($r);
+        return true;
+    }
+
     // ---------------- CONFIG CONTACTO  ----------------------
     public function configContacto()
     {

@@ -153,6 +153,48 @@ class Admin_model extends CI_Model
         $this->db->where('categoryId', $id);
         return $this->db->delete('nu_categorys');
     }
+    public function getServicios($id = NULL)
+    {
+        $this->db->select('serviceId, serviceTitle, serviceImagen,  servicePrice, serviceDescription, categoryId, activo');
+        $this->db->from('nu_services');
+        if ($id !== NULL) {
+            $this->db->where('serviceId', $id);
+            $query = $this->db->get();
+            $data = $query->row();
+        } else {
+            $query = $this->db->get();
+            $data = $query->result();
+        }
+        return $data;
+    }
+    public function saveService($datos = NULL)
+    {
+        return $this->db->insert('nu_services', $datos);
+    }
+    public function updateService($datos = NULL)
+    {
+        $value = $datos['id'];
+        $datos = array(
+            'serviceId'             => $datos['serviceId'],
+            'serviceTitle'          => $datos['serviceTitle'],
+            'serviceImagen'         => $datos['serviceImagen'],
+            'servicePrice'          => $datos['servicePrice'],
+            'serviceDescription'    => $datos['serviceDescription'],
+            'categoryId'            => $datos['categoryId'],
+            'usuarioModificacion'   => $datos['usuarioModificacion'],
+            'ipModificacion'        => $datos['ipModificacion'],
+            'activo'                => $datos['activo'],
+        );
+        $this->db->where('serviceId', $value);
+        return $this->db->update('nu_services', $datos);
+    }
+    public function deleteService($id = NULL)
+    {
+        $value = $id;
+        $this->db->where('serviceId', $value);
+
+        return $this->db->delete('nu_services');
+    }
     public function getConfig($id = NULL)
     {
         $this->db->select('configId, configValue, configDescription');

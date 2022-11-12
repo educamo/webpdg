@@ -361,95 +361,27 @@ foreach ($modules as $module) {
                     <div class="masonry">
                         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
 
-                            <div class="col">
-                                <div class="card mb-4 rounded-3 shadow-sm" data-category="desing">
-                                    <div class="card-header py-3">
-                                        <h4 class="my-0 fw-normal">Diseño</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="<?= base_url() ?>assets/img/portfolio_big_1.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_1.jpg" alt="image 1" class="img-fluid img-thumbnail rounded"></a>
-                                        <h1 class="card-title pricing-card-title">$0<small class="text-muted fw-light">/mo</small></h1>
-                                        <span class="d-inline-block">
-                                            This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                            <?Php
+                            foreach ($services as $service) {
+                            ?>
 
-                            <div class="col">
-                                <div class="card mb-4 rounded-3 shadow-sm" data-category="desing">
-                                    <div class="card-header py-3">
-                                        <h4 class="my-0 fw-normal">Diseño</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="<?= base_url() ?>assets/img/portfolio_big_2.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_2.jpg" alt="image 2" class="img-fluid img-thumbnail rounded"></a>
-                                        <h1 class="card-title pricing-card-title">$15<small class="text-muted fw-light">/mo</small></h1>
-                                        <span class="d-inline-block">
-                                            This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card mb-4 rounded-3 shadow-sm" data-category="impresion">
-                                    <div class="card-header py-3">
-                                        <h4 class="my-0 fw-normal">Impresión</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="<?= base_url() ?>assets/img/portfolio_big_3.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_3.jpg" alt="image 3" class="img-fluid img-thumbnail rounded"></a>
-                                        <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
-                                        <span class="d-inline-block">
-                                            This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
-                                        </span>
+                                <div class="col">
+                                    <div class="card mb-4 rounded-3 shadow-sm" data-category="<?= $service['categoryId'] ?>">
+                                        <div class="card-header py-3">
+                                            <h4 class="my-0 fw-normal"><?= $service['serviceTitle'] ?></h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <a href="<?= base_url('assets/img/').$service['serviceImagen'] ?>" data-lightbox="image"><img src="<?= base_url('assets/img/').$service['serviceImagen'] ?>" alt="<?= $service['serviceTitle'] ?>" class="img-fluid img-thumbnail rounded"></a>
+                                            <h1 class="card-title pricing-card-title"><?= $service['servicePrice'] ?></h1>
+                                            <span class="d-inline-block">
+                                                <?= $service['serviceDescription'] ?>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card mb-4 rounded-3 shadow-sm" data-category="marketing">
-                                    <div class="card-header py-3">
-                                        <h4 class="my-0 fw-normal">Marketing</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="<?= base_url() ?>assets/img/portfolio_big_4.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_4.jpg" alt="image 4" class="img-fluid img-thumbnail rounded"></a>
-                                        <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
-                                        <span class="d-inline-block">
-                                            This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card mb-4 rounded-3 shadow-sm" data-category="marketing">
-                                    <div class="card-header py-3">
-                                        <h4 class="my-0 fw-normal">Marketing</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="<?= base_url() ?>assets/img/portfolio_big_5.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_5.jpg" alt="image 5" class="img-fluid img-thumbnail rounded"></a>
-                                        <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
-                                        <span class="d-inline-block">
-                                            This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card mb-4 rounded-3 shadow-sm" data-category="impresion">
-                                    <div class="card-header py-3">
-                                        <h4 class="my-0 fw-normal">Impresión</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="<?= base_url() ?>assets/img/portfolio_big_5.jpg" data-lightbox="image"><img src="<?= base_url() ?>assets/img/portfolio_5.jpg" alt="image 5" class="img-fluid img-thumbnail rounded"></a>
-                                        <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
-                                        <span class="d-inline-block">
-                                            This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                            <?Php
+                            }
+                            ?>
 
                         </div>
 
@@ -869,5 +801,6 @@ unset(
     $sliders,
     $projects,
     $categorys,
+    $services,
 );
 ?>

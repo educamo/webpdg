@@ -93,6 +93,15 @@ class Welcome_model extends CI_model
         $categorys = $this->getData($datos);
         return $categorys;
     }
+    public function getServices($datos = NULL)
+    {
+        $datos = array(
+            'campos' => "serviceTitle, serviceImagen, servicePrice, serviceDescription, categoryId",
+            'tabla'  => "nu_services",
+        );
+        $services = $this->getData($datos);
+        return $services;
+    }
     /**
      * función getConfig
      * realiza consulta a la bd buscando la configuración según el valor que recibe

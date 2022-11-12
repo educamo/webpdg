@@ -1,3 +1,7 @@
+<?Php
+$admin = $this->session->rolId;
+?>
+
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -42,8 +46,7 @@
       </li>
 
       <?Php
-      // de aquí en adelante se muestran los menu si tienes permisos de administrador
-      $admin = $this->session->rolId;
+      // de aquí en adelante se muestran los menu si tienes permisos de administrador (super Usuario)
       if ($admin == 1) {
       ?>
         <!-- Nav Item - Datos de la Empresa Collapse Menu -->
@@ -101,6 +104,61 @@
       }
       ?>
 
+      <!-- de aqui en adelante se muestran los menu con permiso de administrador 2 -->
+      <?Php
+      if ($admin == 2) {
+      ?>
+        <!-- Nav Item - Datos de la Empresa Collapse Menu -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSocial" aria-expanded="true" aria-controls="collapseSocial">
+            <i class="fas fa-fw fa-building"></i>
+            <span><?= lang('company') ?></span>
+          </a>
+          <div id="collapseSocial" class="collapse" aria-labelledby="headingSocial" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header"><?= lang('about') ?></h6>
+              <a class="collapse-item" href="<?= base_url('Admin/nosotros') ?>"><?= lang('modify') ?></a>
+              <a class="collapse-item" href="<?= base_url('Admin/configLogo') ?>"><?= lang('configLogo') ?></a>
+              <a class="collapse-item" href="<?= base_url('Admin/configContacto') ?>"><?= lang('configContact') ?></a>
+              <h6 class="collapse-header"><?= lang('social') ?></h6>
+              <a class="collapse-item" href="<?= base_url('Admin/listSocial') ?>"><?= lang('configSocial') ?></a>
+            </div>
+          </div>
+        </li>
+
+        <!-- Nav Item - Administración Collapse Menu -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-lock"></i>
+            <span><?= lang('admin') ?></span>
+          </a>
+          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header"><?= lang('admin-user') ?></h6>
+              <a class="collapse-item" href="<?= base_url('Admin/listUsuarios') ?>"><?= lang('reg-user') ?></a>
+              <a class="collapse-item" href="<?= base_url('Admin/nuevoUsuario') ?>"><?= lang('new-user') ?></a>
+            </div>
+          </div>
+        </li>
+
+        <!-- Nav Item - Módulos Collapse Menu -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsemodulos" aria-expanded="true" aria-controls="collapsemodulos">
+            <i class="fas fa-fw fa-clipboard-list"></i>
+            <span><?= lang('modules') ?></span>
+          </a>
+          <div id="collapsemodulos" class="collapse" aria-labelledby="headingmodulos" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Administrar:</h6>
+              <a class="collapse-item" href="<?= base_url('Admin/listModulos') ?>"><?= lang('listModules') ?></a>
+            </div>
+          </div>
+        </li>
+
+      <?Php
+
+      }
+      ?>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

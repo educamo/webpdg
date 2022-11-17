@@ -165,8 +165,6 @@
                  return this.optional(element) || patron.test(value);
              }, 'Solo se permiten dígitos sin espacios');
 
-             pattern: "["
-
              // Initialize form validation on the registration form.
 
              // It has the name attribute "registration"

@@ -103,12 +103,10 @@
                                              </div>
 
                                          </div>
-                                         <div class="row">
-                                             <div class="col-md-6">
+                                         <div class="row mt-5">
+                                             <div class="col-md-12 text-end">
                                                  <button type="submit" class="btn btn-success submit" id="saveNewconfig"><?= lang('save') ?></button>
 
-                                             </div>
-                                             <div class="col-md-6">
                                                  <button type="button" class="btn btn-danger" id="cancelNewconfig" data-bs-dismiss="modal"><?= lang('cancel') ?></button>
 
                                              </div>

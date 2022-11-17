@@ -86,7 +86,7 @@
                <div class="container-fluid">
                  <div class="row">
 
-                   <form action="#" method="post" id="frmNewrol">
+                   <form action="#" method="post" id="frmNewrol" name="frmNewrol">
                      <div class="row">
 
                        <div class="col-md-6">
@@ -103,17 +103,22 @@
                        </div>
 
                      </div>
+                     <div class="row mt-5">
+                       <div class="col-md-12 text-end">
+                         <button type="submit" class="btn btn-success submit" id="saveNewrol"><?= lang('save') ?></button>
+
+                         <button type="button" class="btn btn-danger" id="cancelNewrol" data-bs-dismiss="modal"><?= lang('cancel') ?></button>
+                       </div>
+                     </div>
                    </form>
 
                  </div>
                </div>
+             </div>
+             <div class="modal-footer">
                <div class="row mt-5">
                  <div id="mensaje"></div>
                </div>
-             </div>
-             <div class="modal-footer">
-               <button type="button" class="btn btn-success" id="saveNewrol"><?= lang('save') ?></button>
-               <button type="button" class="btn btn-danger" id="cancelNewrol" data-bs-dismiss="modal"><?= lang('cancel') ?></button>
              </div>
            </div>
          </div>
@@ -129,45 +134,108 @@
 
  <script>
    $(document).ready(function() {
-     var urlbase = "<?= base_url() ?>"
-
-     $('#saveNewrol').click(function(event) {
-       event.preventDefault();
-
-       //creo variable con la url del ajax
-       var urlajax = urlbase + "Admin/insertRol";
-       // Run $.ajax() here
-       // Using the core $.ajax() method
-       $.ajax({
-
-         // The URL for the request
-         url: urlajax,
-
-         // The data to send (will be converted to a query string)
-         data: $('#frmNewrol').serializeArray(),
-
-         // Whether this is a POST or GET request
-         method: "POST",
-
-         dataType: "json",
+     var urlbase = "<?= base_url() ?>";
 
 
-         beforeSend: function(objeto) {
-           var cargando = '<div class="alert alert-info" role="alert"><strong><?= lang("process") ?></strong><div class="spinner-border ms-auto text-primary text-end ml-5" role="status" aria-hidden="true"></div></div>';
-           $("#mensaje").html(cargando);
+
+     $(function() {
+
+       // Initialize form validation on the registration form.
+
+       // It has the name attribute "registration"
+
+       $("form[name='frmNewrol']").validate({
+
+         // Specify validation rules
+
+         rules: {
+
+           // The key name on the left side is the name attribute
+
+           // of an input field. Validation rules are defined
+
+           // on the right side
+
+           rolId: {
+             required: true,
+             minlength: 1,
+             maxlength: 10
+           },
+
+           rolName: "required",
+
+           rolDescription: {
+             required: true,
+             maxlength: 250
+
+           },
+
          },
-         success: function(r) {
-           $("#mensaje").html('<div class="alert alert-success" role="alert"><strong><?= lang("new") ?></strong></div>');
-           setTimeout("location.reload(true);", 4000);
-           location.href = urlbase + 'Admin/listRols';
+
+         // Specify validation error messages
+
+         messages: {
+
+           rolId: {
+
+             required: "Por favor, introduzca un Código",
+             minlength: "Su Código debe tener al menos 1 carácter",
+             maxlength: "Su Código debe ser menos de 10 caracteres"
+           },
+
+           rolName: "Por favor, introduzca un Nombre para el Rol",
+
+           rolDescription: {
+
+             required: "Por favor, proporcione una descripción",
+
+             maxlength: "Su descripción debe ser menos 250 caracteres."
+
+           },
+
          },
-         error: function(r) {
-           $("#mensaje").html('<div class="alert alert-danger" role="alert"><strong><?= lang("errorSave") ?></strong></div>');
-           setTimeout("location.reload(true);", 3000);
+
+         submitHandler: function(form) {
+
+           //creo variable con la url del ajax
+           var urlajax = urlbase + "Admin/insertRol";
+           // Run $.ajax() here
+           // Using the core $.ajax() method
+           $.ajax({
+
+             // The URL for the request
+             url: urlajax,
+
+             // The data to send (will be converted to a query string)
+             data: $('#frmNewrol').serializeArray(),
+
+             // Whether this is a POST or GET request
+             method: "POST",
+
+             dataType: "json",
+
+
+             beforeSend: function(objeto) {
+               var cargando = '<div class="alert alert-info" role="alert"><strong><?= lang("process") ?></strong><div class="spinner-border ms-auto text-primary text-end ml-5" role="status" aria-hidden="true"></div></div>';
+               $("#mensaje").html(cargando);
+             },
+             success: function(r) {
+               $("#mensaje").html('<div class="alert alert-success" role="alert"><strong><?= lang("new") ?></strong></div>');
+               setTimeout("location.reload(true);", 4000);
+               location.href = urlbase + 'Admin/listRols';
+             },
+             error: function(r) {
+               $("#mensaje").html('<div class="alert alert-danger" role="alert"><strong><?= lang("errorSave") ?></strong></div>');
+               setTimeout("location.reload(true);", 3000);
+             }
+           })
+
          }
-       })
+
+       });
 
      });
+
 
      $('#cancelNewrol').click(function() {
        alertify.message('<?= lang('cancel-operation') ?>');
@@ -211,7 +279,9 @@
              url: urlajax,
 
              // The data to send (will be converted to a query string)
-             data:  { rolId: id },
+             data: {
+               rolId: id
+             },
 
              // Whether this is a POST or GET request
              method: "POST",
@@ -223,7 +293,7 @@
                setTimeout("location.reload(true);", 4000);
              },
              error: function(r) {
-              alertify.error('<?= lang('error-del') ?>');
+               alertify.error('<?= lang('error-del') ?>');
                setTimeout("location.reload(true);", 3000);
              }
            })

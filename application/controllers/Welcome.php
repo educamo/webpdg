@@ -59,6 +59,19 @@ class Welcome extends CI_Controller
 
 		$this->load->view('welcome', $data);
 	}
+	public function sendMessages()
+	{
+		$nombre 	= $this->input->post('name');
+		$mail		= $this->input->post('email');
+		$asunto 	= $this->input->post('subject');
+		$mensaje	= $this->input->post('message');
+
+		$to = "admin@pdg.com";
+		$subject = $asunto;
+		$message = $mensaje ." mensaje enviado por: ". $nombre;
+		$headers = "From: " . $mail;
+		mail($to, $subject, $message, $headers);
+	}
 	/**
 	 * función obtenerMapa
 	 * se encarga de cargar el mapa desde la configuración

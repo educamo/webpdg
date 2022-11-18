@@ -102,6 +102,16 @@ class Welcome_model extends CI_model
         $services = $this->getData($datos);
         return $services;
     }
+    public function getAbout()
+    {
+        $datos = array(
+            'campos' => "aboutTitle, aboutDescription, aboutModal",
+            'tabla'  => "nu_about",
+        );
+
+        $abouts = $this->getData($datos);
+        return $abouts;
+    }
     /**
      * función getConfig
      * realiza consulta a la bd buscando la configuración según el valor que recibe

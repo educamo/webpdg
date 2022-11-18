@@ -427,15 +427,41 @@ foreach ($modules as $module) {
                             <p class="parrafo"> <?= $descriptionUs ?> </p>
                         </div>
                         <div class="text-content">
-                            <div>
+                            <div class="container">
                                 <?Php
-                                //TODO: colocar la variable php que contine la informacion desde la bd
+                                $activarBoton = 0;
+                                foreach ($abouts as $about) {
+                                    if ($about['aboutModal'] === "0") {
+                                        $title = $about['aboutTitle'];
+                                        $texto = $about['aboutDescription'];
+                                ?>
+                                        <div class="row text-start">
+                                            <div class="col-md-12">
+                                                <h2 class="fs-1 text-primary fw-bolder"><?= $title ?></h2>
+                                            </div>
+                                            <div class="col-md-12 mb-4 text-start">
+                                                <p class="fwt-normal fs-4"><?= $texto ?></p>
+                                            </div>
+                                        </div>
+
+
+                                <?Php
+                                    } else {
+                                        $activarBoton = 1;
+                                    }
+                                }
                                 ?>
                             </div>
                             <!-- Button trigger modal -->
-                            <div class="accent-button button open-modalUs">
-                                <a href="#"> <?= lang('more') ?> </a>
-                            </div>
+                            <?Php
+                            if ($activarBoton === 1) {
+                            ?>
+                                <div class="accent-button button open-modalUs">
+                                    <a href="#"> <?= lang('more') ?> </a>
+                                </div>
+                            <?Php
+                            }
+                            ?>
                         </div>
 
                     </div>

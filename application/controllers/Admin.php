@@ -791,6 +791,83 @@ class Admin extends CI_Controller
         return true;
     }
 
+    // ---------------- NOSOTROS ------------------
+    public function nosotros()
+    {
+        $data['nosotros'] = $this->Admin_model->getNosotros();
+        $this->plantilla();
+        $this->load->view('configNosotros', $data);
+        $this->footer();
+    }
+    public function nuevoAbout()
+    {
+        $this->plantilla();
+        $this->load->view('nuevoAbout');
+        $this->footer();
+    }
+    public function guardarAbout($datos = NULL)
+    {
+        $usuarioCreacion = $this->session->userdata('userId');
+        $ipCreacion = $_SERVER['REMOTE_ADDR'];
+        $moduleId = " video";
+
+        $datos = array(
+            'aboutId'                 => $this->input->post('aboutId'),
+            'aboutTitle'              => $this->input->post('aboutTitle'),
+            'aboutDescription'        => $this->input->post('aboutDescription'),
+            'aboutModal'              => $this->input->post('aboutModal'),
+            'moduleId'                => $moduleId,
+            'usuarioCreacion'         => $usuarioCreacion,
+            'ipCreacion'              => $ipCreacion,
+            'activo'                  => "1",
+        );
+
+        $r = $this->Admin_model->saveAbout($datos);
+        echo json_encode($r);
+        return true;
+    }
+    public function actualizarabout($id = NULL)
+    {
+        $id = $this->uri->segment(3);
+        if ($id === NULL) {
+            redirect(base_url('Admin/nosotros'));
+            exit();
+        }
+        $data = $this->Admin_model->getNosotros($id);
+
+        $this->plantilla();
+        $this->load->view('actualizarNosotros', $data);
+        $this->footer();
+    }
+    public function updateAbout($datos = NULL)
+    {
+        $usuarioModificacion = $this->session->userdata('userId');
+        $ipModificacion = $_SERVER['REMOTE_ADDR'];
+
+        $datos = array(
+            'aboutId'               => $this->input->post('aboutId'),
+            'id'                    => $this->input->post('Id'),
+            'aboutTitle'            => $this->input->post('aboutTitle'),
+            'aboutDescription'      => $this->input->post('aboutDescription'),
+            'aboutModal'            => $this->input->post('aboutModal'),
+            'usuarioModificacion'   => $usuarioModificacion,
+            'ipModificacion'        => $ipModificacion,
+            'activo'                => $this->input->post('activo'),
+        );
+
+        $r = $this->Admin_model->updateAbout($datos);
+
+        echo json_encode($r);
+        return true;
+    }
+    public function borrarAbout($id = NULL)
+    {
+        $id = $this->input->post('aboutId');
+        $r = $this->Admin_model->deleteAbout($id);
+        echo json_encode($r);
+        return true;
+    }
+
     // ---------------- CONFIG CONTACTO  ----------------------
     public function configContacto()
     {

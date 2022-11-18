@@ -195,6 +195,49 @@ class Admin_model extends CI_Model
 
         return $this->db->delete('nu_services');
     }
+    public function getNosotros($id = NULL)
+    {
+        $this->db->select('aboutId, aboutTitle, aboutDescription, aboutModal, activo');
+        $this->db->from('nu_about');
+        if ($id !== NULL) {
+            $this->db->where('aboutId', $id);
+            $query = $this->db->get();
+            $data = $query->row();
+        } else {
+            $query = $this->db->get();
+            $data = $query->result();
+        }
+        return $data;
+    }
+    public function saveAbout($datos = NULL)
+    {
+        return $this->db->insert('nu_about', $datos);
+    }
+    public function updateAbout($datos = NULL)
+    {
+        $value = $datos['id'];
+        $moduleId = "video";
+
+        $datos = array(
+            'aboutId'               => $datos['aboutId'],
+            'aboutTitle'            => $datos['aboutTitle'],
+            'aboutDescription'      => $datos['aboutDescription'],
+            'aboutModal'            => $datos['aboutModal'],
+            'moduleId'              => $moduleId,
+            'usuarioModificacion'   => $datos['usuarioModificacion'],
+            'ipModificacion'        => $datos['ipModificacion'],
+            'activo'                => $datos['activo'],
+        );
+        $this->db->where('aboutId', $value);
+        return $this->db->update('nu_about', $datos);
+    }
+    public function deleteAbout($id = NULL)
+    {
+        $value = $id;
+        $this->db->where('aboutId', $value);
+
+        return $this->db->delete('nu_about');
+    }
     public function getConfig($id = NULL)
     {
         $this->db->select('configId, configValue, configDescription');

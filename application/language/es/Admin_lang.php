@@ -129,6 +129,16 @@ $lang['size-service']               = "Su archivo es demasiado grande.";
 $lang['onlyJpeg-service']           = "Solo se permiten archivos JPG y JPEG.";
 $lang['noDimension-service']        = "El archivo no es de 750px X 500px";
 
+// etiquetas view configNosotros
+$lang['title-nosotros']             = "Nosotros";
+$lang['list-nosotros']              = "Lista de Contenido";
+$lang['aboutId']                    = "Código del Contenido";
+$lang['aboutTitle']                 = "Titulo del Contenido";
+$lang['aboutDescription']           = "Descripción del Contenido";
+$lang['aboutModal']                 = "Pertenece al modal";
+$lang['new-about']                  = "Nuevo Contenido";
+$lang['mod-nosotros']               = "Actualizar Contenido";
+
 ## etiquetas view listRols
 $lang['title-rols']                 = "Roles de Usuarios";
 $lang['list-rols']                  = "Lista de Roles";

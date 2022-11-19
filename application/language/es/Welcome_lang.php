@@ -22,6 +22,7 @@ $lang["message"]                    = "Tu Mensaje";
 $lang["asunto"]                     = "Asunto";
 $lang["Send"]                       = "Enviar";
 $lang["more"]                       = "Más...";
+$lang["moreAbout"]                  = "Más sobre Nosotros";
 
 $lang["Design"]                     = "Diseñado por:";
 

@@ -41,6 +41,7 @@ class Welcome extends CI_Controller
 		$categorys		= $this->obtenerCategorys();
 		$services 		= $this->obtenerServices();
 		$abouts			= $this->obtenerAbout();
+		$aboutsModal	= $this->obtenerAboutmodal();
 
 		$data['modules'] 		= $modules;
 		$data['mapa'] 			= $mapa;
@@ -58,8 +59,11 @@ class Welcome extends CI_Controller
 		$data['categorys']		= $categorys;
 		$data['services']		= $services;
 		$data['abouts']			= $abouts;
+		$data['aboutsModal']	= $aboutsModal;
 
 		$this->load->view('welcome', $data);
+
+		unset($data);
 	}
 	public function sendMessages()
 	{
@@ -70,7 +74,7 @@ class Welcome extends CI_Controller
 
 		$to = "admin@pdg.com";
 		$subject = $asunto;
-		$message = $mensaje ." mensaje enviado por: ". $nombre;
+		$message = $mensaje . " mensaje enviado por: " . $nombre;
 		$headers = "From: " . $mail;
 		mail($to, $subject, $message, $headers);
 	}
@@ -189,5 +193,32 @@ class Welcome extends CI_Controller
 	{
 		$abouts = $this->Welcome_model->getAbout();
 		return $abouts;
+	}
+	private function obtenerAboutmodal()
+	{
+		$aboutsModal = $this->Welcome_model->getAboutmodal();
+		return $aboutsModal;
+	}
+	public function __destruct()
+	{
+		unset(
+			$mapa,
+			$logo,
+			$title,
+			$author,
+			$company,
+			$domain,
+			$description,
+			$contactMail,
+			$keyWords,
+			$social,
+			$modules,
+			$slider,
+			$projects,
+			$categorys,
+			$services,
+			$abouts,
+			$aboutsModal,
+		);
 	}
 }

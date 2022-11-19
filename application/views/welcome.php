@@ -316,9 +316,6 @@ foreach ($modules as $module) {
                             <div class="item">
                                 <div class="image">
                                     <img src="<?= base_url('assets/img/') . $project['projectImagen'] ?>" alt="">
-                                    <div class="featured-button button">
-                                        <a href="#projects">¿Quieres ver lo mas reciente?</a>
-                                    </div>
                                 </div>
                                 <div class="text-content">
                                     <h4><?= $project['projectTitle'] ?></h4>
@@ -541,15 +538,33 @@ foreach ($modules as $module) {
     </div>
 
     <!-- ModalUs -->
-    <div class="modalUs" id="modalUs">
-        <div class="modalUs_container">
-            <div>
+    <div class="modalUs modalUs-close" id="modalUs">
+        <div class="modalUs_container" style="place-items: start;">
+            <div style="z-index: 200000000;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close modalUs-close"></button>
+                    <div class="col-md-10">
+                        <h3 class="modal-title" id="exampleModalLabel"><?= lang('moreAbout') ?></h3>
+                    </div>
+                    <div class="col-md-2 text-end">
+                        <button type="button" class="btn-close modalUs-close text-end" style="font-size: initial;"></button>
+                    </div>
                 </div>
                 <div class="modal-body">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, neque quisquam? Et, odio quibusdam assumenda velit delectus at in possimus cum atque, ipsum recusandae aut.
+
+                    <div class="container-fluid mt-5">
+                        <?Php
+                        foreach ($aboutsModal as $aboutModal) {
+                        ?>
+                            <div class="row">
+                                <h4 class="text-primary"><?= $aboutModal['aboutTitle'] ?></h4>
+                            </div>
+                            <div class="row">
+                                <p><?= $aboutModal['aboutDescription'] ?></p>
+                            </div>
+                        <?Php
+                        }
+                        ?>
+                    </div>
                 </div>
                 <div class="modal-footer">
 
@@ -778,5 +793,7 @@ unset(
     $projects,
     $categorys,
     $services,
+    $abouts,
+    $aboutsModal,
 );
 ?>

@@ -112,6 +112,17 @@ class Welcome_model extends CI_model
         $abouts = $this->getData($datos);
         return $abouts;
     }
+    public function getAboutmodal()
+    {
+        $datos = array(
+            'campos' => "aboutTitle, aboutDescription, aboutModal",
+            'tabla'  => "nu_about",
+            'where'  => "aboutModal = 1",
+        );
+
+        $aboutsModal = $this->getData($datos);
+        return $aboutsModal;
+    }
     /**
      * función getConfig
      * realiza consulta a la bd buscando la configuración según el valor que recibe
@@ -137,6 +148,10 @@ class Welcome_model extends CI_model
     }
     private function getData($value = '')
     {
+        if (isset($value['where'])) {
+            $this->db->where($value['where']);
+        }
+
         $this->db->select($value['campos']);
         $this->db->from($value['tabla']);
         $this->db->where('activo', 1);

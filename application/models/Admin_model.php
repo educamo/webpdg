@@ -279,6 +279,17 @@ class Admin_model extends CI_Model
         $data = $query->result();
         return $data;
     }
+    public function updateSocial($datos = NULL)
+    {
+        $datos['usuarioModificacion'] = $this->session->userdata('userId');
+        $datos['ipModificacion'] = $_SERVER['REMOTE_ADDR'];
+        $datos['socialUrl'] = urldecode($datos['socialUrl']);
+        // var_dump($datos); die();
+        $value = $datos["socialId"];
+        $this->db->where('socialId', $value);
+
+        return $this->db->update('nu_social', $datos);
+    }
     public function getModules($filtro = null)
     {
         $this->db->select('moduleId, moduleName, moduleDescription, activo');

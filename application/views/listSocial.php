@@ -49,16 +49,16 @@
                                         if ($red->activo === "1") {
                                              $activo = 'checked';
                                         } else {
-                                             $activo = '';
+                                             $activo = ' ';
                                         }
                                    ?>
                                     <tr>
                                          <td><?= $red->socialName ?></td>
-                                         <td><input type="text" id="socialId<?= $socialId ?>" name="socialUrl<?= $socialId ?>" value="<?= $red->socialUrl ?>"></td>
+                                         <td><input type="url" id="socialId" name="socialUrl" class="form-control" value="<?= $red->socialUrl ?>"></td>
+                                         <input type="hidden" id="socialId" name="socialId" class="form-control" value="<?= $red->socialId ?>">
+                                         <input type="hidden" id="activo" name="activo" class="form-control" data-codigo="<?= $red->socialId ?>" value="<?= $red->activo ?>">
                                          <td class="text-center">
-                                              <input type="checkbox" id="activo<?= $socialId ?>" name="activo<?= $socialId ?>" <?= $activo ?>>
-                                         </td>
-                                         <input type="hidden" id="socialId<?= $socialId ?>" name="socialId<?= $socialId ?>" value="<?= $red->socialId ?>">
+                                              <input type="checkbox" name="active" value="<?= $red->activo ?>" data-codigo="<?= $red->socialId ?>" class="active" <?= $activo ?>>
                                          </td>
                                     </tr>
                                <?Php
@@ -75,11 +75,26 @@
 
  </div>
  <!-- End of Main Content -->
- <!-- // FIXME: falta hacer que guarde los cambios  -->
+
  <script>
       $(document).ready(function() {
-           // para agregar varias opciones con el mismo id de datatable
-           table.destroy();
+
+           $('.active').click(function() {
+                var valor = $(this).val();
+                var codigo = $(this).attr('data-codigo');
+
+                if (valor == 1) {
+                     valor = 0;
+                } else {
+                     valor = 1;
+                };
+
+                $(this).val(valor);
+
+                $('#activo[data-codigo="' + codigo + '"]').val(valor);
+           });
+
+           var urlbase = '<?= base_url() ?>'
 
            var table = $('#dataTable').DataTable({
                 columnDefs: [{
@@ -90,10 +105,43 @@
 
 
            $('.btn-primary').click(function() {
-                var data = table.$('input').serialize();
-                alert('The following data would have been submitted to the server: \n\n' + data.substr(0, 120) + '...');
+                var data = table.$('input.form-control').serialize();
+
+                //creo variable con la url del ajax
+                var urlajax = urlbase + "Admin/actualizarRed";
+                // Run $.ajax() here
+                // Using the core $.ajax() method
+                $.ajax({
+
+                     // The URL for the request
+                     url: urlajax,
+
+                     // The data to send (will be converted to a query string)
+                     data: {
+                          data: data
+                     },
+
+                     // Whether this is a POST or GET request
+                     method: "POST",
+
+                     dataType: "json",
+
+                     success: function(r) {
+                          alertify.success('<?= lang("update") ?>');
+                          setTimeout("location.reload(true);", 3000);
+
+                     },
+                     error: function(r) {
+                          alertify.error('<?= lang("errorSave") ?>');
+                          setTimeout("location.reload(true);", 3000);
+                     }
+                });
+
                 return false;
            });
+
+           // para agregar varias opciones con el mismo id de datatable
+           table.destroy();
 
 
       });

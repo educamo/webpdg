@@ -993,6 +993,96 @@ class Admin extends CI_Controller
         $this->load->view('listSocial', $data);
         $this->footer();
     }
+    public function actualizarRed($data = NULL)
+    {
+        $data = $_POST['data'];
+
+
+        $data = explode('&', $data);
+
+        // var_dump($data); die();
+
+        // actualizamos facebook
+        $facebook['url'] = explode('=', $data[0]);
+        $facebook['id'] = explode('=', $data[1]);
+        $facebook['activo'] = explode('=', $data[2]);
+        $fb = array(
+            'socialUrl' => $facebook['url'][1],
+            'socialId' => $facebook['id'][1],
+            'activo' => $facebook['activo'][1],
+
+        );
+
+        $r = $this->Admin_model->updateSocial($fb);
+
+        // actualizar instagram
+        $instagram['url'] = explode('=', $data[3]);
+        $instagram['id'] = explode('=', $data[4]);
+        $instagram['activo'] = explode('=', $data[5]);
+        $insta = array(
+            'socialId' => $instagram['id'][1],
+            'socialUrl' => $instagram['url'][1],
+            'activo' => $instagram['activo'][1],
+
+        );
+
+        $r = $this->Admin_model->updateSocial($insta);
+
+        // actualizar linkedin
+        $linkedin['url'] = explode('=', $data[6]);
+        $linkedin['id'] = explode('=', $data[7]);
+        $linkedin['activo'] = explode('=', $data[8]);
+        $link = array(
+            'socialId' => $linkedin['id'][1],
+            'socialUrl' => $linkedin['url'][1],
+            'activo' => $linkedin['activo'][1],
+
+        );
+
+        $r = $this->Admin_model->updateSocial($link);
+
+        // actualizar Rss
+        $rss['url'] = explode('=', $data[9]);
+        $rss['id'] = explode('=', $data[10]);
+        $rss['activo'] = explode('=', $data[11]);
+        $rss = array(
+            'socialId' => $rss['id'][1],
+            'socialUrl' => $rss['url'][1],
+            'activo' => $rss['activo'][1],
+
+        );
+
+        $r = $this->Admin_model->updateSocial($rss);
+
+        // actualizar twitter
+        $twitter['url'] = explode('=', $data[12]);
+        $twitter['id'] = explode('=', $data[13]);
+        $twitter['activo'] = explode('=', $data[14]);
+        $twit = array(
+            'socialId' => $twitter['id'][1],
+            'socialUrl' => $twitter['url'][1],
+            'activo' => $twitter['activo'][1],
+
+        );
+
+        $r = $this->Admin_model->updateSocial($twit);
+
+        // actualizar youtube
+        $youtube['url'] = explode('=', $data[15]);
+        $youtube['id'] = explode('=', $data[16]);
+        $youtube['activo'] = explode('=', $data[17]);
+        $you = array(
+            'socialId' => $youtube['id'][1],
+            'socialUrl' => $youtube['url'][1],
+            'activo' => $youtube['activo'][1],
+
+        );
+
+        $r = $this->Admin_model->updateSocial($you);
+
+        echo json_encode($r);
+        return true;
+    }
 
     //  -------------------- MODULOS -----------------
     public function listModulos()

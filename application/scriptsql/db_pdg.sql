@@ -11,7 +11,7 @@
  Target Server Version : 100425
  File Encoding         : 65001
 
- Date: 12/11/2022 03:25:09
+ Date: 19/11/2022 21:46:53
 */
 
 SET NAMES utf8mb4;
@@ -53,6 +53,10 @@ CREATE TABLE `nu_about`  (
 -- ----------------------------
 -- Records of nu_about
 -- ----------------------------
+INSERT INTO `nu_about` VALUES ('12', 'Aqui va un Titulo', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus iure laborum inventore quasi, suscipit explicabo! Nisi, quia? Vitae rerum', 1, 'video', '1', '1', '2022-11-17 16:25:15', '2022-11-19 12:41:25', '127.0.0.1', '127.0.0.1', 1);
+INSERT INTO `nu_about` VALUES ('14', 'Aqui va otro titulo para el modal', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus iure laborum inventore quasi, suscipit explicabo! Nisi, quia? Vitae rerum id commodi! Incidunt perferendis vel sapiente voluptatem temporibus hic totam sequi?', 1, ' video', '1', NULL, '2022-11-19 12:40:37', NULL, '127.0.0.1', NULL, 1);
+INSERT INTO `nu_about` VALUES ('15', 'Titulo sobre Nosotros', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus iure laborum inventore quasi, suscipit explicabo! Nisi, quia? Vitae rerum id commodi! Incidunt perferendis vel sapiente voluptatem temporibus hic totam sequi?', 0, 'video', '1', '1', '2022-11-17 16:26:03', '2022-11-19 12:41:47', '127.0.0.1', '127.0.0.1', 1);
+INSERT INTO `nu_about` VALUES ('56', 'Otro Titulo', 'Lorem ipsum dolor quia? Vitae rerum id commodi!', 0, 'video', '1', '1', '2022-11-19 12:44:00', '2022-11-19 12:46:06', '127.0.0.1', '127.0.0.1', 1);
 
 -- ----------------------------
 -- Table structure for nu_categorys
@@ -162,9 +166,9 @@ CREATE TABLE `nu_projects`  (
 -- ----------------------------
 -- Records of nu_projects
 -- ----------------------------
-INSERT INTO `nu_projects` VALUES ('pro1', 'featured_1.jpg', 'Aqui va un titulo', '#1 aquí va una descripción', 'featured', '1', NULL, '2022-11-10 10:19:33', NULL, '127.0.0.1', NULL, 1);
-INSERT INTO `nu_projects` VALUES ('pro2', 'featured_2.jpg', 'Aqui va un titulo 2', '#2 aquí va una fuerte descripción', 'featured', '1', NULL, '2022-11-10 10:21:21', NULL, '127.0.0.1', NULL, 1);
-INSERT INTO `nu_projects` VALUES ('pro3', 'featured_3.jpg', 'Aqui va el titulo 3', '#3 aqui va una descripcion', 'featured', '1', '1', '2022-11-10 10:22:37', '2022-11-10 16:06:03', '127.0.0.1', '127.0.0.1', 1);
+INSERT INTO `nu_projects` VALUES ('pro1', 'featured_1.jpg', 'Aqui va un titulo', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus iure laborum inventore quasi, suscipit explicabo! Nisi, quia? ', 'featured', '1', '1', '2022-11-10 10:19:33', '2022-11-19 12:49:55', '127.0.0.1', '127.0.0.1', 1);
+INSERT INTO `nu_projects` VALUES ('pro2', 'featured_2.jpg', 'Aqui va un titulo 2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. totam sequi?', 'featured', '1', '1', '2022-11-10 10:21:21', '2022-11-19 12:50:24', '127.0.0.1', '127.0.0.1', 1);
+INSERT INTO `nu_projects` VALUES ('pro3', 'featured_3.jpg', 'Aqui va el titulo 3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus iure laborum inventore quasi, suscipit explicabo! Nisi, quia? Vitae rerum id commodi! Incidunt perferendis vel sapiente voluptatem temporibus hic totam sequi?', 'featured', '1', '1', '2022-11-10 10:22:37', '2022-11-19 12:49:02', '127.0.0.1', '127.0.0.1', 1);
 
 -- ----------------------------
 -- Table structure for nu_rols
@@ -272,12 +276,12 @@ CREATE TABLE `nu_social`  (
 -- ----------------------------
 -- Records of nu_social
 -- ----------------------------
-INSERT INTO `nu_social` VALUES ('1', 'Facebook', 'link de Facebook', 'fa-facebook', 'http://facebook.com', '1', '1', '0', '0000-00-00 00:00:00', '2022-11-05 01:58:52', '127.0.0.0', '000.000.000.000', 1);
-INSERT INTO `nu_social` VALUES ('2', 'Instagram', 'link de Instagram', 'fa-instagram', 'http://instagram.com', '1', '1', '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '127.0.0.0', '000.000.000.000', 1);
-INSERT INTO `nu_social` VALUES ('3', 'Youtube', 'link de Youtube', 'fa-youtube', 'http://youtube.com', '1', '1', '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '127.0.0.0', '000.000.000.000', 1);
-INSERT INTO `nu_social` VALUES ('4', 'Linkedin', 'link de Linkedin', 'fa-linkedin', 'http://linkedin.com', '1', '1', '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '127.0.0.0', '000.000.000.000', 1);
-INSERT INTO `nu_social` VALUES ('5', 'Twitter', 'link de Twitter', 'fa-twitter', 'http://twitter.com', '1', '1', '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '127.0.0.0', '000.000.000.000', 1);
-INSERT INTO `nu_social` VALUES ('6', 'Rss', 'link de Rss', 'fa-rss', 'http://rss.com', '1', '1', '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '127.0.0.0', '000.000.000.000', 1);
+INSERT INTO `nu_social` VALUES ('1', 'Facebook', 'link de Facebook', 'fa-facebook', 'httmp://facebook.com', '1', '1', '1', '0000-00-00 00:00:00', '2022-11-19 21:34:05', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_social` VALUES ('2', 'Instagram', 'link de Instagram', 'fa-instagram', 'http://instagram.com', '1', '1', '1', '0000-00-00 00:00:00', '2022-11-19 21:31:48', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_social` VALUES ('3', 'Youtube', 'link de Youtube', 'fa-youtube', 'http://youtube.com', '1', '1', '1', '0000-00-00 00:00:00', '2022-11-19 21:32:07', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_social` VALUES ('4', 'Linkedin', 'link de Linkedin', 'fa-linkedin', 'http://linkedin.com', '1', '1', '1', '0000-00-00 00:00:00', '2022-11-19 21:31:48', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_social` VALUES ('5', 'Twitter', 'link de Twitter', 'fa-twitter', 'http://twitter.com', '1', '1', '1', '0000-00-00 00:00:00', '2022-11-19 21:32:44', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_social` VALUES ('6', 'Rss', 'link de Rss', 'fa-rss', 'http://rss.com', '1', '1', '1', '0000-00-00 00:00:00', '2022-11-19 21:31:48', '127.0.0.0', '127.0.0.1', 1);
 
 -- ----------------------------
 -- Table structure for nu_users

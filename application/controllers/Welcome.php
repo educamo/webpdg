@@ -25,26 +25,58 @@ class Welcome extends CI_Controller
 	 */
 	public function index()
 	{
-		$mapa = $this->obtenerMapa();
-		$logo = $this->obtenerLogo();
-		$title = $this->obtenerTitle();
-		$author = $this->obtenerAuthor();
-		$company = $this->obtenerCompany();
-		$domain = $this->obtenerDominio();
-		$description = $this->obtenerDescripcion();
-		$contactMail = $this->obtenerContactmail();
-		$keyWords = $this->obtenerKeywords();
+		$mapa 		    = $this->obtenerMapa();
+		$logo 			= $this->obtenerLogo();
+		$title 			= $this->obtenerTitle();
+		$author 		= $this->obtenerAuthor();
+		$company 		= $this->obtenerCompany();
+		$domain 		= $this->obtenerDominio();
+		$description 	= $this->obtenerDescripcion();
+		$contactMail 	= $this->obtenerContactmail();
+		$keyWords 		= $this->obtenerKeywords();
+		$social 		= $this->obtenerRedes();
+		$modules 		= $this->obtenerModules();
+		$slider			= $this->obtenerSlider();
+		$projects		= $this->obtenerProjects();
+		$categorys		= $this->obtenerCategorys();
+		$services 		= $this->obtenerServices();
+		$abouts			= $this->obtenerAbout();
+		$aboutsModal	= $this->obtenerAboutmodal();
 
-		$data['mapa'] = $mapa;
-		$data['logo'] = $logo;
-		$data['title'] = $title;
-		$data['author'] = $author;
-		$data['company'] = $company;
-		$data['domain'] = $domain;
-		$data['description'] = $description;
-		$data['contactMail'] = $contactMail;
-		$data['keyWords'] = $keyWords;
+		$data['modules'] 		= $modules;
+		$data['mapa'] 			= $mapa;
+		$data['logo'] 			= $logo;
+		$data['title'] 			= $title;
+		$data['author'] 		= $author;
+		$data['company'] 		= $company;
+		$data['domain'] 		= $domain;
+		$data['description'] 	= $description;
+		$data['contactMail'] 	= $contactMail;
+		$data['keyWords'] 		= $keyWords;
+		$data['social'] 		= $social;
+		$data['sliders'] 		= $slider;
+		$data['projects']		= $projects;
+		$data['categorys']		= $categorys;
+		$data['services']		= $services;
+		$data['abouts']			= $abouts;
+		$data['aboutsModal']	= $aboutsModal;
+
 		$this->load->view('welcome', $data);
+
+		unset($data);
+	}
+	public function sendMessages()
+	{
+		$nombre 	= $this->input->post('name');
+		$mail		= $this->input->post('email');
+		$asunto 	= $this->input->post('subject');
+		$mensaje	= $this->input->post('message');
+
+		$to = "admin@pdg.com";
+		$subject = $asunto;
+		$message = $mensaje . " mensaje enviado por: " . $nombre;
+		$headers = "From: " . $mail;
+		mail($to, $subject, $message, $headers);
 	}
 	/**
 	 * función obtenerMapa
@@ -126,5 +158,67 @@ class Welcome extends CI_Controller
 		$value = 'keywords';
 		$keyWords = $this->Welcome_model->getKeywords($value);
 		return $keyWords;
+	}
+	private function obtenerRedes()
+	{
+		$social = $this->Welcome_model->getRedes();
+		return $social;
+	}
+	private function obtenerModules()
+	{
+		$modules = $this->Welcome_model->getModules();
+		return $modules;
+	}
+	private function obtenerSlider()
+	{
+		$slider = $this->Welcome_model->getSlider();
+		return $slider;
+	}
+	private function obtenerProjects()
+	{
+		$projects = $this->Welcome_model->getProjects();
+		return $projects;
+	}
+	private function obtenerCategorys()
+	{
+		$categorys = $this->Welcome_model->getCategorys();
+		return $categorys;
+	}
+	private function obtenerServices()
+	{
+		$services = $this->Welcome_model->getServices();
+		return $services;
+	}
+	private function obtenerAbout()
+	{
+		$abouts = $this->Welcome_model->getAbout();
+		return $abouts;
+	}
+	private function obtenerAboutmodal()
+	{
+		$aboutsModal = $this->Welcome_model->getAboutmodal();
+		return $aboutsModal;
+	}
+	public function __destruct()
+	{
+		unset(
+			$mapa,
+			$logo,
+			$title,
+			$author,
+			$company,
+			$domain,
+			$description,
+			$contactMail,
+			$keyWords,
+			$social,
+			$modules,
+			$slider,
+			$projects,
+			$categorys,
+			$services,
+			$abouts,
+			$aboutsModal,
+		);
 	}
 }

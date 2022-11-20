@@ -47,6 +47,82 @@ class Welcome_model extends CI_model
         $keyWords = $this->getConfig($value);
         return $keyWords;
     }
+    public function getRedes()
+    {
+        $datos = array(
+            'campos' => 'socialName, socialIcon, socialUrl',
+            'tabla'  => 'nu_social',
+        );
+
+        $social = $this->getData($datos);
+        return $social;
+    }
+    public function getModules()
+    {
+        $datos = array(
+            'campos' => 'moduleId, moduleName, moduleDescription',
+            'tabla'  => 'nu_modules',
+        );
+        $modules = $this->getData($datos);
+        return $modules;
+    }
+    public function getSlider()
+    {
+        $datos = array(
+            'campos' => "sliderImagen, sliderTitle, sliderText",
+            'tabla'  => "nu_slider",
+        );
+        $slider = $this->getData($datos);
+        return $slider;
+    }
+    public function getProjects()
+    {
+        $datos = array(
+            'campos' => "projectImagen, projectTitle, projectDescription",
+            'tabla'  => "nu_projects",
+        );
+        $projects = $this->getData($datos);
+        return $projects;
+    }
+    public function getCategorys()
+    {
+        $datos = array(
+            'campos' => "categoryId, categoryName",
+            'tabla'  => "nu_categorys",
+        );
+        $categorys = $this->getData($datos);
+        return $categorys;
+    }
+    public function getServices($datos = NULL)
+    {
+        $datos = array(
+            'campos' => "serviceTitle, serviceImagen, servicePrice, serviceDescription, categoryId",
+            'tabla'  => "nu_services",
+        );
+        $services = $this->getData($datos);
+        return $services;
+    }
+    public function getAbout()
+    {
+        $datos = array(
+            'campos' => "aboutTitle, aboutDescription, aboutModal",
+            'tabla'  => "nu_about",
+        );
+
+        $abouts = $this->getData($datos);
+        return $abouts;
+    }
+    public function getAboutmodal()
+    {
+        $datos = array(
+            'campos' => "aboutTitle, aboutDescription, aboutModal",
+            'tabla'  => "nu_about",
+            'where'  => "aboutModal = 1",
+        );
+
+        $aboutsModal = $this->getData($datos);
+        return $aboutsModal;
+    }
     /**
      * función getConfig
      * realiza consulta a la bd buscando la configuración según el valor que recibe
@@ -66,7 +142,22 @@ class Welcome_model extends CI_model
         $this->db->where('activo', 1);
 
         $query = $this->db->get();
-        $data = $query->row();
+        $data  = $query->row();
+
+        return $data;
+    }
+    private function getData($value = '')
+    {
+        if (isset($value['where'])) {
+            $this->db->where($value['where']);
+        }
+
+        $this->db->select($value['campos']);
+        $this->db->from($value['tabla']);
+        $this->db->where('activo', 1);
+
+        $query = $this->db->get();
+        $data  = $query->result_array();
 
         return $data;
     }

@@ -7,6 +7,7 @@ class Migration_Add_slider extends CI_Migration
 
     public function up()
     {
+        $fecha = date('Y-m-d H:i:s');
         $this->dbforge->add_field(array(
             'sliderId' => array(
                 'type' => 'INT',
@@ -46,12 +47,12 @@ class Migration_Add_slider extends CI_Migration
             'fechaCreacion' => array(
                 'type' => 'timestamp',
                 'null' => FALSE,
-                'default' =>  '0000-00-00 00:00:00',
+                'default' =>  $fecha,
             ),
             'fechaModificacion' => array(
                 'type' => 'timestamp',
                 'null' => FALSE,
-                'default' => '0000-00-00 00:00:00',
+                'default' => $fecha,
             ),
             'ipCreacion' => array(
                 'type' => 'VARCHAR',
@@ -67,7 +68,7 @@ class Migration_Add_slider extends CI_Migration
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => FALSE,
-                'default' => '0',
+                'default' => 1,
             ),
         ));
         $this->dbforge->add_key('sliderId', TRUE);
@@ -75,12 +76,12 @@ class Migration_Add_slider extends CI_Migration
 
         $this->db->query('
         ALTER TABLE nu_slider
-MODIFY COLUMN fechaCreacion timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER usuarioModificacion;
+MODIFY COLUMN fechaCreacion timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP AFTER usuarioModificacion;
 ');
 
         $this->db->query('
         ALTER TABLE nu_slider
-MODIFY COLUMN fechaModificacion timestamp(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) AFTER fechaCreacion;
+MODIFY COLUMN fechaModificacion timestamp(0) NULL ON UPDATE CURRENT_TIMESTAMP(0) AFTER fechaCreacion;
         ');
 
     }

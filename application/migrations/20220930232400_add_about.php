@@ -7,6 +7,7 @@ class Migration_Add_about extends CI_Migration
 
     public function up()
     {
+        $fecha = date('Y-m-d H:i:s');
         $this->dbforge->add_field(array(
             'aboutId' => array(
                 'type' => 'VARCHAR',
@@ -36,38 +37,38 @@ class Migration_Add_about extends CI_Migration
             'usuarioCreacion' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '16',
-                'null' => FALSE,
+                'null' => TRUE,
             ),
             'usuarioModificacion' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '16',
-                'null' => FALSE,
+                'null' => TRUE,
             ),
             'fechaCreacion' => array(
                 'type' => 'timestamp',
-                'null' => FALSE,
-                'default' =>  '0000-00-00 00:00:00',
+                'null' => TRUE,
+                'default' =>  $fecha,
             ),
             'fechaModificacion' => array(
                 'type' => 'timestamp',
-                'null' => FALSE,
-                'default' => '0000-00-00 00:00:00',
+                'null' => TRUE,
+                'default' => $fecha,
             ),
             'ipCreacion' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '15',
-                'null' => FALSE,
+                'null' => TRUE,
             ),
             'ipModificacion' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '15',
-                'null' => FALSE,
+                'null' => TRUE,
             ),
             'activo' => array(
                 'type' => 'INT',
                 'constraint' => '1',
-                'null' => FALSE,
-                'default' => '0',
+                'null' => TRUE,
+                'default' => 1,
             ),
         ));
         $this->dbforge->add_key('aboutId', TRUE);
@@ -75,12 +76,12 @@ class Migration_Add_about extends CI_Migration
 
         $this->db->query('
         ALTER TABLE nu_about
-MODIFY COLUMN fechaCreacion timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER usuarioModificacion;
+MODIFY COLUMN fechaCreacion timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP AFTER usuarioModificacion;
 ');
 
         $this->db->query('
         ALTER TABLE nu_about
-MODIFY COLUMN fechaModificacion timestamp(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) AFTER fechaCreacion;
+MODIFY COLUMN fechaModificacion timestamp(0) NULL ON UPDATE CURRENT_TIMESTAMP(0) AFTER fechaCreacion;
         ');
 
     }

@@ -6,6 +6,7 @@ class Migration_Add_social extends CI_Migration {
 
         public function up()
         {
+            $fecha = date('Y-m-d H:i:s');
                 $this->dbforge->add_field(array(
                         'socialId' => array(
                                 'type' => 'VARCHAR',
@@ -39,38 +40,38 @@ class Migration_Add_social extends CI_Migration {
                         'usuarioCreacion' => array(
                             'type' => 'VARCHAR',
                             'constraint' => '16',
-                            'null' => FALSE,
+                            'null' => TRUE,
                         ),
                         'usuarioModificacion' => array(
                             'type' => 'VARCHAR',
                             'constraint' => '16',
-                            'null' => FALSE,
+                            'null' => TRUE,
                         ),
                         'fechaCreacion' => array(
                             'type' => 'timestamp',
-                            'null' => FALSE,
-                            'default' =>  '0000-00-00 00:00:00',
+                            'null' => TRUE,
+                            'default' =>  $fecha,
                         ),
                         'fechaModificacion' => array(
                             'type' => 'timestamp',
-                            'null' => FALSE,
-                            'default' => '0000-00-00 00:00:00',
+                            'null' => TRUE,
+                            'default' => $fecha,
                         ),
                         'ipCreacion' => array(
                             'type' => 'VARCHAR',
                             'constraint' => '15',
-                            'null' => FALSE,
+                            'null' => TRUE,
                         ),
                         'ipModificacion' => array(
                             'type' => 'VARCHAR',
                             'constraint' => '15',
-                            'null' => FALSE,
+                            'null' => TRUE,
                         ),
                         'activo' => array(
                             'type' => 'INT',
                             'constraint' => '1',
-                            'null' => FALSE,
-                            'default' => '0',
+                            'null' => TRUE,
+                            'default' => 1,
                         ),
                 ));
                 $this->dbforge->add_key('socialId', TRUE);

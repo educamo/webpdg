@@ -1,0 +1,20 @@
+.parrafo {
+    width: 500px;
+    text-align: center;
+    max-width: 450px;
+}
+
+form .error {
+    color: #ff0000;
+    font-size: 1em;
+    whidth: 100% !important;
+}
+
+.dimension {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.050rem;
+    font-weight: bold;
+    font-style: italic;
+    color: #2656b1;
+}

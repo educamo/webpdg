@@ -32,5 +32,9 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 ## archivo de Sesiones
 #----------------------------
+<<<<<<< HEAD
+*/sessions/
+=======
 */sessions/
 .vscode/settings.json
+>>>>>>> v2.0.0

@@ -7,7 +7,7 @@
 $lang["lang"]                       = "es";
 
 ## Etiquetas del menu
-$lang["navegation"]                 = "Navegación";
+$lang["navigation"]                 = "Navegación";
 $lang["home"]                       = "Inicio";
 $lang["proyectos"]                  = "Proyectos";
 $lang['recientes']                  = "Recientes";

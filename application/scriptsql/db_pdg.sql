@@ -11,7 +11,7 @@
  Target Server Version : 100425
  File Encoding         : 65001
 
- Date: 19/11/2022 21:46:53
+ Date: 25/07/2023 01:14:35
 */
 
 SET NAMES utf8mb4;
@@ -136,7 +136,7 @@ CREATE TABLE `nu_modules`  (
 -- ----------------------------
 -- Records of nu_modules
 -- ----------------------------
-INSERT INTO `nu_modules` VALUES ('1', 'social-icons', 'barra de iconos de redes sociales en el siderbar', '1', '0', '0000-00-00 00:00:00', '2022-11-06 20:47:11', '127.0.0.0', '000.000.000.000', 1);
+INSERT INTO `nu_modules` VALUES ('1', 'social-icons', 'barra de iconos de redes sociales en el siderbar', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:48:07', '127.0.0.0', '127.0.0.1', 0);
 INSERT INTO `nu_modules` VALUES ('contact', 'Contacta a - Nuestro Equipo', 'lCurabitur hendrerit mauris mollis ipsum vulputate rutrum. Phasellus luctus odio eget dui imperdiet.', '1', '1', '0000-00-00 00:00:00', '2022-11-08 16:21:28', '127.0.0.0', '127.0.0.1', 1);
 INSERT INTO `nu_modules` VALUES ('featured', 'Proyectos - Recientes', 'Estos son solo algunos de nuestros proyectos de mayor calidad Puedes darles un vistazo y decidirlo tu mismo.', '1', '1', '0000-00-00 00:00:00', '2022-11-08 20:08:22', '127.0.0.0', '127.0.0.1', 1);
 INSERT INTO `nu_modules` VALUES ('projects', 'Servicios - Ofrecidos', 'Aqui tenemos algunos de nuestro proyectos mas recientes, puedes mirarlos y decidir por tu mismo. ¿Cual es tu favorito?', '1', '0', '0000-00-00 00:00:00', '2022-11-06 20:47:14', '127.0.0.0', '000.000.000.000', 1);
@@ -276,12 +276,12 @@ CREATE TABLE `nu_social`  (
 -- ----------------------------
 -- Records of nu_social
 -- ----------------------------
-INSERT INTO `nu_social` VALUES ('1', 'Facebook', 'link de Facebook', 'fa-facebook', 'httmp://facebook.com', '1', '1', '1', '0000-00-00 00:00:00', '2022-11-19 21:34:05', '127.0.0.0', '127.0.0.1', 1);
-INSERT INTO `nu_social` VALUES ('2', 'Instagram', 'link de Instagram', 'fa-instagram', 'http://instagram.com', '1', '1', '1', '0000-00-00 00:00:00', '2022-11-19 21:31:48', '127.0.0.0', '127.0.0.1', 1);
-INSERT INTO `nu_social` VALUES ('3', 'Youtube', 'link de Youtube', 'fa-youtube', 'http://youtube.com', '1', '1', '1', '0000-00-00 00:00:00', '2022-11-19 21:32:07', '127.0.0.0', '127.0.0.1', 1);
-INSERT INTO `nu_social` VALUES ('4', 'Linkedin', 'link de Linkedin', 'fa-linkedin', 'http://linkedin.com', '1', '1', '1', '0000-00-00 00:00:00', '2022-11-19 21:31:48', '127.0.0.0', '127.0.0.1', 1);
-INSERT INTO `nu_social` VALUES ('5', 'Twitter', 'link de Twitter', 'fa-twitter', 'http://twitter.com', '1', '1', '1', '0000-00-00 00:00:00', '2022-11-19 21:32:44', '127.0.0.0', '127.0.0.1', 1);
-INSERT INTO `nu_social` VALUES ('6', 'Rss', 'link de Rss', 'fa-rss', 'http://rss.com', '1', '1', '1', '0000-00-00 00:00:00', '2022-11-19 21:31:48', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_social` VALUES ('1', 'Facebook', 'link de Facebook', 'fa-facebook', 'httmp://facebook.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_social` VALUES ('2', 'Instagram', 'link de Instagram', 'fa-instagram', 'http://instagram.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_social` VALUES ('3', 'Youtube', 'link de Youtube', 'fa-youtube', 'http://youtube.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_social` VALUES ('4', 'Linkedin', 'link de Linkedin', 'fa-linkedin', 'http://linkedin.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 0);
+INSERT INTO `nu_social` VALUES ('5', 'Twitter', 'link de Twitter', 'fa-twitter', 'http://twitter.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_social` VALUES ('6', 'Rss', 'link de Rss', 'fa-rss', 'http://rss.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 1);
 
 -- ----------------------------
 -- Table structure for nu_users

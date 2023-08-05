@@ -17,9 +17,16 @@ $contactMail    = $contactMail->configValue;
 
 // -------- módulos --------
 $titleProjects  = NULL;
-$titleContact   = NULL;
+$descriptionProjects = NULL;
+
 $titleServices  = NULL;
+$descriptionServices = NULL;
+
 $titleUs        = NULL;
+$descriptionUs = NULL;
+
+$titleContact   = NULL;
+$descriptionContact = NULL;
 
 foreach ($modules as $module) {
     $i = $module['moduleId'];

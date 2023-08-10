@@ -15,6 +15,7 @@ $lang["Servicios"]                  = "Servicios";
 $lang["ofrecidos"]                  = "Ofrecidos";
 $lang["aboutUs"]                    = "Un poco de Nosotros";
 $lang["blog"]                       = "Blog";
+$lang["session"]                    = "Iniciar sesión";
 $lang["contact"]                    = "¡Contáctenos!";
 $lang["Email"]                      = "Tu E-mail";
 $lang["youName"]                    = "Tu Nombre";

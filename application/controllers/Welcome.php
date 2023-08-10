@@ -61,7 +61,7 @@ class Welcome extends CI_Controller
 		$data['abouts']			= $abouts;
 		$data['aboutsModal']	= $aboutsModal;
 
-		$this->load->view('welcome', $data);
+		$this->plantilla($data);
 
 		unset($data);
 	}
@@ -77,6 +77,30 @@ class Welcome extends CI_Controller
 		$message = $mensaje . " mensaje enviado por: " . $nombre;
 		$headers = "From: " . $mail;
 		mail($to, $subject, $message, $headers);
+	}
+	private function plantilla($data = '', $plantilla = '')
+	{
+		$data = $data;
+		$plantilla = $this->obtenerPlantilla();
+
+		if (!($plantilla) || ($plantilla == '')) {
+			$this->load->view('welcome', $data);
+		} else {
+			if ($plantilla->configValue == '') {
+				$plantilla = 'welcome';
+			} else {
+				$plantilla = $plantilla->configValue;
+			}
+			$this->load->view($plantilla, $data);
+		}
+
+		unset($data);
+	}
+	private function obtenerPlantilla($plantilla = '')
+	{
+		$value = 'plantilla';
+		$plantilla = $this->Welcome_model->getPlantilla($value);
+		return $plantilla;
 	}
 	/**
 	 * función obtenerMapa

@@ -11,7 +11,7 @@
  Target Server Version : 100425
  File Encoding         : 65001
 
- Date: 25/07/2023 01:14:35
+ Date: 10/08/2023 19:19:14
 */
 
 SET NAMES utf8mb4;
@@ -106,13 +106,15 @@ CREATE TABLE `nu_config`  (
 -- Records of nu_config
 -- ----------------------------
 INSERT INTO `nu_config` VALUES ('Descp', 'Description', 'SitioWeb de la marca de diseño gráfico cosmo imagine.', 'Descripción del sitioweb', '1', '0', '2022-10-24 14:52:30', NULL, '127.0.0.0', '0.0.0.0', 1);
-INSERT INTO `nu_config` VALUES ('Design', 'Design', 'C. Carrasco', 'Nombre del desarrollador en el footer', '1', '0', '2022-10-24 14:52:30', NULL, '127.0.0.0', '0.0.0.0', 1);
+INSERT INTO `nu_config` VALUES ('Design', 'Design', 'Ruben Lizarazo', 'Nombre del desarrollador en el footer', '1', '0', '2022-10-24 14:52:30', '2023-08-09 13:02:11', '127.0.0.0', '0.0.0.0', 1);
 INSERT INTO `nu_config` VALUES ('Dom', 'Dominio', 'www.cosmoimagen.com', 'El dominio del sitio web', '1', '0', '2022-10-24 14:52:30', NULL, '127.0.0.0', '0.0.0.0', 1);
 INSERT INTO `nu_config` VALUES ('Emp', 'nombreEmpresa', 'CosmoImagen', 'El nombre de la Empresa', '1', '0', '2022-10-24 14:52:30', NULL, '127.0.0.0', '0.0.0.0', 1);
+INSERT INTO `nu_config` VALUES ('ficon', 'favicon', 'fvicon', '', NULL, NULL, '2023-08-09 12:39:41', NULL, NULL, NULL, 1);
 INSERT INTO `nu_config` VALUES ('kywds', 'keywords', 'Diseño, gráfico, logos, pendones, impresiones, tachira, rubio, Venezuela', 'Palabras claves para SEO', '1', '0', '2022-10-24 14:52:30', NULL, '127.0.0.0', '0.0.0.0', 1);
-INSERT INTO `nu_config` VALUES ('Logo', 'Logo', 'logo.jpg', 'El logo del sitio web o de la empresa', '1', '1', '2022-10-24 14:52:30', '2022-11-10 01:49:33', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_config` VALUES ('Logo', 'Logo', 'cosmoimagen-logo.png', 'El logo del sitio web o de la empresa', '1', '1', '2022-10-24 14:52:30', '2023-08-09 12:39:46', '127.0.0.0', '127.0.0.1', 1);
 INSERT INTO `nu_config` VALUES ('mailEmp', 'emailcontacto', 'contacto@empresa.com', 'Correo del formulario de contacto', '1', '1', '2022-10-24 14:52:30', '2022-11-06 19:12:25', '127.0.0.0', '127.0.0.1', 1);
 INSERT INTO `nu_config` VALUES ('Map', 'Mapa', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d424.01823977953916!2d-72.36756770237544!3d7.693578184167264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e663e439229c16f%3A0xa0e8d1a10fc2c852!2sRubio%205030%2C%20T%C3%A1chira!5e1!3m2!1ses!', 'url del mapa de googlemaps', '1', '0', '2022-10-24 14:52:29', NULL, '127.0.0.0', '0.0.0.0', 1);
+INSERT INTO `nu_config` VALUES ('ptlla', 'plantilla', 'shop/index', 'esta es la plantilla a usar en el welcome', '1', '0', '2023-08-09 08:41:33', '2023-08-09 12:42:48', '127.0.0.0', '0.0.0.0', 1);
 INSERT INTO `nu_config` VALUES ('Ttl', 'title', 'Cosmo Imagine - Diseñadora Gráfica', 'Titulo del website', '1', '0', '2022-10-24 14:52:30', NULL, '127.0.0.0', '0.0.0.0', 1);
 
 -- ----------------------------

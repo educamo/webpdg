@@ -568,6 +568,15 @@ foreach ($modules as $module) {
   </main>
   <footer class="footer mt-auto py-3 bg-body-tertiary">
     <div class="container">
+      <ul class="social-icons">
+        <?Php
+        foreach ($social as $red) {
+        ?>
+          <li><a href="<?= $red['socialUrl'] ?>" target="_blank"><i class="fa <?= $red['socialIcon'] ?>"></i></a></li>
+        <?Php
+        }
+        ?>
+      </ul>
       <p>Copyright &copy; <span id="fecha"> </span> <?= $company ?>. <?= lang('Design') ?> <?= $creador ?></p>
     </div>
   </footer>

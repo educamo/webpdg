@@ -11,7 +11,7 @@
  Target Server Version : 100425
  File Encoding         : 65001
 
- Date: 10/08/2023 19:19:14
+ Date: 14/08/2023 00:09:36
 */
 
 SET NAMES utf8mb4;
@@ -56,7 +56,7 @@ CREATE TABLE `nu_about`  (
 INSERT INTO `nu_about` VALUES ('12', 'Aqui va un Titulo', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus iure laborum inventore quasi, suscipit explicabo! Nisi, quia? Vitae rerum', 1, 'video', '1', '1', '2022-11-17 16:25:15', '2022-11-19 12:41:25', '127.0.0.1', '127.0.0.1', 1);
 INSERT INTO `nu_about` VALUES ('14', 'Aqui va otro titulo para el modal', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus iure laborum inventore quasi, suscipit explicabo! Nisi, quia? Vitae rerum id commodi! Incidunt perferendis vel sapiente voluptatem temporibus hic totam sequi?', 1, ' video', '1', NULL, '2022-11-19 12:40:37', NULL, '127.0.0.1', NULL, 1);
 INSERT INTO `nu_about` VALUES ('15', 'Titulo sobre Nosotros', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus iure laborum inventore quasi, suscipit explicabo! Nisi, quia? Vitae rerum id commodi! Incidunt perferendis vel sapiente voluptatem temporibus hic totam sequi?', 0, 'video', '1', '1', '2022-11-17 16:26:03', '2022-11-19 12:41:47', '127.0.0.1', '127.0.0.1', 1);
-INSERT INTO `nu_about` VALUES ('56', 'Otro Titulo', 'Lorem ipsum dolor quia? Vitae rerum id commodi!', 0, 'video', '1', '1', '2022-11-19 12:44:00', '2022-11-19 12:46:06', '127.0.0.1', '127.0.0.1', 1);
+INSERT INTO `nu_about` VALUES ('56', 'Otro Titulo 2', 'Lorem ipsum dolor quia? Vitae rerum id commodi!', 0, 'video', '1', '1', '2022-11-19 12:44:00', '2023-08-13 17:08:18', '127.0.0.1', '127.0.0.1', 1);
 
 -- ----------------------------
 -- Table structure for nu_categorys
@@ -82,6 +82,22 @@ CREATE TABLE `nu_categorys`  (
 INSERT INTO `nu_categorys` VALUES ('desing', 'diseño', 'Esta es la categoría sobre diseño gráfico', '1', '1', '2022-11-10 22:27:11', '2022-11-10 23:27:50', '127.0.0.1', '127.0.0.1', 1);
 INSERT INTO `nu_categorys` VALUES ('impresion', 'impresión', 'Impresiones y mucho más', '1', NULL, '2022-11-10 22:27:51', '2022-11-10 22:38:51', '127.0.0.1', NULL, 1);
 INSERT INTO `nu_categorys` VALUES ('marketing', 'marketing', 'Marketing Digital y manejo de Redes Sociales', '1', NULL, '2022-11-10 22:28:39', '2022-11-10 22:38:53', '127.0.0.1', NULL, 1);
+
+-- ----------------------------
+-- Table structure for nu_clientes
+-- ----------------------------
+DROP TABLE IF EXISTS `nu_clientes`;
+CREATE TABLE `nu_clientes`  (
+  `id` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of nu_clientes
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for nu_config
@@ -281,7 +297,7 @@ CREATE TABLE `nu_social`  (
 INSERT INTO `nu_social` VALUES ('1', 'Facebook', 'link de Facebook', 'fa-facebook', 'httmp://facebook.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 1);
 INSERT INTO `nu_social` VALUES ('2', 'Instagram', 'link de Instagram', 'fa-instagram', 'http://instagram.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 1);
 INSERT INTO `nu_social` VALUES ('3', 'Youtube', 'link de Youtube', 'fa-youtube', 'http://youtube.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 1);
-INSERT INTO `nu_social` VALUES ('4', 'Linkedin', 'link de Linkedin', 'fa-linkedin', 'http://linkedin.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 0);
+INSERT INTO `nu_social` VALUES ('4', 'Linkedin', 'link de Linkedin', 'fa-linkedin', 'http://linkedin.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-08-11 08:41:04', '127.0.0.0', '127.0.0.1', 1);
 INSERT INTO `nu_social` VALUES ('5', 'Twitter', 'link de Twitter', 'fa-twitter', 'http://twitter.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 1);
 INSERT INTO `nu_social` VALUES ('6', 'Rss', 'link de Rss', 'fa-rss', 'http://rss.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 1);
 

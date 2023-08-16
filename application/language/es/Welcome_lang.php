@@ -27,4 +27,10 @@ $lang["moreAbout"]                  = "Más sobre Nosotros";
 
 $lang["Design"]                     = "Diseñado por:";
 
+## Etiquetas de servicios y/o productos
+$lang["buy"]                        = "Comprar";
+
+## Etiquetas login cliente
+$lang["loginClient"]                = "Iniciar Sesión";
+
 ?>

@@ -433,7 +433,7 @@ p {
     font-weight: 800;
 }
 
-.card-product .content .detail button {
+.btn-buy {
     background: #b8854b;
     margin-top: auto;
     width: 75px;
@@ -445,7 +445,7 @@ p {
     transition: .3s ease-in-out;
 }
 
-.card-product .content .detail button:hover {
+.btn-buy:hover {
     background: #d39f63;
 }
 
@@ -485,6 +485,10 @@ p {
 .fil-shoes1,
 .fil-shoes2 {
     fill: #333333
+}
+
+.service-price {
+    font-family: sans-serif;
 }
 
 

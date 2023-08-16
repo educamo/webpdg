@@ -96,7 +96,7 @@ class Welcome_model extends CI_model
     public function getServices($datos = NULL)
     {
         $datos = array(
-            'campos' => "serviceTitle, serviceImagen, servicePrice, serviceDescription, categoryId",
+            'campos' => "serviceId, serviceTitle, serviceImagen, servicePrice, serviceDescription, categoryId",
             'tabla'  => "nu_services",
         );
         $services = $this->getData($datos);

@@ -55,15 +55,16 @@ nav a:hover {
     font-style: normal;
 }
 
-nav a.btn-shoping-cart {
-    margin: 0px 5px;
+nav a.btn-shopping-card {
+    margin: 0px 20px;
     position: relative;
     right: 5%;
     left: 90%;
 }
 
 li.btn-iniciar-session {
-    left: 20%;
+    left: 15%;
+    right: 10px;
 }
 
 main {
@@ -502,7 +503,7 @@ p {
     font-family: sans-serif;
 }
 
-.shopping-cart {
+.shopping-card {
     background-color: #fff;
     padding: 2rem;
     border: 1px solid #ccc;
@@ -589,8 +590,7 @@ hr.separador-carrito {
 /* ########################## FOOTER ########################## */
 
 footer {
-    background-color: #333;
-    color: #fff;
+    margin-bottom: -10%;
     padding: 20px;
     text-align: center;
 }
@@ -629,15 +629,23 @@ footer ul.social-icons li a {
     nav.navbar div.container-fluid {
         flex-wrap: wrap;
     }
-    nav a.btn-shoping-cart {
+    nav a.btn-shopping-card {
         margin: 0px 2px;
         position: unset;
+    }
+    nav li {
+        display: flex;
+        margin-left: 15px;
+    }
+    li.btn-iniciar-session {
+        left: 0%;
+        right: 0px;
     }
     h1 {
         font-size: 24px;
     }
     p {
-        font-size: 16px;
+        font-size: 21px;
     }
     /* ########################## products ########################## */
     .image {
@@ -676,6 +684,14 @@ footer ul.social-icons li a {
         opacity: 100%;
         transform: scale(1);
         transition-delay: .3s;
+    }
+    /* ########################## footer  ########################## */
+    footer ul.social-icons {
+        display: unset;
+        text-decoration: none;
+    }
+    footer ul.social-icons li {
+        margin: 15px 15px;
     }
     /* ########################## carrito ########################## */
     .total a {

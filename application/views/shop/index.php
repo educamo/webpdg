@@ -112,7 +112,7 @@ foreach ($modules as $module) {
           <img src="<?= base_url('assets/img/' . $logo) ?>" alt="" width="120" height="50" class="d-inline-block align-text-top">
         </a>
 
-        <a class="btn btn-shoping-cart" data-bs-toggle="offcanvas" href="#offcanvasRight" role="button" aria-controls="offcanvasRight"><i class="fa fa-cart-shopping"></i></a>
+        <a class="btn btn-shopping-card" data-bs-toggle="offcanvas" href="#offcanvasRight" role="button" aria-controls="offcanvasRight"><i class="fa fa-cart-shopping"></i></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
@@ -164,7 +164,7 @@ foreach ($modules as $module) {
             }
             ?>
             <li class="nav-item dropdown btn-iniciar-session">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false"> <?= lang('session') ?></a>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?= lang('session') ?></a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginClient"><?= lang('loginClient') ?></a></li>
                 <li>
@@ -584,7 +584,7 @@ foreach ($modules as $module) {
       </section>
     </div>
   </main>
-  <footer class="footer mt-auto py-3 bg-body-tertiary">
+  <footer class="footer bg-body-tertiary">
     <div class="container">
       <ul class="social-icons">
         <?Php
@@ -600,101 +600,140 @@ foreach ($modules as $module) {
   </footer>
 
 
-  <!-- Modal login client -->
-  <div class="modal fade" id="loginClient" data-bs-keyboard="false" tabindex="-1" aria-labelledby="loginClientLabel" aria-hidden="true">
-    <div class="modal-lg modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="exampleModalLabel"><?= lang('loginClient') ?></h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="container-fluid mt-5">
-            ....
+
+  < <!-- Modal login client -->
+    <div class="modal fade" id="loginClient" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="loginClientLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel"><?= lang('loginClient') ?></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <!-- <button type="button" class="btn btn-primary">Understood</button> -->
-        </div>
-      </div>
-    </div>
-  </div>
+          <div class="modal-body">
 
 
-
-  <!-- CARRITO -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header">
-      <h5 id="offcanvasRightLabel">Carrito</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <div class="container">
-
-
-        <div class="shopping-cart row">
-          <ul class="items container">
-            <li class="item row">
-              <div class="col-md-6">
-                <img src="<?= base_url() ?>assets/plantillas/shop/images/product1.jpg" alt="Product 1">
-                <h2>Product 1</h2>
-                <input type="number" value="1">
+            <form>
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <input type="email" id="loginEmail" class="form-control" />
+                <label class="form-label" for="loginEmail">Email address</label>
               </div>
-              <div class="col-md-6">
-                <p>$10.00</p>
-              </div>
-            </li>
-            <li class="item row">
-              <div class="col-md-6">
-                <img src="<?= base_url() ?>assets/plantillas/shop/images/product2.jpg" alt="Product 2">
-                <h2>Product 2</h2>
-                <input type="number" value="1">
-              </div>
-              <div class="col-md-6">
-                <p>$20.00</p>
-              </div>
-            </li>
-          </ul>
-        </div>
 
-        <div class="row">
-          <hr class="separador-carrito" />
-        </div>
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <input type="password" id="loginPassword" class="form-control" />
+                <label class="form-label" for="loginPassword">Password</label>
+              </div>
+
+              <!-- 2 column grid layout for inline styling -->
+              <div class="row mb-4 text-center">
+                <div class="col d-flex justify-content-center">
+                  <!-- Checkbox -->
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                    <label class="form-check-label" for="form2Example31"> Remember me </label>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <!-- Simple link -->
+                  <a href="#!">Forgot password?</a>
+                </div>
+              </div>
+
+              <!-- Submit button -->
+              <div class="col text-center">
+                <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+              </div>
+
+            </form>
 
 
-        <div class="total row">
-          <div class="col-md-12">
-            <h3>Total: $30.00</h3>
           </div>
-          <div class="col-md-6">
-            <a href="#">Continuar con la compra</a>
-          </div>
-          <div class="col-md-6">
-            <a href="#" class="seguir" data-bs-dismiss="offcanvas">Seguir comprando</a>
-            <div>
+          <div class="modal-footer">
+            <!-- Register buttons -->
+            <div class="text-center">
+              <p>Not a member? <a href="#!">Register</a></p>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
     </div>
 
-    <script src="<?= base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="<?= base_url('assets/plantillas/shop/js') ?>/popper.min.js"></script>
+    <!-- CARRITO -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">Carrito</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="container">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <script src="<?= base_url('assets/plantillas/shop/js') ?>/bootstrap.min.js"></script>
+
+          <div class="shopping-cart row">
+            <ul class="items container">
+              <li class="item row">
+                <div class="col-md-6">
+                  <img src="<?= base_url() ?>assets/plantillas/shop/images/product1.jpg" alt="Product 1">
+                  <h2>Product 1</h2>
+                  <input type="number" value="1">
+                </div>
+                <div class="col-md-6">
+                  <p>$10.00</p>
+                </div>
+              </li>
+              <li class="item row">
+                <div class="col-md-6">
+                  <img src="<?= base_url() ?>assets/plantillas/shop/images/product2.jpg" alt="Product 2">
+                  <h2>Product 2</h2>
+                  <input type="number" value="1">
+                </div>
+                <div class="col-md-6">
+                  <p>$20.00</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="row">
+            <hr class="separador-carrito" />
+          </div>
 
 
-    <script>
-      $(document).ready(function() {
-        var year = new Date().getFullYear();
-        $("#fecha").html(year);
-      });
-    </script>
+          <div class="total row">
+            <div class="col-md-12">
+              <h3>Total: $30.00</h3>
+            </div>
+            <div class="col-md-6">
+              <a href="#">Continuar con la compra</a>
+            </div>
+            <div class="col-md-6">
+              <a href="#" class="seguir" data-bs-dismiss="offcanvas">Seguir comprando</a>
+              <div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <script src="<?= base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
+
+      <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script> -->
+      <script src="<?= base_url('assets/plantillas/shop/js') ?>/popper.min.js"></script>
+
+      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script> -->
+      <script src="<?= base_url('assets/plantillas/shop/js') ?>/bootstrap.min.js"></script>
+
+
+      <script>
+        $(document).ready(function() {
+          var year = new Date().getFullYear();
+          $("#fecha").html(year);
+        });
+      </script>
 
 </body>
 

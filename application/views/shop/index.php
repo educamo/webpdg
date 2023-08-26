@@ -166,11 +166,25 @@ foreach ($modules as $module) {
             <li class="nav-item dropdown btn-iniciar-session">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?= lang('session') ?></a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginClient"><?= lang('loginClient') ?></a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Crear una cuenta</a></li>
+                <?Php
+                if ($cliente != '') {
+                ?>
+                  <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginClient">Perfil cliente</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="<?= base_url('cliente/logout') ?>">Cerrar sesión</a></li>
+                <?php
+                } else {
+                ?>
+                  <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginClient"><?= lang('loginClient') ?></a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="<?= base_url('cliente/nuevo') ?>">Crear una cuenta</a></li>
+                <?php
+                }
+                ?>
               </ul>
             </li>
           </ul>
@@ -446,17 +460,17 @@ foreach ($modules as $module) {
                               <div class="btn-group">
                                 <div class="like-dislike-container">
                                   <div class="icons-box">
-                                    <div class="icons">
-                                      <label class="like-label">123</label>
+                                    <div class="icons like" data-id="<?= $project['projectId'] ?>">
+                                      <label class="like-label"><?= $project['like'] ?></label>
                                       <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="icon-like" class="svgs">
                                         <path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2H464c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48H294.5c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3V320 272 247.1c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192H96c17.7 0 32 14.3 32 32V448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32z"></path>
                                       </svg>
                                     </div>
-                                    <div class="icons">
+                                    <div class="icons dislike" data-id="<?= $project['projectId'] ?>">
                                       <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="icon-dislike" class="svgs">
                                         <path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2H464c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48H294.5c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3V320 272 247.1c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192H96c17.7 0 32 14.3 32 32V448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32z"></path>
                                       </svg>
-                                      <label class="dislike-label">3</label>
+                                      <label class="dislike-label"><?= $project['noLike'] ?></label>
                                     </div>
                                   </div>
                                 </div>
@@ -612,48 +626,49 @@ foreach ($modules as $module) {
           <div class="modal-body">
 
 
-            <form>
+            <form method="POST" id="frmloginClient">
               <!-- Email input -->
-              <div class="form-outline mb-4">
-                <input type="email" id="loginEmail" class="form-control" />
-                <label class="form-label" for="loginEmail">Email address</label>
+              <div class="form-group mb-4">
+                <input type="email" id="email" name="email" class="form-control" required />
+                <label class="form-label" for="email"> <?= lang('email') ?></label>
               </div>
 
               <!-- Password input -->
-              <div class="form-outline mb-4">
-                <input type="password" id="loginPassword" class="form-control" />
-                <label class="form-label" for="loginPassword">Password</label>
+              <div class="form-group mb-4">
+                <!-- <input type="password" id="password" class="form-control" /> -->
+                <div class="input-group mb-3">
+                  <input type="password" class="form-control" id="password" name="password" aria-label="password" aria-describedby="togglePassword" required>
+                  <div class="input-group-append">
+                    <i id="togglePassword" class="fa fa-eye input-group-text"></i>
+                  </div>
+                </div>
+                <label class="form-label" for="password"> <?= lang('clave') ?></label>
               </div>
 
               <!-- 2 column grid layout for inline styling -->
               <div class="row mb-4 text-center">
-                <div class="col d-flex justify-content-center">
-                  <!-- Checkbox -->
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                    <label class="form-check-label" for="form2Example31"> Remember me </label>
-                  </div>
-                </div>
 
                 <div class="col">
                   <!-- Simple link -->
-                  <a href="#!">Forgot password?</a>
+                  <a href="#!"><?= lang('Forgot') ?></a>
                 </div>
               </div>
 
               <!-- Submit button -->
               <div class="col text-center">
-                <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+                <input type="submit" id="submit" class="btn btn-primary btn-block mb-4" value="<?= lang('loginClient') ?>">
               </div>
 
             </form>
+
+            <div id="massage" class=" "></div>
 
 
           </div>
           <div class="modal-footer">
             <!-- Register buttons -->
             <div class="text-center">
-              <p>Not a member? <a href="#!">Register</a></p>
+              <p><?= lang('Notmember') ?> <a href="<?= base_url('cliente/nuevo') ?>"><?= lang('Register') ?></a></p>
             </div>
 
           </div>
@@ -729,11 +744,138 @@ foreach ($modules as $module) {
 
 
       <script>
+        // constantes en js con valores en php
+        const enviando = "<?= lang('send') ?>";
+        const url_base = "<?= base_url() ?>";
+        const titleButton = "<?= lang('loginClient') ?>";
+
+        /**
+         * funtion document ready
+         *  se ejecuta después que todo el documento esta cargado
+         */
         $(document).ready(function() {
+          // código que obtiene el año actual para el copyright
           var year = new Date().getFullYear();
           $("#fecha").html(year);
+
+          // código para mostrar u ocultar el valor del campo password en el form login cliente
+          const togglePassword = document.querySelector('#togglePassword');
+          const password = document.querySelector('#password');
+          togglePassword.addEventListener('click', function(e) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // toggle the eye slash icon
+            this.classList.toggle('fa-eye-slash');
+          });
+
+
+          // funtion ajax para loguear el cliente
+          $("#frmloginClient").submit(function(event) {
+
+            event.preventDefault();
+
+            var formData = new FormData($("#frmloginClient")[0]);
+
+            $.ajax({
+              type: $(this).attr("method"),
+              url: url_base + "cliente/login",
+              data: $('#frmloginClient').serialize(),
+              cache: false,
+              processData: false,
+
+              beforeSend: function() {
+                $("#submit").attr("value", enviando);
+                $("#submit").attr("disabled", "disabled");
+              },
+              success: function(data) {
+                $("#massage").removeClass("bg-danger text-white");
+                $("#massage").removeClass("bg-success text-light");
+                $("#massage").addClass("bg-success text-light");
+                $("#massage").show();
+                $("#massage").html(data);
+
+                setTimeout(function() {
+                  location.href = url_base;
+                }, 3000);
+
+              },
+              error: function(data) {
+                $("#massage").removeClass("bg-success text-light");
+                $("#massage").addClass("bg-danger text-white");
+                $("#massage").show();
+                $("#massage").html(data);
+                $("#submit").attr("value", titleButton);
+
+                setTimeout(() => {
+                  $("#massage").hide();
+                  $("#submit").removeAttr("disabled");
+                }, 2000);
+              },
+            });
+            return false;
+          });
+
+
+          // funtion ajax para agregar like proyecto
+
+          // Seleccionar todos los elementos con la clase `like-label`
+          var projects = $(".like");
+
+          // Escuchar el evento click en todos los elementos
+          projects.click(function() {
+            // Obtener el valor de la propiedad data-id
+            var id = $(this).data("id");
+
+            // Mostrar un mensaje con el id del producto
+            // Realizar una petición AJAX
+            $.ajax({
+              type: "POST",
+              url: url_base + "proyectos/like/",
+              data: {id},
+
+              // La función que se ejecuta cuando la petición se completa
+              success: function(data) {
+                location.href = url_base;
+              },
+
+              // La función que se ejecuta cuando la petición falla
+              error: function() {
+                alert("La petición AJAX falló");
+              }
+            });
+          });
+
+          // funtion ajax para agregar dislike proyecto
+
+          // Seleccionar todos los elementos con la clase `like-label`
+          var projects = $(".dislike");
+          console.log(projects);
+
+          // Escuchar el evento click en todos los elementos
+          projects.click(function() {
+            // Obtener el valor de la propiedad data-id
+            var id = $(this).data("id");
+
+            // Mostrar un mensaje con el id del producto
+            alert("dislike: " + id);
+          });
+
+
         });
       </script>
+
+
+      <?Php
+      if ($cliente != '') {
+        $etiqueta = 'Cliente';
+      ?>
+        <script>
+          $("#navbarDropdown").html('<?= $etiqueta ?>');
+        </script>
+      <?php
+      }
+      ?>
 
 </body>
 
@@ -759,5 +901,6 @@ unset(
   $services,
   $abouts,
   $aboutsModal,
+  $idCliente,
 );
 ?>

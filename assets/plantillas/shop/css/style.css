@@ -129,6 +129,7 @@ p {
     --shadow-active: 0 5px 5px 0 #00000026;
     --border-radius-main: 10px;
     --border-radius-icon: 50px;
+    font-family: 'Courier New', Courier, monospace !important;
     position: relative;
     display: flex;
     text-align: center;
@@ -692,6 +693,10 @@ footer ul.social-icons li a {
     }
     footer ul.social-icons li {
         margin: 15px 15px;
+    }
+    /* ########################## form login #######################  */
+    #togglePassword {
+        cursor: pointer;
     }
     /* ########################## carrito ########################## */
     .total a {

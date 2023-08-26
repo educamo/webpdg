@@ -78,7 +78,7 @@ class Welcome_model extends CI_model
     public function getProjects()
     {
         $datos = array(
-            'campos' => "projectImagen, projectTitle, projectDescription",
+            'campos' => "projectId, projectImagen, projectTitle, projectDescription, like, noLike",
             'tabla'  => "nu_projects",
         );
         $projects = $this->getData($datos);

@@ -61,6 +61,13 @@ class Welcome extends CI_Controller
 		$data['abouts']			= $abouts;
 		$data['aboutsModal']	= $aboutsModal;
 
+
+		if ($this->session->userdata('idCliente')) {
+			$data['cliente']  = $this->session->userdata('idCliente');
+		} else {
+			$data['cliente']  = '';
+		}
+
 		$this->plantilla($data);
 
 		unset($data);

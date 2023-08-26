@@ -32,5 +32,12 @@ $lang["buy"]                        = "Comprar";
 
 ## Etiquetas login cliente
 $lang["loginClient"]                = "Iniciar Sesión";
+$lang["email"]                      = "Correo Electrónico";
+$lang["clave"]                      = "Contraseña";
+$lang["Forgot"]                     = "¿Olvido Contraseña?";
+$lang["Notmember"]                  = "¿No tienes cuenta?";
+$lang["Register"]                   = "Regístrate";
+$lang["send"]                       = "Enviando...";
+
 
 ?>

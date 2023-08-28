@@ -11,9 +11,6 @@ class Proyectos extends CI_Controller
         $this->load->model('proyectos_model');
     }
 
-    public function index()
-    {
-    }
     public function like($id = '')
     {
 
@@ -32,6 +29,26 @@ class Proyectos extends CI_Controller
 
         $like = $data->like;
         echo $like;
+        return true;
+    }
+    public function disLike($id = '')
+    {
+
+        $id = $_POST['id'];
+
+
+        $data = $this->proyectos_model->disLike($id);
+
+        $sumLike = $data->noLike;
+
+        $sumLike = $sumLike + 1;
+
+        $data = $this->proyectos_model->updateDisLike($id, $sumLike);
+
+        $data = $this->proyectos_model->disLike($id);
+
+        $disLike = $data->noLike;
+        echo $disLike;
         return true;
     }
 }

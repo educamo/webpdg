@@ -820,14 +820,13 @@ foreach ($modules as $module) {
           // funtion ajax para agregar like proyecto
 
           // Seleccionar todos los elementos con la clase `like-label`
-          var projects = $(".like");
+          var projectsLike = $(".like");
 
           // Escuchar el evento click en todos los elementos
-          projects.click(function() {
+          projectsLike.click(function() {
             // Obtener el valor de la propiedad data-id
             var id = $(this).data("id");
 
-            // Mostrar un mensaje con el id del producto
             // Realizar una petición AJAX
             $.ajax({
               type: "POST",
@@ -849,16 +848,29 @@ foreach ($modules as $module) {
           // funtion ajax para agregar dislike proyecto
 
           // Seleccionar todos los elementos con la clase `like-label`
-          var projects = $(".dislike");
-          console.log(projects);
+          var projectsDislike = $(".dislike");
 
           // Escuchar el evento click en todos los elementos
-          projects.click(function() {
+          projectsDislike.click(function() {
             // Obtener el valor de la propiedad data-id
             var id = $(this).data("id");
 
-            // Mostrar un mensaje con el id del producto
-            alert("dislike: " + id);
+             // Realizar una petición AJAX
+            $.ajax({
+              type: "POST",
+              url: url_base + "proyectos/disLike/",
+              data: {id},
+
+              // La función que se ejecuta cuando la petición se completa
+              success: function(data) {
+                location.href = url_base;
+              },
+
+              // La función que se ejecuta cuando la petición falla
+              error: function() {
+                alert("La petición AJAX falló");
+              }
+            });
           });
 
 

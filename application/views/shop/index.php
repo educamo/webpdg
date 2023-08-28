@@ -546,7 +546,7 @@ foreach ($modules as $module) {
                           </div>
                           <div class="product-image">
                             <div class="box-image">
-                              <img src="<?= base_url('assets/img/') . $service['serviceImagen'] ?>" alt="" class="img-product">
+                              <img src="<?= base_url('assets/img/') . $service['serviceImagen'] ?>" alt="$service['serviceImagen']" class="img-product">
                             </div>
                           </div>
                         </div>
@@ -564,8 +564,42 @@ foreach ($modules as $module) {
                         </div>
                         <div class="modal-body">
                           <div class="container-fluid mt-5">
-                            ....
-                            <button class="btn-buy"><?= lang('buy') ?></button>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-8">
+                                  <?= $service['serviceDescription'] ?>
+                                </div>
+                                <div class="col-md-4">
+                                  <img src="<?= base_url('assets/img/') . $service['serviceImagen'] ?>" alt="$service['serviceImagen']" class=" img-fluid img-thumbnail img-card">
+                                </div>
+
+                              </div>
+                            </div>
+                            <div class="row mt-2">
+                              <?Php
+                              if ($cliente != '') {
+                              ?>
+                                <div class="col-2">
+                                  <button class="btn-buy"><?= lang('buy') ?></button>
+                                </div>
+                                <div class="col-2">
+                                  <input type="number" class="form-control form-control-sm cantidad" name="cant" id="cant" min="1" maxlength="10" size="50" data-id="<?= $service['serviceId'] ?>" value="1" />
+                                </div>
+                                <div class="col-6 text-end service-price">
+                                  <h4 id="<?= $service['serviceId'] ?>" data-price="<?= $service['servicePrice'] ?>"> $<?= $service['servicePrice'] ?> </h4>
+                                </div>
+                              <?Php
+                              } else {
+
+                                echo '<div class="col-md-4">';
+                                echo '<button class="btn btn-block btn-grey btn-disabled">' . lang('buy') . '</button>';
+                                echo '</div>';
+                                echo '<div class="col-md-4">';
+                                echo  '<p class="text-bg-info">' . lang('log-first') . '</p>';
+                                echo '</div>';
+                              }
+                              ?>
+                            </div>
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -831,7 +865,9 @@ foreach ($modules as $module) {
             $.ajax({
               type: "POST",
               url: url_base + "proyectos/like/",
-              data: {id},
+              data: {
+                id
+              },
 
               // La función que se ejecuta cuando la petición se completa
               success: function(data) {
@@ -855,11 +891,13 @@ foreach ($modules as $module) {
             // Obtener el valor de la propiedad data-id
             var id = $(this).data("id");
 
-             // Realizar una petición AJAX
+            // Realizar una petición AJAX
             $.ajax({
               type: "POST",
               url: url_base + "proyectos/disLike/",
-              data: {id},
+              data: {
+                id
+              },
 
               // La función que se ejecuta cuando la petición se completa
               success: function(data) {
@@ -871,6 +909,28 @@ foreach ($modules as $module) {
                 alert("La petición AJAX falló");
               }
             });
+          });
+
+          // funcion para actualizar el precio a la hora de comprar un producto o servicio dependiendo de la cantidad
+          // Seleccionar el input tipo numérico
+          var cantidad = $(".cantidad");
+          // Establecer el patrón para el input tipo numérico
+          cantidad.attr("pattern", "^[0-9]\\d*$");
+
+          // Agregar un evento `change` al input tipo numérico
+          cantidad.on("change", function() {
+            var id = $(this).data("id");
+            // Seleccionar la etiqueta h4
+            var valor = $("#" + id);
+            // Obtener el valor del input tipo numérico
+            var cantidad_actual = $(this).val();
+
+            // obtener el precio de la propiedad price
+            var price = valor.data("price");
+            // calcular total
+            var total = price * cantidad_actual;
+            // Establecer el valor de la etiqueta h4
+            valor.html("$" + total.toFixed(2));
           });
 
 

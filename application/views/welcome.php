@@ -15,11 +15,18 @@ $keyWords       = $keyWords->configValue;
 $description    = $description->configValue;
 $contactMail    = $contactMail->configValue;
 
-// -------- modulos --------
+// -------- módulos --------
 $titleProjects  = NULL;
-$titleContact   = NULL;
+$descriptionProjects = NULL;
+
 $titleServices  = NULL;
+$descriptionServices = NULL;
+
 $titleUs        = NULL;
+$descriptionUs = NULL;
+
+$titleContact   = NULL;
+$descriptionContact = NULL;
 
 foreach ($modules as $module) {
     $i = $module['moduleId'];
@@ -83,6 +90,7 @@ foreach ($modules as $module) {
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/fontAwesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/light-box.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/owl-carousel.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/templatemo-style.css">
@@ -107,7 +115,7 @@ foreach ($modules as $module) {
     <link rel="stylesheet" href="<?= base_url() ?>assets/alertifyjs/css/alertify.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/alertifyjs/css//themes/bootstrap.css">
 
-    <!-- Boostrap 5.2.1 --->
+    <!-- Bootstrap 5.2.1 --->
     <link rel="stylesheet" href="<?= base_url() ?>assets/bootstrap/dist/css/bootstrap.css">
 
 
@@ -124,7 +132,7 @@ foreach ($modules as $module) {
     <!-- cabecera -->
     <header class="nav-down responsive-nav hidden-lg hidden-md">
         <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
-            <span class="sr-only"> <?= lang('navegation') ?></span>
+            <span class="sr-only"> <?= lang('navigation') ?></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -482,7 +490,7 @@ foreach ($modules as $module) {
             </div>
         </section>
 
-        <!-- Seccion de Contacto -->
+        <!-- Sección de Contacto -->
         <?Php
         if ($titleContact) {
             $titulo = explode("-", $titleContact);

@@ -1,0 +1,744 @@
+/* ########################## GENERAL ########################## */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cormorant Garamond', serif;
+    background-color: #fff;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 0px !important;
+    margin-top: 2rem;
+}
+
+.logo {
+    width: 50%;
+    height: auto;
+}
+
+nav {
+    padding-right: 120px;
+    font-size: 18px;
+    line-height: 16px;
+    font-weight: 700;
+    float: left;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #ccc;
+    text-decoration: underline;
+}
+
+.lead {
+    font-size: 1.5rem !important;
+    line-height: 40px;
+    font-weight: 400 !important;
+    font-style: normal;
+}
+
+nav a.btn-shopping-card {
+    margin: 0px 20px;
+    position: relative;
+    right: 5%;
+    left: 90%;
+}
+
+li.btn-iniciar-session {
+    left: 15%;
+    right: 10px;
+}
+
+main {
+    margin: 0;
+}
+
+section {
+    margin-top: 70px;
+    margin-bottom: 20px;
+    padding-top: 30px;
+}
+
+section#aboutUs {
+    /* margin-bottom: 65px; */
+    padding-bottom: 190px;
+}
+
+section h2 {
+    margin-top: 65px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+}
+
+
+/* ########################## PROYECTOS ########################## */
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.card-projects {
+    min-height: 550px;
+    max-height: 550px;
+}
+
+.card-projects .card-text {
+    min-height: 120px;
+}
+
+.card img.img-card {
+    width: 100%;
+    height: 255px;
+}
+
+.like-dislike-container {
+    --dark-grey: #151010;
+    --middle-grey: #000;
+    --lightest-grey: linear-gradient(#eeeeeead, #fff);
+    --shadow: 0 5px 15px 0 #00000026;
+    --shadow-active: 0 5px 5px 0 #00000026;
+    --border-radius-main: 10px;
+    --border-radius-icon: 50px;
+    font-family: 'Courier New', Courier, monospace !important;
+    position: relative;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+    color: var(--dark-grey);
+    opacity: .9;
+    margin: auto;
+    padding: 1.5rem;
+    font-weight: 600;
+    background: var(--lightest-grey);
+    max-width: 30rem;
+    border-radius: var(--border-radius-main);
+    -webkit-border-radius: var(--border-radius-main);
+    -moz-border-radius: var(--border-radius-main);
+    -ms-border-radius: var(--border-radius-main);
+    -o-border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow);
+    -moz-box-shadow: var(--shadow);
+    -webkit-box-shadow: var(--shadow);
+    transition: .2s ease all;
+    -webkit-transition: .2s ease all;
+    -moz-transition: .2s ease all;
+    -ms-transition: .2s ease all;
+    -o-transition: .2s ease all;
+}
+
+.like-dislike-container:hover {
+    box-shadow: var(--shadow-active);
+    -moz-box-shadow: var(--shadow-active);
+    -webkit-box-shadow: var(--shadow-active);
+}
+
+.like-dislike-container .text-content {
+    margin-bottom: 1rem;
+    font-size: 18px;
+    line-height: 1.6;
+    cursor: default;
+}
+
+.like-dislike-container .icons-box {
+    display: flex;
+}
+
+.like-dislike-container .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: .6;
+    margin: 0 0.5rem;
+    padding: 0 0.5rem;
+    cursor: pointer;
+    border: 1px solid var(--middle-grey);
+    border-radius: var(--border-radius-icon);
+    -webkit-border-radius: var(--border-radius-icon);
+    -moz-border-radius: var(--border-radius-icon);
+    transition: .2s ease all;
+    -webkit-transition: .2s ease all;
+    -moz-transition: .2s ease all;
+    -ms-transition: .2s ease all;
+    -o-transition: .2s ease all;
+}
+
+.like-dislike-container .icons:hover {
+    opacity: .9;
+    box-shadow: var(--shadow);
+    -moz-box-shadow: var(--shadow);
+    -webkit-box-shadow: var(--shadow);
+}
+
+.like-dislike-container .icons:active {
+    opacity: .9;
+    box-shadow: var(--shadow-active);
+    -moz-box-shadow: var(--shadow-active);
+    -webkit-box-shadow: var(--shadow-active);
+}
+
+.like-dislike-container .like-label {
+    border-right: 0.1rem solid var(--middle-grey);
+    padding: 0 0.6rem 0 0.5rem;
+    pointer-events: none;
+}
+
+.like-dislike-container .dislike-label {
+    border-left: 0.1rem solid var(--middle-grey);
+    padding: 0 0.5rem 0 0.6rem;
+    pointer-events: none;
+}
+
+.like-dislike-container .icons .svgs {
+    width: 1.3rem;
+    fill: #605c5c;
+    box-sizing: content-box;
+    padding: 10px 10px;
+    transition: .2s ease all;
+    -webkit-transition: .2s ease all;
+    -moz-transition: .2s ease all;
+    -ms-transition: .2s ease all;
+    -o-transition: .2s ease all;
+}
+
+.like-dislike-container .icons:hover #icon-like {
+    animation: rotate-icon-like 0.7s ease-in-out both;
+}
+
+.like-dislike-container .icons #icon-dislike {
+    transform: rotate(180deg);
+}
+
+.like-dislike-container .icons:hover #icon-dislike {
+    animation: rotate-icon-dislike 0.7s ease-in-out both;
+}
+
+
+/* Shake Animation */
+
+@keyframes rotate-icon-like {
+    0% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+    25% {
+        transform: rotate(3deg) translate3d(0, 0, 0);
+    }
+    50% {
+        transform: rotate(-3deg) translate3d(0, 0, 0);
+    }
+    75% {
+        transform: rotate(1deg) translate3d(0, 0, 0);
+    }
+    100% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+}
+
+@keyframes rotate-icon-dislike {
+    0% {
+        transform: rotate(180deg) translate3d(0, 0, 0);
+    }
+    25% {
+        transform: rotate(183deg) translate3d(0, 0, 0);
+    }
+    50% {
+        transform: rotate(177deg) translate3d(0, 0, 0);
+    }
+    75% {
+        transform: rotate(181deg) translate3d(0, 0, 0);
+    }
+    100% {
+        transform: rotate(180deg) translate3d(0, 0, 0);
+    }
+}
+
+
+/* ########################## PRODUCTOS SERVICIOS ################################  */
+
+.bg-body-tertiary {
+    background-color: #2b3035;
+    color: #adb5bd;
+}
+
+.bg-products {
+    background-image: url('../../../../assets/plantillas/shop/images/cosmo-imagen.jpg');
+    opacity: 0.9;
+}
+
+.bg-box-container {
+    background-color: #101028;
+    opacity: 0.9;
+    border-radius: 10%;
+}
+
+.product-device::before {
+    position: absolute;
+    top: 10%;
+    right: 10px;
+    bottom: 10%;
+    left: 10px;
+    content: "";
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 5px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card-product {
+    position: relative;
+    background: transparent;
+    width: 300px;
+    height: 300px;
+    border: none;
+}
+
+.card-product:hover {
+    width: 300px;
+}
+
+.card-product .container-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #e7e7e7;
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+    border: none;
+    border-radius: 25%;
+    box-shadow: 0 0 3px 1px #1818183d, 2px 2px 3px #18181865, inset 2px 2px 2px #ffffff;
+    transition: all .3s ease-in-out, opacity .3s;
+    transition-delay: .6s, 0s;
+}
+
+.card-product:hover .container-image {
+    opacity: 0;
+    border-radius: 8px;
+    transition-delay: 0s, .6s;
+}
+
+.card-product .container-image .image-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 2px #1818188a);
+    transition: all .3s ease-in-out;
+    transition-delay: .4s;
+}
+
+.card-product:hover .container-image .image-circle {
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+.card-product .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #e7e7e7;
+    padding: 20px;
+    width: 190px;
+    height: 190px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 3px 1px #1818183d, 2px 2px 3px #18181865, inset 2px 2px 2px #ffffff;
+    visibility: hidden;
+    transition: .3s ease-in-out;
+    transition-delay: 0s;
+    z-index: 1;
+}
+
+.card-product:hover .content {
+    width: 290px;
+    height: 190px;
+    visibility: visible;
+    transition-delay: .5s;
+}
+
+.card-product .content .detail {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all .3s ease-in-out;
+    transition-delay: 0s;
+}
+
+.card-product:hover .content .detail {
+    color: #181818;
+    opacity: 100%;
+    transition: 1s;
+    transition-delay: .3s;
+}
+
+.card-product .content .detail span {
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.btn-buy {
+    background: #b8854b;
+    margin-top: auto;
+    width: 75px;
+    height: 25px;
+    color: #ffffff;
+    font-size: 13px;
+    border: none;
+    border-radius: 8px;
+    transition: .3s ease-in-out;
+}
+
+.btn-buy:hover {
+    background: #d39f63;
+}
+
+.card-product .content .product-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.card-product .content .product-image .box-image {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: -25%;
+    width: 100%;
+    height: 115%;
+    opacity: 0;
+    transform: scale(.5);
+    transition: all .5s ease-in-out;
+    transition-delay: 0s;
+}
+
+.card-product:hover .content .product-image .box-image {
+    top: -25%;
+    left: 0;
+    opacity: 100%;
+    transform: scale(1);
+    transition-delay: .3s;
+}
+
+.card-product .content .product-image .box-image .img-product {
+    margin: auto;
+    width: 7rem;
+    height: auto;
+}
+
+.fil-shoes1,
+.fil-shoes2 {
+    fill: #333333
+}
+
+.service-price {
+    font-family: sans-serif;
+}
+
+
+/* ########################## CARRITO DE COMPRAS ########################## */
+
+.offcanvas-end {
+    width: 460px !important;
+}
+
+.offcanvas-body {
+    font-family: sans-serif;
+}
+
+.shopping-card {
+    background-color: #fff;
+    padding: 2rem;
+    border: 1px solid #ccc;
+}
+
+.items {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.item {
+    margin-bottom: 50px;
+}
+
+.item img {
+    width: 100px;
+    height: 100px;
+}
+
+.item h2 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.item p {
+    font-size: 14px;
+    color: #999;
+}
+
+.item input {
+    width: 100px;
+    text-align: center;
+}
+
+hr.separador-carrito {
+    width: 100%;
+    color: #da3895;
+    height: 2px;
+    margin: 15px 2px;
+}
+
+.total {
+    margin-top: 10px;
+    text-align: justify;
+}
+
+.total h3 {
+    font-weight: bold;
+    text-align: right;
+}
+
+.total a {
+    display: block;
+    width: 230px;
+    background-color: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    padding: 8px 0px;
+    text-align: center;
+    margin-left: -5px;
+}
+
+.total a:hover {
+    background-color: #555050;
+}
+
+.total a.seguir {
+    width: 160px;
+    background-color: #fff;
+    color: #000;
+    margin-left: 30px;
+}
+
+.total a.seguir:hover {
+    color: #3f8b94;
+}
+
+
+/* ########################## FOOTER ########################## */
+
+footer {
+    margin-bottom: -10%;
+    padding: 20px;
+    text-align: center;
+}
+
+footer ul.social-icons {
+    display: inline-flex;
+    text-decoration: none;
+}
+
+footer ul.social-icons li {
+    display: inline-block;
+    margin: 0px 15px;
+}
+
+footer ul.social-icons li a {
+    display: block;
+    text-decoration: none;
+    list-style: none;
+    font-size: 24px;
+}
+
+
+/* ########################## ########################## */
+
+@media (max-width: 600px) {
+    /* Estilos para pantallas pequeñas */
+    header {
+        margin-top: 2.5rem;
+    }
+    nav {
+        padding-right: 0px;
+    }
+    .navbar {
+        flex-wrap: nowrap;
+    }
+    nav.navbar div.container-fluid {
+        flex-wrap: wrap;
+    }
+    nav a.btn-shopping-card {
+        margin: 0px 2px;
+        position: unset;
+    }
+    nav li {
+        display: flex;
+        margin-left: 15px;
+    }
+    li.btn-iniciar-session {
+        left: 0%;
+        right: 0px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    p {
+        font-size: 21px;
+    }
+    /* ########################## products ########################## */
+    .image {
+        display: block;
+    }
+    .card-product {
+        width: 300px;
+    }
+    .card-product .container-image {
+        opacity: 0;
+        border-radius: 8px;
+        transition-delay: 0s, .6s;
+    }
+    .card-product .container-image .image-circle {
+        opacity: 0;
+        transition-delay: 0s;
+    }
+    .card-product .content {
+        width: 290px;
+        height: 190px;
+        visibility: visible;
+        transition-delay: .5s;
+    }
+    .card-product .content .detail {
+        color: #181818;
+        opacity: 100%;
+        transition: 1s;
+        transition-delay: .3s;
+    }
+    .card-product .content .detail button {
+        background: #d39f63;
+    }
+    .card-product .content .product-image .box-image {
+        top: -25%;
+        left: 0;
+        opacity: 100%;
+        transform: scale(1);
+        transition-delay: .3s;
+    }
+    /* ########################## footer  ########################## */
+    footer ul.social-icons {
+        display: unset;
+        text-decoration: none;
+    }
+    footer ul.social-icons li {
+        margin: 15px 15px;
+    }
+    /* ########################## form login #######################  */
+    #togglePassword {
+        cursor: pointer;
+    }
+    /* ########################## carrito ########################## */
+    .total a {
+        width: auto;
+        margin-left: 0px;
+    }
+    .total a.seguir {
+        width: auto;
+        margin-top: 2px;
+        margin-left: 0px;
+    }
+}
+
+
+/* ########################## ########################## */
+
+@media (min-width: 601px) and (max-width: 1200px) {
+    /* Estilos para pantallas medianas */
+    .nav {
+        padding-right: 0px;
+    }
+    h1 {
+        font-size: 36px;
+    }
+    p {
+        font-size: 18px;
+    }
+    /* ########################## projects ########################## */
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+
+/* ########################## ########################## */
+
+@media (min-width: 1201px) {
+    /* Estilos para pantallas grandes */
+    h1 {
+        font-size: 48px;
+    }
+    p {
+        font-size: 20px;
+    }
+}

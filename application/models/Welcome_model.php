@@ -78,7 +78,7 @@ class Welcome_model extends CI_model
     public function getProjects()
     {
         $datos = array(
-            'campos' => "projectImagen, projectTitle, projectDescription",
+            'campos' => "projectId, projectImagen, projectTitle, projectDescription, like, noLike",
             'tabla'  => "nu_projects",
         );
         $projects = $this->getData($datos);
@@ -96,7 +96,7 @@ class Welcome_model extends CI_model
     public function getServices($datos = NULL)
     {
         $datos = array(
-            'campos' => "serviceTitle, serviceImagen, servicePrice, serviceDescription, categoryId",
+            'campos' => "serviceId, serviceTitle, serviceImagen, servicePrice, serviceDescription, categoryId",
             'tabla'  => "nu_services",
         );
         $services = $this->getData($datos);
@@ -123,6 +123,11 @@ class Welcome_model extends CI_model
         $aboutsModal = $this->getData($datos);
         return $aboutsModal;
     }
+    public function getPlantilla($value = '')
+    {
+        $plantilla = $this->getConfig($value);
+        return $plantilla;
+    }
     /**
      * función getConfig
      * realiza consulta a la bd buscando la configuración según el valor que recibe
@@ -142,7 +147,15 @@ class Welcome_model extends CI_model
         $this->db->where('activo', 1);
 
         $query = $this->db->get();
-        $data  = $query->row();
+
+
+        $num_filas = $query->num_rows();
+
+        if (!($num_filas) || ($num_filas = 0)) {
+            $data = '';
+        } else {
+            $data  = $query->row();
+        }
 
         return $data;
     }

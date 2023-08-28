@@ -1,9 +1,9 @@
 <?php
 /**
- * Idioma ingles de Administracion
+ * Idioma ingles de Administración
  */
 
-## Etiquetas Generales del modulo de Administracion
+## Etiquetas Generales del modulo de Administración
 $lang["lang"]                       = "en";
 $lang["descripcion"]                = "Administrative Panel of the e-commerce application.";
 

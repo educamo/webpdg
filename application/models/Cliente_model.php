@@ -2,7 +2,7 @@
 
 class Cliente_model extends CI_Model {
 
-    public function get_usuario_by_email($datos) {
+    public function get_usuario_by_email($datos = '') {
         $email = $datos['email'];
         $password = $datos['password'];
         $this->db->where('email', $email);

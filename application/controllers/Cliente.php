@@ -43,13 +43,33 @@ class Cliente extends CI_Controller
 
     public function register()
     {
-        //TODO: HACER FUNCION PARA REGISTRAR CLIENTE
+        $nombre = $this->input->post('cliente[nombre]');
+        $dni = $this->input->post('cliente[dni]');
+        $email = $this->input->post('cliente[email]');
+        $passwd = $this->input->post('cliente[password]');
 
+        $datos = array(
+            'email'         => $email,
+            'idCliente'     => $dni,
+            'nombre'        => $nombre,
+            'password'      => $passwd,
+        );
+
+        $data = $this->Cliente_model->registrarCliente($datos);
+
+        // Comprobar el error
+if (mysqli_error($data)) {
+    // Mostrar el mensaje de error
+    echo "Se ha producido un error al conectar a la base de datos: " . mysqli_error($data);
+  }
+
+        echo $data;
+        return true;
     }
 
     public function nuevo()
     {
-        var_dump('hola');
+        $this->load->view('shop/registrarCliente');
     }
     public function logout()
     {

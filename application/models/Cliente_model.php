@@ -1,8 +1,10 @@
 <?php
 
-class Cliente_model extends CI_Model {
+class Cliente_model extends CI_Model
+{
 
-    public function get_usuario_by_email($datos) {
+    public function get_usuario_by_email($datos = '')
+    {
         $email = $datos['email'];
         $password = $datos['password'];
         $this->db->where('email', $email);
@@ -15,5 +17,10 @@ class Cliente_model extends CI_Model {
             return FALSE;
         }
     }
-}
 
+    public function registrarCliente($datos = '')
+    {
+        $respuesta = $this->db->insert('nu_clientes', $datos);
+        return $respuesta;
+    }
+}

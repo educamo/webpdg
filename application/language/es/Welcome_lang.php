@@ -38,6 +38,7 @@ $lang["Forgot"]                     = "¿Olvido Contraseña?";
 $lang["Notmember"]                  = "¿No tienes cuenta?";
 $lang["Register"]                   = "Regístrate";
 $lang["send"]                       = "Enviando...";
+$lang["log-first"]                  = "debe Iniciar sesión antes";
 
 
 ?>

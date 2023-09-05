@@ -31,7 +31,7 @@
             </div>
 
             <div class="mb-3">
-                <a href="#" class="olvido"><?= lang('olvido') ?></a> // TODO: falta hacer el modulo de recuperación de contraseña
+                <a href="#" class="olvido"><?= lang('olvido') ?></a> <?php  // TODO: falta hacer el modulo de recuperación de contraseña ?>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit" id="submit" name="submit"><?= lang('title-boton') ?></button>
             <p class="mt-5 mb-3 text-muted">&copy; <span id="year"></span></p>

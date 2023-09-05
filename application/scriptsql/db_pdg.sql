@@ -11,11 +11,83 @@
  Target Server Version : 100425
  File Encoding         : 65001
 
- Date: 14/08/2023 00:09:36
+ Date: 05/09/2023 16:36:57
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for carrito_productos
+-- ----------------------------
+DROP TABLE IF EXISTS `carrito_productos`;
+CREATE TABLE `carrito_productos`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `carrito_id` int NOT NULL,
+  `serviceId` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `cantidad` int NOT NULL,
+  `precio_total` decimal(10, 2) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of carrito_productos
+-- ----------------------------
+INSERT INTO `carrito_productos` VALUES (6, 2, '03', 1, 29.00);
+INSERT INTO `carrito_productos` VALUES (7, 2, '01', 1, 12.00);
+
+-- ----------------------------
+-- Table structure for carritos
+-- ----------------------------
+DROP TABLE IF EXISTS `carritos`;
+CREATE TABLE `carritos`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idCliente` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `fecha` datetime NOT NULL DEFAULT current_timestamp,
+  `status` int NULL DEFAULT 1,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of carritos
+-- ----------------------------
+INSERT INTO `carritos` VALUES (2, '12', '2023-09-05 04:30:35', 0);
+
+-- ----------------------------
+-- Table structure for detalles_facturas
+-- ----------------------------
+DROP TABLE IF EXISTS `detalles_facturas`;
+CREATE TABLE `detalles_facturas`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `factura_id` int NOT NULL,
+  `serviceId` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `cantidad` int NOT NULL,
+  `precio_unitario` decimal(10, 2) NOT NULL,
+  `precio_total` decimal(10, 2) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of detalles_facturas
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for facturas
+-- ----------------------------
+DROP TABLE IF EXISTS `facturas`;
+CREATE TABLE `facturas`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fecha` date NOT NULL,
+  `idCliente` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `total` decimal(10, 2) NOT NULL,
+  `estado` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idCliente`(`idCliente` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of facturas
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for migrations
@@ -88,16 +160,18 @@ INSERT INTO `nu_categorys` VALUES ('marketing', 'marketing', 'Marketing Digital 
 -- ----------------------------
 DROP TABLE IF EXISTS `nu_clientes`;
 CREATE TABLE `nu_clientes`  (
-  `id` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `idCliente` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`email`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of nu_clientes
 -- ----------------------------
+INSERT INTO `nu_clientes` VALUES ('admin2@pdg.com', '12', 'cesr', '12345');
+INSERT INTO `nu_clientes` VALUES ('carlosc@dmsai.com', '56547', 'carlos', '1234');
 
 -- ----------------------------
 -- Table structure for nu_config
@@ -130,7 +204,7 @@ INSERT INTO `nu_config` VALUES ('kywds', 'keywords', 'Diseño, gráfico, logos, 
 INSERT INTO `nu_config` VALUES ('Logo', 'Logo', 'cosmoimagen-logo.png', 'El logo del sitio web o de la empresa', '1', '1', '2022-10-24 14:52:30', '2023-08-09 12:39:46', '127.0.0.0', '127.0.0.1', 1);
 INSERT INTO `nu_config` VALUES ('mailEmp', 'emailcontacto', 'contacto@empresa.com', 'Correo del formulario de contacto', '1', '1', '2022-10-24 14:52:30', '2022-11-06 19:12:25', '127.0.0.0', '127.0.0.1', 1);
 INSERT INTO `nu_config` VALUES ('Map', 'Mapa', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d424.01823977953916!2d-72.36756770237544!3d7.693578184167264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e663e439229c16f%3A0xa0e8d1a10fc2c852!2sRubio%205030%2C%20T%C3%A1chira!5e1!3m2!1ses!', 'url del mapa de googlemaps', '1', '0', '2022-10-24 14:52:29', NULL, '127.0.0.0', '0.0.0.0', 1);
-INSERT INTO `nu_config` VALUES ('ptlla', 'plantilla', 'shop/index', 'esta es la plantilla a usar en el welcome', '1', '0', '2023-08-09 08:41:33', '2023-08-09 12:42:48', '127.0.0.0', '0.0.0.0', 1);
+INSERT INTO `nu_config` VALUES ('ptlla', 'plantilla', 'shop/index', 'esta es la plantilla a usar en el welcome', '1', '0', '2023-08-09 08:41:33', '2023-08-26 11:48:02', '127.0.0.0', '0.0.0.0', 1);
 INSERT INTO `nu_config` VALUES ('Ttl', 'title', 'Cosmo Imagine - Diseñadora Gráfica', 'Titulo del website', '1', '0', '2022-10-24 14:52:30', NULL, '127.0.0.0', '0.0.0.0', 1);
 
 -- ----------------------------
@@ -178,15 +252,17 @@ CREATE TABLE `nu_projects`  (
   `ipCreacion` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ipModificacion` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `activo` int NULL DEFAULT 0,
+  `like` int NULL DEFAULT 0,
+  `noLike` int NULL DEFAULT 0,
   PRIMARY KEY (`projectId`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of nu_projects
 -- ----------------------------
-INSERT INTO `nu_projects` VALUES ('pro1', 'featured_1.jpg', 'Aqui va un titulo', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus iure laborum inventore quasi, suscipit explicabo! Nisi, quia? ', 'featured', '1', '1', '2022-11-10 10:19:33', '2022-11-19 12:49:55', '127.0.0.1', '127.0.0.1', 1);
-INSERT INTO `nu_projects` VALUES ('pro2', 'featured_2.jpg', 'Aqui va un titulo 2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. totam sequi?', 'featured', '1', '1', '2022-11-10 10:21:21', '2022-11-19 12:50:24', '127.0.0.1', '127.0.0.1', 1);
-INSERT INTO `nu_projects` VALUES ('pro3', 'featured_3.jpg', 'Aqui va el titulo 3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus iure laborum inventore quasi, suscipit explicabo! Nisi, quia? Vitae rerum id commodi! Incidunt perferendis vel sapiente voluptatem temporibus hic totam sequi?', 'featured', '1', '1', '2022-11-10 10:22:37', '2022-11-19 12:49:02', '127.0.0.1', '127.0.0.1', 1);
+INSERT INTO `nu_projects` VALUES ('pro1', 'pared.jpg', 'Aqui va un titulo', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus iure laborum inventore quasi, suscipit explicabo! Nisi, quia? ', 'featured', '1', '1', '2022-11-10 10:19:33', '2023-08-28 09:12:12', '127.0.0.1', '127.0.0.1', 1, 10, 4);
+INSERT INTO `nu_projects` VALUES ('pro2', 'logos.jpg', 'Aqui va un titulo 2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. totam sequi?', 'featured', '1', '1', '2022-11-10 10:21:21', '2023-09-04 20:25:29', '127.0.0.1', '127.0.0.1', 1, 7, 4);
+INSERT INTO `nu_projects` VALUES ('pro3', 'flayers.jpg', 'Aqui va el titulo 3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus iure laborum inventore quasi, suscipit explicabo!', 'featured', '1', '1', '2022-11-10 10:22:37', '2023-08-28 09:15:43', '127.0.0.1', '127.0.0.1', 1, 5, 2);
 
 -- ----------------------------
 -- Table structure for nu_rols
@@ -237,9 +313,9 @@ CREATE TABLE `nu_services`  (
 -- ----------------------------
 -- Records of nu_services
 -- ----------------------------
-INSERT INTO `nu_services` VALUES ('01', 'Diseño de Logo', 'portfolio_1.jpg', 12.00, 'Diseño de logo para tu marca o producto', 'desing', 'projects', '1', NULL, '2022-11-12 01:01:32', NULL, '127.0.0.1', NULL, 1);
-INSERT INTO `nu_services` VALUES ('02', 'Diseño de Flayers', 'portfolio_big_6.jpg', 13.00, 'Diseñamos los mejores y más llamativos Flayers.', 'desing', 'projects', '1', '1', '2022-11-12 00:56:06', '2022-11-12 02:15:46', '127.0.0.1', '127.0.0.1', 1);
-INSERT INTO `nu_services` VALUES ('03', 'Impresión de Pendones', 'portfolio_big_3.jpg', 29.00, '  This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.', 'impresion', 'projects', '1', NULL, '2022-11-12 01:04:18', NULL, '127.0.0.1', NULL, 1);
+INSERT INTO `nu_services` VALUES ('01', 'Diseño de Logo', 'producto01.jpg', 12.00, 'Diseño de logo para tu marca o producto', 'desing', 'projects', '1', NULL, '2022-11-12 01:01:32', '2023-08-15 08:48:49', '127.0.0.1', NULL, 1);
+INSERT INTO `nu_services` VALUES ('02', 'Diseño de Flayers', 'producto02.jpg', 13.00, 'Diseñamos los mejores y más llamativos Flayers.', 'desing', 'projects', '1', '1', '2022-11-12 00:56:06', '2023-08-15 08:54:16', '127.0.0.1', '127.0.0.1', 1);
+INSERT INTO `nu_services` VALUES ('03', 'Impresión de Pendones', 'producto03.jpg', 29.00, '  This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.', 'impresion', 'projects', '1', NULL, '2022-11-12 01:04:18', '2023-08-15 08:54:23', '127.0.0.1', NULL, 1);
 INSERT INTO `nu_services` VALUES ('04', 'Marketing Digital', 'portfolio_big_4.jpg', 20.00, 'This text is quite long, and will be truncated once displayed sdgffdsg gtfthgfhfg dsfgfdg fgfdgdfgsd dsfsd.', 'marketing', 'projects', '1', NULL, '2022-11-12 01:05:56', NULL, '127.0.0.1', NULL, 1);
 INSERT INTO `nu_services` VALUES ('05', 'Impresión de publicidad', 'portfolio_big_5.jpg', 10.00, 'Impresión de flayers, afiches, panfletos, volantes y más', 'impresion', 'projects', '1', NULL, '2022-11-12 01:27:30', NULL, '127.0.0.1', NULL, 1);
 
@@ -326,5 +402,47 @@ CREATE TABLE `nu_users`  (
 -- ----------------------------
 INSERT INTO `nu_users` VALUES ('1', 'Administrador', '123456', 'admin@pdg.com', '1', NULL, '1', '2022-10-24 14:52:30', '2022-11-07 01:57:50', NULL, '127.0.0.1', 1);
 INSERT INTO `nu_users` VALUES ('43535', 'admin2', '12345', 'admin2@pdg.com', '2', '1', NULL, '2022-11-12 02:41:50', NULL, '127.0.0.1', NULL, 1);
+
+-- ----------------------------
+-- Table structure for ordendetalles
+-- ----------------------------
+DROP TABLE IF EXISTS `ordendetalles`;
+CREATE TABLE `ordendetalles`  (
+  `idOrdenDetalle` int NOT NULL AUTO_INCREMENT,
+  `serviceId` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `cantidad` int NULL DEFAULT 0,
+  `precioUnitario` double(10, 2) NULL DEFAULT 0.00,
+  `precioTotal` double(10, 2) NULL DEFAULT 0.00,
+  `idOrden` int NULL DEFAULT NULL,
+  PRIMARY KEY (`idOrdenDetalle`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ordendetalles
+-- ----------------------------
+INSERT INTO `ordendetalles` VALUES (5, '03', 1, 29.00, 29.00, 3);
+INSERT INTO `ordendetalles` VALUES (6, '01', 1, 12.00, 12.00, 3);
+INSERT INTO `ordendetalles` VALUES (7, '03', 1, 29.00, 29.00, 4);
+INSERT INTO `ordendetalles` VALUES (8, '01', 1, 12.00, 12.00, 4);
+
+-- ----------------------------
+-- Table structure for ordenesservicios
+-- ----------------------------
+DROP TABLE IF EXISTS `ordenesservicios`;
+CREATE TABLE `ordenesservicios`  (
+  `idOrden` int NOT NULL AUTO_INCREMENT,
+  `idCliente` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `total` decimal(10, 2) NOT NULL,
+  `estado` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`idOrden`) USING BTREE,
+  INDEX `idCliente`(`idCliente` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ordenesservicios
+-- ----------------------------
+INSERT INTO `ordenesservicios` VALUES (3, '12', '2023-09-05', 41.00, '1');
+INSERT INTO `ordenesservicios` VALUES (4, '12', '2023-09-05', 41.00, '1');
 
 SET FOREIGN_KEY_CHECKS = 1;

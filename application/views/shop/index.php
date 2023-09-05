@@ -111,8 +111,8 @@ foreach ($modules as $module) {
         <a class="navbar-brand" href="<?= base_url() ?>">
           <img src="<?= base_url('assets/img/' . $logo) ?>" alt="" width="120" height="50" class="d-inline-block align-text-top">
         </a>
-
-        <a class="btn btn-shopping-card" data-bs-toggle="offcanvas" href="#offcanvasRight" role="button" aria-controls="offcanvasRight"><i class="fa fa-cart-shopping"></i></a>
+        <!-- botón carrito de compra -->
+        <a class="btn btn-shopping-card" id="shopping-card" data-bs-toggle="offcanvas" href="#offcanvasRight" role="button" aria-controls="offcanvasRight"><i class="fa fa-cart-shopping"></i></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
@@ -546,7 +546,7 @@ foreach ($modules as $module) {
                           </div>
                           <div class="product-image">
                             <div class="box-image">
-                              <img src="<?= base_url('assets/img/') . $service['serviceImagen'] ?>" alt="" class="img-product">
+                              <img src="<?= base_url('assets/img/') . $service['serviceImagen'] ?>" alt="$service['serviceImagen']" class="img-product">
                             </div>
                           </div>
                         </div>
@@ -564,8 +564,42 @@ foreach ($modules as $module) {
                         </div>
                         <div class="modal-body">
                           <div class="container-fluid mt-5">
-                            ....
-                            <button class="btn-buy"><?= lang('buy') ?></button>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-8">
+                                  <?= $service['serviceDescription'] ?>
+                                </div>
+                                <div class="col-md-4">
+                                  <img src="<?= base_url('assets/img/') . $service['serviceImagen'] ?>" alt="$service['serviceImagen']" class=" img-fluid img-thumbnail img-card">
+                                </div>
+
+                              </div>
+                            </div>
+                            <div class="row mt-2">
+                              <?Php
+                              if ($cliente != '') {
+                              ?>
+                                <div class="col-2">
+                                  <button class="btn-buy" data-id="<?= $service['serviceId'] ?>"><?= lang('buy') ?></button>
+                                </div>
+                                <div class="col-2">
+                                  <input type="number" class="form-control form-control-sm cantidad" name="cant" id="cant<?= $service['serviceId'] ?>" min="1" maxlength="10" size="50" data-id="<?= $service['serviceId'] ?>" value="1" />
+                                </div>
+                                <div class="col-6 text-end service-price">
+                                  <h4 id="<?= $service['serviceId'] ?>" data-price="<?= $service['servicePrice'] ?>"> $<?= $service['servicePrice'] ?> </h4>
+                                </div>
+                              <?Php
+                              } else {
+
+                                echo '<div class="col-md-4">';
+                                echo '<button class="btn btn-block btn-grey btn-disabled">' . lang('buy') . '</button>';
+                                echo '</div>';
+                                echo '<div class="col-md-4">';
+                                echo  '<p class="text-bg-info">' . lang('log-first') . '</p>';
+                                echo '</div>';
+                              }
+                              ?>
+                            </div>
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -644,8 +678,6 @@ foreach ($modules as $module) {
                 </div>
                 <label class="form-label" for="password"> <?= lang('clave') ?></label>
               </div>
-
-              <!-- 2 column grid layout for inline styling -->
               <div class="row mb-4 text-center">
 
                 <div class="col">
@@ -684,158 +716,247 @@ foreach ($modules as $module) {
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <div class="container">
+        <div class="container" id="contenido-carrito">
 
+          <?php //TODO: falta agregar la pre carga  
+          ?>
 
-          <div class="shopping-cart row">
-            <ul class="items container">
-              <li class="item row">
-                <div class="col-md-6">
-                  <img src="<?= base_url() ?>assets/plantillas/shop/images/product1.jpg" alt="Product 1">
-                  <h2>Product 1</h2>
-                  <input type="number" value="1">
-                </div>
-                <div class="col-md-6">
-                  <p>$10.00</p>
-                </div>
-              </li>
-              <li class="item row">
-                <div class="col-md-6">
-                  <img src="<?= base_url() ?>assets/plantillas/shop/images/product2.jpg" alt="Product 2">
-                  <h2>Product 2</h2>
-                  <input type="number" value="1">
-                </div>
-                <div class="col-md-6">
-                  <p>$20.00</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="row">
-            <hr class="separador-carrito" />
-          </div>
-
-
-          <div class="total row">
-            <div class="col-md-12">
-              <h3>Total: $30.00</h3>
-            </div>
-            <div class="col-md-6">
-              <a href="#">Continuar con la compra</a>
-            </div>
-            <div class="col-md-6">
-              <a href="#" class="seguir" data-bs-dismiss="offcanvas">Seguir comprando</a>
-              <div>
-              </div>
-            </div>
-
-          </div>
         </div>
       </div>
-
-      <script src="<?= base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
-
-      <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script> -->
-      <script src="<?= base_url('assets/plantillas/shop/js') ?>/popper.min.js"></script>
-
-      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script> -->
-      <script src="<?= base_url('assets/plantillas/shop/js') ?>/bootstrap.min.js"></script>
+    </div>
 
 
-      <script>
-        // constantes en js con valores en php
-        const enviando = "<?= lang('send') ?>";
-        const url_base = "<?= base_url() ?>";
-        const titleButton = "<?= lang('loginClient') ?>";
+    <script src="<?= base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
 
-        /**
-         * funtion document ready
-         *  se ejecuta después que todo el documento esta cargado
-         */
-        $(document).ready(function() {
-          // código que obtiene el año actual para el copyright
-          var year = new Date().getFullYear();
-          $("#fecha").html(year);
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script> -->
+    <script src="<?= base_url('assets/plantillas/shop/js') ?>/popper.min.js"></script>
 
-          // código para mostrar u ocultar el valor del campo password en el form login cliente
-          const togglePassword = document.querySelector('#togglePassword');
-          const password = document.querySelector('#password');
-          togglePassword.addEventListener('click', function(e) {
-            // toggle the type attribute
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
-            // toggle the eye slash icon
-            this.classList.toggle('fa-eye-slash');
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script> -->
+    <script src="<?= base_url('assets/plantillas/shop/js') ?>/bootstrap.min.js"></script>
+
+
+    <script>
+      // ################# constantes en js con valores en php ############################
+      const enviando = "<?= lang('send') ?>";
+      const url_base = "<?= base_url() ?>";
+      const titleButton = "<?= lang('loginClient') ?>";
+      const cliente = "<?= $cliente ?>";
+      const etiqueta = "Cliente";
+      const log_first = "<?= lang('log-first')  ?>";
+      /**
+       * function document ready
+       *  se ejecuta después que todo el documento esta cargado
+       */
+      $(document).ready(function() {
+
+        // ########### cambia la etiqueta del menu de iniciar session a clientes si la session existe ###########
+        if (cliente !== "") {
+          var idCliente = cliente;
+          $("#navbarDropdown").html(etiqueta);
+        };
+
+        // código que obtiene el año actual para el copyright
+        var year = new Date().getFullYear();
+        $("#fecha").html(year);
+
+        // código para mostrar u ocultar el valor del campo password en el form login cliente
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        togglePassword.addEventListener('click', function(e) {
+          // toggle the type attribute
+          const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+          password.setAttribute('type', type);
+          // toggle the eye slash icon
+          this.classList.toggle('fa-eye-slash');
+        });
+
+
+        // ############ function ajax para que el cliente haga login ##########################
+        $("#frmloginClient").submit(function(event) {
+
+          event.preventDefault();
+
+          var formData = new FormData($("#frmloginClient")[0]);
+
+          $.ajax({
+            type: $(this).attr("method"),
+            url: url_base + "cliente/login",
+            data: $('#frmloginClient').serialize(),
+            cache: false,
+            processData: false,
+
+            beforeSend: function() {
+              $("#submit").attr("value", enviando);
+              $("#submit").attr("disabled", "disabled");
+            },
+            success: function(data) {
+              $("#massage").removeClass("bg-danger text-white");
+              $("#massage").removeClass("bg-success text-light");
+              $("#massage").addClass("bg-success text-light");
+              $("#massage").show();
+              $("#massage").html(data);
+
+              setTimeout(function() {
+                location.href = url_base;
+              }, 3000);
+
+            },
+            error: function(data) {
+              $("#massage").removeClass("bg-success text-light");
+              $("#massage").addClass("bg-danger text-white");
+              $("#massage").show();
+              $("#massage").html(data);
+              $("#submit").attr("value", titleButton);
+
+              setTimeout(() => {
+                $("#massage").hide();
+                $("#submit").removeAttr("disabled");
+              }, 2000);
+            },
           });
+          return false;
+        });
 
 
-          // funtion ajax para loguear el cliente
-          $("#frmloginClient").submit(function(event) {
+        // ############### function ajax para agregar like proyecto #########################
+        // Seleccionar todos los elementos con la clase `like-label`
+        var projectsLike = $(".like");
 
-            event.preventDefault();
+        // Escuchar el evento click en todos los elementos
+        projectsLike.click(function() {
+          // Obtener el valor de la propiedad data-id
+          var id = $(this).data("id");
 
-            var formData = new FormData($("#frmloginClient")[0]);
+          // Realizar una petición AJAX
+          $.ajax({
+            type: "POST",
+            url: url_base + "proyectos/like/",
+            data: {
+              id
+            },
 
-            $.ajax({
-              type: $(this).attr("method"),
-              url: url_base + "cliente/login",
-              data: $('#frmloginClient').serialize(),
-              cache: false,
-              processData: false,
+            // La función que se ejecuta cuando la petición se completa
+            success: function(data) {
+              location.href = url_base;
+            },
 
-              beforeSend: function() {
-                $("#submit").attr("value", enviando);
-                $("#submit").attr("disabled", "disabled");
-              },
-              success: function(data) {
-                $("#massage").removeClass("bg-danger text-white");
-                $("#massage").removeClass("bg-success text-light");
-                $("#massage").addClass("bg-success text-light");
-                $("#massage").show();
-                $("#massage").html(data);
-
-                setTimeout(function() {
-                  location.href = url_base;
-                }, 3000);
-
-              },
-              error: function(data) {
-                $("#massage").removeClass("bg-success text-light");
-                $("#massage").addClass("bg-danger text-white");
-                $("#massage").show();
-                $("#massage").html(data);
-                $("#submit").attr("value", titleButton);
-
-                setTimeout(() => {
-                  $("#massage").hide();
-                  $("#submit").removeAttr("disabled");
-                }, 2000);
-              },
-            });
-            return false;
+            // La función que se ejecuta cuando la petición falla
+            error: function() {
+              alert("La petición AJAX falló");
+            }
           });
+        });
+
+        // ################# function ajax para agregar dislike proyecto #####################
+        // Seleccionar todos los elementos con la clase `like-label`
+        var projectsDislike = $(".dislike");
+
+        // Escuchar el evento click en todos los elementos
+        projectsDislike.click(function() {
+          // Obtener el valor de la propiedad data-id
+          var id = $(this).data("id");
+
+          // Realizar una petición AJAX
+          $.ajax({
+            type: "POST",
+            url: url_base + "proyectos/disLike/",
+            data: {
+              id
+            },
+
+            // La función que se ejecuta cuando la petición se completa
+            success: function(data) {
+              location.href = url_base;
+            },
+
+            // La función que se ejecuta cuando la petición falla
+            error: function() {
+              alert("La petición AJAX falló");
+            }
+          });
+        });
 
 
-          // funtion ajax para agregar like proyecto
+        //  ######### función para actualizar el precio a la hora de comprar un producto o servicio
+        //dependiendo de la cantidad ###########################
+        // Seleccionar el input tipo numérico
+        var cantidad = $(".cantidad");
+        // Establecer el patrón para el input tipo numérico
+        cantidad.attr("pattern", "^[0-9]\\d*$");
 
-          // Seleccionar todos los elementos con la clase `like-label`
-          var projectsLike = $(".like");
+        // Agregar un evento `change` al input tipo numérico
+        cantidad.on("change", function() {
+          var id = $(this).data("id");
+          // Seleccionar la etiqueta h4
+          var valor = $("#" + id);
+          // Obtener el valor del input tipo numérico
+          var cantidad_actual = $(this).val();
 
-          // Escuchar el evento click en todos los elementos
-          projectsLike.click(function() {
-            // Obtener el valor de la propiedad data-id
-            var id = $(this).data("id");
+          // obtener el precio de la propiedad price
+          var price = valor.data("price");
+          // calcular total
+          var total = price * cantidad_actual;
+          // Establecer el valor de la etiqueta h4
+          valor.html("$" + total.toFixed(2));
+        });
 
+
+        // ####################### función para agregar productos o servicios al carrito #################
+        var buttonComprar = $(".btn-buy");
+        buttonComprar.click(function() {
+          // Obtener el valor de la propiedad data-id del botón y el valor de la cantidad
+          var id = $(this).data("id");
+          var price = $("#" + id);
+          var cantidad = $("#cant" + id).val();
+          var priceTotal = price.data("price") * cantidad;
+
+          // Realizar una petición AJAX
+          $.ajax({
+            type: "POST",
+            url: url_base + "carrito/addProducto/",
+            data: {
+              id,
+              cantidad,
+              idCliente,
+              priceTotal,
+            },
+
+            // La función que se ejecuta cuando la petición se completa
+            success: function(data) {
+              location.href = url_base;
+            },
+
+            // La función que se ejecuta cuando la petición falla
+            error: function() {
+              alert("La petición AJAX falló");
+            }
+          });
+        });
+
+
+
+        // ###################### cargar contenido del carrito ###########################
+        $('#shopping-card').click(function() {
+
+
+          if (cliente !== "") {
             // Realizar una petición AJAX
             $.ajax({
               type: "POST",
-              url: url_base + "proyectos/like/",
-              data: {id},
+
+              url: url_base + "carrito/viewContenido/",
+              data: {
+                cliente
+              },
 
               // La función que se ejecuta cuando la petición se completa
               success: function(data) {
-                location.href = url_base;
+
+
+                // Agregar los elementos del carrito al DOM
+                $("#contenido-carrito").html(data);
+
+
               },
 
               // La función que se ejecuta cuando la petición falla
@@ -843,51 +964,24 @@ foreach ($modules as $module) {
                 alert("La petición AJAX falló");
               }
             });
-          });
-
-          // funtion ajax para agregar dislike proyecto
-
-          // Seleccionar todos los elementos con la clase `like-label`
-          var projectsDislike = $(".dislike");
-
-          // Escuchar el evento click en todos los elementos
-          projectsDislike.click(function() {
-            // Obtener el valor de la propiedad data-id
-            var id = $(this).data("id");
-
-             // Realizar una petición AJAX
-            $.ajax({
-              type: "POST",
-              url: url_base + "proyectos/disLike/",
-              data: {id},
-
-              // La función que se ejecuta cuando la petición se completa
-              success: function(data) {
-                location.href = url_base;
-              },
-
-              // La función que se ejecuta cuando la petición falla
-              error: function() {
-                alert("La petición AJAX falló");
-              }
-            });
-          });
-
-
+          } else {
+            const mensajeCarrito = `
+            <div class="shopping-cart row">
+              <p>
+                <h2 id="log-first" class="text-center col-md-12"> </h2>
+              </p>
+            </div>
+            `;
+            $("#contenido-carrito").html(mensajeCarrito);
+            $("#log-first").html(log_first);
+          }
         });
-      </script>
 
 
-      <?Php
-      if ($cliente != '') {
-        $etiqueta = 'Cliente';
-      ?>
-        <script>
-          $("#navbarDropdown").html('<?= $etiqueta ?>');
-        </script>
-      <?php
-      }
-      ?>
+
+
+      });
+    </script>
 
 </body>
 

@@ -111,8 +111,8 @@ foreach ($modules as $module) {
         <a class="navbar-brand" href="<?= base_url() ?>">
           <img src="<?= base_url('assets/img/' . $logo) ?>" alt="" width="120" height="50" class="d-inline-block align-text-top">
         </a>
-
-        <a class="btn btn-shopping-card" data-bs-toggle="offcanvas" href="#offcanvasRight" role="button" aria-controls="offcanvasRight"><i class="fa fa-cart-shopping"></i></a>
+        <!-- botón carrito de compra -->
+        <a class="btn btn-shopping-card" id="shopping-card" data-bs-toggle="offcanvas" href="#offcanvasRight" role="button" aria-controls="offcanvasRight"><i class="fa fa-cart-shopping"></i></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
@@ -678,8 +678,6 @@ foreach ($modules as $module) {
                 </div>
                 <label class="form-label" for="password"> <?= lang('clave') ?></label>
               </div>
-
-              <!-- 2 column grid layout for inline styling -->
               <div class="row mb-4 text-center">
 
                 <div class="col">
@@ -718,66 +716,9 @@ foreach ($modules as $module) {
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <div class="container">
+        <div class="container" id="contenido-carrito">
 
-          <?Php
-          if ($cliente != '') {
-          ?>
-            <div class="shopping-cart row">
-              <ul class="items container">
-                <li class="item row">
-                  <div class="col-md-6">
-                    <img src="<?= base_url() ?>assets/plantillas/shop/images/product1.jpg" alt="Product 1">
-                    <h2>Product 1</h2>
-                    <input type="number" value="1">
-                  </div>
-                  <div class="col-md-6">
-                    <p>$10.00</p>
-                  </div>
-                </li>
-                <li class="item row">
-                  <div class="col-md-6">
-                    <img src="<?= base_url() ?>assets/plantillas/shop/images/product2.jpg" alt="Product 2">
-                    <h2>Product 2</h2>
-                    <input type="number" value="1">
-                  </div>
-                  <div class="col-md-6">
-                    <p>$20.00</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div class="row">
-              <hr class="separador-carrito" />
-            </div>
-
-
-            <div class="total row">
-              <div class="col-md-12">
-                <h3>Total: $30.00</h3>
-              </div>
-              <div class="col-md-6">
-                <a href="#">Continuar con la compra</a>
-              </div>
-              <div class="col-md-6">
-                <a href="#" class="seguir" data-bs-dismiss="offcanvas">Seguir comprando</a>
-                <div>
-                </div>
-              </div>
-
-            </div>
-          <?Php
-          } else {
-          ?>
-            <div class="shopping-cart row">
-              <p>
-                <?= lang('log-first')  ?>
-              </p>
-            </div>
-
-          <?php
-          }
+          <?php //TODO: falta agregar la pre carga  
           ?>
 
         </div>
@@ -795,19 +736,20 @@ foreach ($modules as $module) {
 
 
     <script>
-      // constantes en js con valores en php
+      // ################# constantes en js con valores en php ############################
       const enviando = "<?= lang('send') ?>";
       const url_base = "<?= base_url() ?>";
       const titleButton = "<?= lang('loginClient') ?>";
       const cliente = "<?= $cliente ?>";
       const etiqueta = "Cliente";
-
+      const log_first = "<?= lang('log-first')  ?>";
       /**
-       * funtion document ready
+       * function document ready
        *  se ejecuta después que todo el documento esta cargado
        */
       $(document).ready(function() {
-        // cambia la etiqueta del menu de iniciar session a clientes si la sessiob esxite
+
+        // ########### cambia la etiqueta del menu de iniciar session a clientes si la session existe ###########
         if (cliente !== "") {
           var idCliente = cliente;
           $("#navbarDropdown").html(etiqueta);
@@ -829,7 +771,7 @@ foreach ($modules as $module) {
         });
 
 
-        // funtion ajax para loguear el cliente
+        // ############ function ajax para que el cliente haga login ##########################
         $("#frmloginClient").submit(function(event) {
 
           event.preventDefault();
@@ -876,7 +818,7 @@ foreach ($modules as $module) {
         });
 
 
-        // funtion ajax para agregar like proyecto
+        // ############### function ajax para agregar like proyecto #########################
         // Seleccionar todos los elementos con la clase `like-label`
         var projectsLike = $(".like");
 
@@ -905,7 +847,7 @@ foreach ($modules as $module) {
           });
         });
 
-        // funtion ajax para agregar dislike proyecto
+        // ################# function ajax para agregar dislike proyecto #####################
         // Seleccionar todos los elementos con la clase `like-label`
         var projectsDislike = $(".dislike");
 
@@ -934,7 +876,9 @@ foreach ($modules as $module) {
           });
         });
 
-        // función para actualizar el precio a la hora de comprar un producto o servicio dependiendo de la cantidad
+
+        //  ######### función para actualizar el precio a la hora de comprar un producto o servicio
+        //dependiendo de la cantidad ###########################
         // Seleccionar el input tipo numérico
         var cantidad = $(".cantidad");
         // Establecer el patrón para el input tipo numérico
@@ -957,10 +901,10 @@ foreach ($modules as $module) {
         });
 
 
-        // función para agregar productos o servicios al carrito
-        var botonComprar = $(".btn-buy");
-        botonComprar.click(function() {
-          // Obtener el valor de la propiedad data-id del boton y el valor de la cantidad
+        // ####################### función para agregar productos o servicios al carrito #################
+        var buttonComprar = $(".btn-buy");
+        buttonComprar.click(function() {
+          // Obtener el valor de la propiedad data-id del botón y el valor de la cantidad
           var id = $(this).data("id");
           var price = $("#" + id);
           var cantidad = $("#cant" + id).val();
@@ -988,6 +932,51 @@ foreach ($modules as $module) {
             }
           });
         });
+
+
+
+        // ###################### cargar contenido del carrito ###########################
+        $('#shopping-card').click(function() {
+
+
+          if (cliente !== "") {
+            // Realizar una petición AJAX
+            $.ajax({
+              type: "POST",
+
+              url: url_base + "carrito/viewContenido/",
+              data: {
+                cliente
+              },
+
+              // La función que se ejecuta cuando la petición se completa
+              success: function(data) {
+
+
+                // Agregar los elementos del carrito al DOM
+                $("#contenido-carrito").html(data);
+
+
+              },
+
+              // La función que se ejecuta cuando la petición falla
+              error: function() {
+                alert("La petición AJAX falló");
+              }
+            });
+          } else {
+            const mensajeCarrito = `
+            <div class="shopping-cart row">
+              <p>
+                <h2 id="log-first" class="text-center col-md-12"> </h2>
+              </p>
+            </div>
+            `;
+            $("#contenido-carrito").html(mensajeCarrito);
+            $("#log-first").html(log_first);
+          }
+        });
+
 
 
 

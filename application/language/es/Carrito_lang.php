@@ -4,7 +4,7 @@
  */
 
 ## Etiquetas Generales del carrito de compra
-$lang["carritoEmpty"]                       = "Su Carrito esta Vació";
+$lang["carritoEmpty"]                       = "Tu Carrito de compras está vacío.";
 $lang["addProductos"]                       = "Agregue productos o servicios, para continuar con la compra";
 
 ?>

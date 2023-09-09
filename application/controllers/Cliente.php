@@ -12,6 +12,8 @@ class Cliente extends CI_Controller
 
         //Carga la librería de form_validation
         $this->load->library(array('form_validation'));
+
+        $this->lang->load("Clientes");
     }
 
     public function login()
@@ -33,12 +35,34 @@ class Cliente extends CI_Controller
         }
     }
 
-    public function perfil()
+    public function perfil($cliente = '')
     {
-        $msg = 'false';
-        echo $msg;
-        die();
-        //TODO: HACER FUNCION LUEGO DE INICIAR SESION
+
+
+        $cliente = $this->url->segment(3);
+
+        $sessionCliente = $this->session->userdata('idCliente');
+
+        if ($sessionCliente == '' || $sessionCliente != $cliente) {
+
+            redirect(base_url());
+            return false;
+            die();
+        };
+
+        $idCliente       = $cliente;
+        $view = "shop/configCliente";
+
+        $datosCliente = $this->obtenerCliente($idCliente);
+
+        $datos = array(
+            'idCliente'     => $datosCliente[0]['idCliente'],
+            'email'         => $datosCliente[0]['email'],
+            'nombre'        => $datosCliente[0]['nombre'],
+        );
+
+
+        $this->plantillaCliente($datos, $view);
     }
 
     public function register()
@@ -58,10 +82,10 @@ class Cliente extends CI_Controller
         $data = $this->Cliente_model->registrarCliente($datos);
 
         // Comprobar el error
-if (mysqli_error($data)) {
-    // Mostrar el mensaje de error
-    echo "Se ha producido un error al conectar a la base de datos: " . mysqli_error($data);
-  }
+        if (mysqli_error($data)) {
+            // Mostrar el mensaje de error
+            echo "Se ha producido un error al conectar a la base de datos: " . mysqli_error($data);
+        }
 
         echo $data;
         return true;
@@ -76,5 +100,110 @@ if (mysqli_error($data)) {
         $this->session->unset_userdata('idCLiente');
         session_destroy();
         redirect(base_url());
+    }
+    public function updateDatos($nombreCliente = '', $idCliente = '', $emailCliente = '')
+    {
+        $nombreCliente = $this->input->post('nombre');
+        $idCliente = $this->input->post('idCliente');
+        $emailCliente = $this->input->post('email');
+
+        $datos = array(
+            'email'     => $emailCliente,
+            'idCliente' => $idCliente,
+            'nombre'    => $nombreCliente,
+            'activo'    => 1,
+        );
+
+        $respuesta = $this->Cliente_model->ActualizarCliente($datos);
+
+        if ($respuesta == true) {
+            $msg = lang('msgUpdateCliente');
+            echo $msg;
+            return $msg;
+        } else {
+            $msg = lang('msgUpdateCliente-error');
+            echo $msg;
+            return $msg;
+        }
+    }
+
+    public function updatePassword($password = '', $idCliente = '')
+    {
+        $password = $this->input->post('password');
+        $idCliente = $this->input->post('idCliente');
+
+        $datos = array(
+            'password'  => $password,
+            'idCliente' => $idCliente,
+            'activo'    => 1,
+        );
+
+        $respuesta = $this->Cliente_model->ActualizarPassword($datos);
+
+        if ($respuesta == true) {
+            $msg = lang('msgUpdatePassword');
+            echo $msg;
+            return $msg;
+        } else {
+            $msg = lang('msgUpdatePassword-error');
+            echo $msg;
+            return $msg;
+        }
+    }
+
+    private function plantillaCliente($datos = '', $view = '')
+    {
+        $cliente = $datos;
+
+        $logo            = $this->obtenerLogo();
+        $title           = lang('titlePage');
+        $author          = $this->obtenerAuthor();
+        $company         = $this->obtenerCompany();
+        $social          = $this->obtenerRedes();
+
+
+        $data['title']              = $title;
+        $data['company']            = $company;
+        $data['cliente']            = $cliente;
+
+        $foot['author']             = $author;
+        $foot['company']            = $company;
+        $foot['social']             = $social;
+
+        $log['logo']                = $logo;
+        $log['idCliente']           = $cliente['idCliente'];
+
+        $this->load->view('shop/configCliente/headCliente', $data);
+        $this->load->view('shop/configCliente/menuCliente', $log);
+        $this->load->view($view, $datos);
+        $this->load->view('shop/configCliente/footerCliente', $foot);
+    }
+    private function obtenerLogo()
+    {
+        $value = 'Logo';
+        $log = $this->Cliente_model->getLogo($value);
+        return $log;
+    }
+    private function obtenerAuthor()
+    {
+        $value = 'Design';
+        $author = $this->Cliente_model->getAuthor($value);
+        return $author;
+    }
+    private function obtenerCompany()
+    {
+        $value = 'nombreEmpresa';
+        $company = $this->Cliente_model->getCompany($value);
+        return $company;
+    }
+    private function obtenerRedes()
+    {
+        $social = $this->Cliente_model->getRedes();
+        return $social;
+    }
+    private function obtenerCliente($idCliente = '')
+    {
+        $cliente = $this->Cliente_model->obtenerCliente($idCliente);
+        return $cliente;
     }
 }

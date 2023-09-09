@@ -65,10 +65,17 @@ $title = 'Registrar Nuevo Cliente';
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="passwd" class="form-label">Contraseña</label>
-                            <input type="text" name="passwd" id="passwd" class="form-control" required>
-                            <div class="invalid-feedback" id="feedback-passwd">
-                                La Contraseña es requerida.
+                            <div class="form-group">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" name="password" aria-label="password" aria-describedby="togglePassword" required>
+                                    <div class="input-group-append">
+                                        <i id="togglePassword" class="fa fa-eye input-group-text"></i>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback" id="feedback-password">
+                                    La Contraseña es requerida.
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">

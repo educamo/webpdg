@@ -18,7 +18,7 @@ class Welcome extends CI_Controller
 	 * función index
 	 * es la función encargada de cargar todo el contenido de la pagina
 	 *
-	 * @author César Carrasco <educamo@hotmail.com>
+	 * 
 	 *
 	 * @return void
 	 * @date: [2022/10/04]

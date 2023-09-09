@@ -22,7 +22,7 @@ header {
 nav {
     padding-right: 120px;
     font-size: 18px;
-    line-height: 16px;
+    /* line-height: 16px; */
     font-weight: 700;
     float: left;
 }
@@ -94,6 +94,18 @@ h1 {
 
 p {
     font-size: 16px;
+}
+
+.form-control {
+    font-family: sans-serif;
+}
+
+.form-label {
+    margin-top: 1.5rem;
+}
+
+#togglePassword {
+    padding: .6rem !important;
 }
 
 
@@ -637,7 +649,7 @@ form#frm-registroCliente label.form-label {
 }
 
 form#frm-registroCliente input.form-control {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', sans-serif;
     font-size: 1rem;
 }
 

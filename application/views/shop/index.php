@@ -169,18 +169,20 @@ foreach ($modules as $module) {
                 <?Php
                 if ($cliente != '') {
                 ?>
-                  <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginClient">Perfil cliente</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
+                  <li class="mb-2""> <span class=" text-center">Cuenta</span></li>
+                  <li><a class="dropdown-item" href="<?= base_url('cliente/perfil/' . $cliente) ?>">Configuración de Cuenta</a></li>
+                  <li><a href="#" class="dropdown-item">Pagos y Facturación</a></li>
+
+                  <hr class="dropdown-divider">
+
                   <li><a class="dropdown-item" href="<?= base_url('cliente/logout') ?>">Cerrar sesión</a></li>
                 <?php
                 } else {
                 ?>
                   <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginClient"><?= lang('loginClient') ?></a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
+
+                  <hr class="dropdown-divider">
+
                   <li><a class="dropdown-item" href="<?= base_url('cliente/nuevo') ?>">Crear una cuenta</a></li>
                 <?php
                 }
@@ -663,20 +665,22 @@ foreach ($modules as $module) {
             <form method="POST" id="frmloginClient">
               <!-- Email input -->
               <div class="form-group mb-4">
+              <label class="form-label" for="email"> <?= lang('email') ?></label>
                 <input type="email" id="email" name="email" class="form-control" required />
-                <label class="form-label" for="email"> <?= lang('email') ?></label>
+                
               </div>
 
               <!-- Password input -->
               <div class="form-group mb-4">
                 <!-- <input type="password" id="password" class="form-control" /> -->
+                <label class="form-label" for="password"> <?= lang('clave') ?></label>
                 <div class="input-group mb-3">
                   <input type="password" class="form-control" id="password" name="password" aria-label="password" aria-describedby="togglePassword" required>
                   <div class="input-group-append">
                     <i id="togglePassword" class="fa fa-eye input-group-text"></i>
                   </div>
                 </div>
-                <label class="form-label" for="password"> <?= lang('clave') ?></label>
+               
               </div>
               <div class="row mb-4 text-center">
 

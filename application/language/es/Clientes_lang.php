@@ -7,6 +7,9 @@
 ## Etiquetas Generales del perfil cliente
 $lang['idioma']                     = "es";
 $lang["titlePage"]                  = "Cuenta Cliente -";
+
+$lang["facturas"]                   = "Facturas";
+
 $lang["Cliente"]                    = "Cuenta Cliente";
 $lang["Home"]                       = "Pagina de Inicio";
 $lang["Factura"]                    = "Facturas y Pagos";

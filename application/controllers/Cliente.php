@@ -65,6 +65,31 @@ class Cliente extends CI_Controller
         $this->plantillaCliente($datos, $view);
     }
 
+    public function facturas($cliente = '')
+    {
+        $cliente = $this->url->segment(3);
+
+        $sessionCliente = $this->session->userdata('idCliente');
+
+        if ($sessionCliente == '' || $sessionCliente != $cliente) {
+
+            redirect(base_url());
+            return false;
+            die();
+        };
+
+        $idCliente       = $cliente;
+        $view = "shop/facturas";
+
+
+        $datos = array(
+            'idCliente'     => $idCliente,
+
+        );
+
+        $this->plantillaCliente($datos, $view);
+    }
+
     public function register()
     {
         $nombre = $this->input->post('cliente[nombre]');

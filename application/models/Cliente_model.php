@@ -70,6 +70,41 @@ class Cliente_model extends CI_Model
         $this->db->where('idCliente', $datos["idCliente"]);
         return $this->db->update('nu_clientes', $datos);
     }
+    public  function obtenerFacturas($idCliente = '')
+    {
+        $datos = array(
+            'campos'    => 'id, fecha, idCliente, total, activo',
+            'tabla'     => 'facturas',
+            'where'     => 'idCliente =' . $idCliente,
+        );
+
+        $facturas = $this->getData($datos);
+        return $facturas;
+    }
+    public function obtenerFacturaCompleta($idFactura = '')
+    {
+        $this->db->select('
+  facturas.id,
+  facturas.fecha,
+  facturas.total,
+  detalles_facturas.serviceId,
+  detalles_facturas.cantidad,
+  detalles_facturas.precio_unitario,
+  detalles_facturas.precio_total,
+  nu_services.serviceTitle,
+  nu_clientes.idCliente,
+  nu_clientes.nombre
+');
+        $this->db->from('facturas');
+        $this->db->join('detalles_facturas', 'detalles_facturas.factura_id = facturas.id', 'inner');
+        $this->db->join('nu_services', 'detalles_facturas.serviceId = nu_services.serviceId', 'inner');
+        $this->db->join('nu_clientes', 'facturas.idCliente = nu_clientes.idCliente', 'inner');
+        $this->db->where('facturas.id', $idFactura);
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
     private function getConfig($value = '')
     {
         $this->db->select('configName, configValue');

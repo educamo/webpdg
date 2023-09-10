@@ -227,12 +227,26 @@ $(document).ready(function() {
     // código para mostrar u ocultar el valor del campo password en el form registrar cliente
     const togglePassword = document.querySelector('#togglePassword');
     const password = document.querySelector('#password');
-    togglePassword.addEventListener('click', function(e) {
-        // toggle the type attribute
-        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
-        // toggle the eye slash icon
-        this.classList.toggle('fa-eye-slash');
-    });
+
+
+    if (togglePassword !== null) {
+        togglePassword.addEventListener('click', function(e) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // toggle the eye slash icon
+            this.classList.toggle('fa-eye-slash');
+        });
+    }
+
+
+
+
+    // ################################# facturas ############################################
+
+    // inicio datatable facturas
+    // new DataTable('#facturas');
+    let table = new DataTable('#facturas');
+
 
 });

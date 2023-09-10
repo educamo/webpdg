@@ -9,6 +9,7 @@ $lang['idioma']                     = "es";
 $lang["titlePage"]                  = "Cuenta Cliente -";
 
 $lang["facturas"]                   = "Facturas";
+$lang["titleTableFacturas"]         = "Facturas del Cliente";
 
 $lang["Cliente"]                    = "Cuenta Cliente";
 $lang["Home"]                       = "Pagina de Inicio";

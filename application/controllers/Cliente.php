@@ -81,13 +81,27 @@ class Cliente extends CI_Controller
         $idCliente       = $cliente;
         $view = "shop/facturas";
 
+        $facturas = $this->obtenerFacturas($idCliente);
 
-        $datos = array(
-            'idCliente'     => $idCliente,
 
-        );
+        $datos["facturas"] = $facturas;
+        $datos["idCliente"] = $idCliente;
 
         $this->plantillaCliente($datos, $view);
+    }
+    public function factura($factura = '')
+    {
+        $factura = $this->url->segment(3);
+
+        $facturaPdf = $this->Cliente_model->obtenerFacturaCompleta($factura);
+        $logo            = $this->obtenerLogo();
+
+        $datos['factura'] = $facturaPdf;
+        $datos['logo'] = $logo->configValue;
+
+        // var_dump($datos);
+
+        $this->load->view('shop/facturaPdf', $datos);
     }
 
     public function register()
@@ -230,5 +244,10 @@ class Cliente extends CI_Controller
     {
         $cliente = $this->Cliente_model->obtenerCliente($idCliente);
         return $cliente;
+    }
+    private function obtenerFacturas($idCliente = '')
+    {
+        $facturas = $this->Cliente_model->obtenerFacturas($idCliente);
+        return $facturas;
     }
 }

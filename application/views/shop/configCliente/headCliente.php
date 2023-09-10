@@ -33,10 +33,14 @@ $idCliente      = $cliente;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" />
 
+    <!-- alertify -->
     <link rel="stylesheet" href="<?= base_url('assets/alertifyjs/css/alertify.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/alertifyjs/css/themes/bootstrap.css') ?>">
 
+    <!-- datatables -->
+    <link rel="stylesheet" href="<?= base_url('assets/css/datatables.css') ?>">
 
+    <!-- custom -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/plantillas/shop/css/style.css" />
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/plantillas/shop/css/clientes.css" />
 

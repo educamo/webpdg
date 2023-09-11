@@ -1,0 +1,87 @@
+/* ################################## General ##############################  */
+
+body {
+    background-color: #131313;
+}
+
+.bg-oscuro {
+    background-color: #131313ec;
+    color: #cccccc;
+}
+
+.contenido {
+    border-radius: 0px 0px 5px 5px;
+    color: #cccccc;
+}
+
+.contenido h1 {
+    margin-top: 1.5rem !important;
+    text-align: center !important;
+}
+
+
+/* ################################## menu ################################## */
+
+.nav-pills li a:hover {
+    color: #ffffff !important;
+    font-weight: bold;
+    background-color: #282153;
+}
+
+
+/* ########################## Breadcrumb (barra de dirección de links) ############################ */
+
+nav a {
+    color: #1b1a1a;
+}
+
+nav a:hover {
+    color: #28252ede;
+}
+
+
+/* ############################## tabs o pestañas ############################ */
+
+.nav-tabs .nav-link {
+    color: #232224;
+    background-color: #ffffff;
+    font-weight: bold;
+    border-radius: 2px 2px 0px 0px;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: #131313ec;
+    border-color: #1e1f20 #131313 #131313;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px 3px 0px 0px;
+}
+
+.tab-content {
+    border-radius: 0px 0px 5px 5px;
+    color: #cccccc;
+}
+
+.tab-content h1 {
+    margin-top: 1.5rem !important;
+    text-align: center !important;
+}
+
+.form-control:disabled {
+    background-color: #8a9299;
+    color: #0f0c0c;
+}
+
+
+/* ############################# modal reportar pago ###################################### */
+
+.modal-dialog {
+    background-color: #00ffff96;
+}
+
+.modal-content {
+    background-color: #1e1f20;
+    color: #b4d9ff;
+}

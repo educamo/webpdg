@@ -172,6 +172,7 @@ $(document).ready(function() {
 
         location.href = url_base + "/cliente/perfil/" + cliente;
     });
+
     $('#frm-updatePassword').on('submit', function(event) {
         // Evitamos que el formulario se envíe por defecto
         event.preventDefault();
@@ -249,4 +250,53 @@ $(document).ready(function() {
     let table = new DataTable('#facturas');
 
 
+    // modal pago facturas
+    var pagar = $('.pagar');
+    pagar.click(function() {
+        var factura = $(this).data('id');
+        var monto = $(this).data('total');
+        $('#id_factura').val(factura);
+        $('#totalFactura').val(monto);
+    });
+
+    // Al cambiar el valor del select, mostrar el input
+    $(document).on('change', '#tipo_pago', function() {
+        // Obtener el valor del select
+        const tipo_pago = $(this).val();
+
+        // Si el tipo de pago es efectivo, mostrar el input
+        if (tipo_pago === '1') {
+            $('#referencia-group').hide();
+        } else {
+            $('#referencia-group').show();
+        }
+    });
+
+    $('#frm-registrarPago').on('submit', function(e) {
+        e.preventDefault();
+
+        // Obtenemos los datos del formulario
+        var datos = $(this).serialize();
+
+        // Hacemos la petición Ajax
+        $.ajax({
+            type: 'POST',
+            url: url_base + "cliente/registrarPago",
+            data: datos,
+            success: function(r) {
+
+                // mensaje de éxito
+                alertify.success(r);
+                location.href = url_base + "/cliente/facturas/" + cliente;
+
+            },
+            error: function(r) {
+                // Mensaje de error
+                alertify.error(r);
+            }
+        });
+
+    });
+
+    // fin del document ready
 });

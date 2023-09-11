@@ -99,9 +99,52 @@ class Cliente extends CI_Controller
         $datos['factura'] = $facturaPdf;
         $datos['logo'] = $logo->configValue;
 
-        // var_dump($datos);
-
         $this->load->view('shop/facturaPdf', $datos);
+    }
+
+    public function registrarPago()
+    {
+        $factura = $this->input->post('id_factura');
+        $fecha = $this->input->post('fecha');
+        $monto = $this->input->post('monto');
+        $tipoPago = $this->input->post('tipo_pago');
+        $referencia = $this->input->post('referencia');
+
+        $totalFactura = $this->input->post('totalFactura');
+
+        $totalPagos = $this->obtenerTotalPagos($factura);
+
+        if ($totalPagos == NULL) {
+            $totalPagos = 0;
+        }
+
+        $deuda = $totalFactura - $totalPagos;
+
+        if ($deuda > 0 && $deuda >= $monto) {
+
+            $datos = array(
+                'id_factura'        => $factura,
+                'fechaPago'         => $fecha,
+                'montoPago'         => $monto,
+                'idTipoPago'        => $tipoPago,
+                'referenciaPago'    => $referencia,
+            );
+
+            $respuesta = $this->Cliente_model->registrarPago($datos);
+
+            
+
+            if ($respuesta === true) {
+                $respuesta = "El pago se registro correctamente";
+            }
+            echo $respuesta;
+            return true;
+        } else {
+            $respuesta = "No puede reportar un pago superior a la deuda de la factura";
+            echo $respuesta;
+            header("HTTP/1.1 400 Bad Request");
+            return FALSE;
+        }
     }
 
     public function register()
@@ -249,5 +292,10 @@ class Cliente extends CI_Controller
     {
         $facturas = $this->Cliente_model->obtenerFacturas($idCliente);
         return $facturas;
+    }
+    private function obtenerTotalPagos($factura = '')
+    {
+        $pagos = $this->Cliente_model->get_total_pagos($factura);
+        return $pagos;
     }
 }

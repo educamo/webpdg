@@ -19,4 +19,12 @@ $lang["msgUpdateCliente-error"]     = "Ocurrió un Error al Actualizar los Datos
 $lang["msgUpdatePassword"]          = "La Contraseña del Cliente cambio correctamente";
 $lang["msgUpdatePassword-error"]    = "Ocurrió un Error al cambiar la Contraseña del Cliente";
 
+
+
+// modal pagos facturas
+$lang["Modaltitle-Pago"]            = "Pago de Factura";
+$lang["btn-CacelarPago"]            = "Cancelar";
+$lang["btn-registrarPago"]          = "Registrar el Pago";
+
+
 ?>

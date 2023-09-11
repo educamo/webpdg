@@ -73,3 +73,15 @@ nav a:hover {
     background-color: #8a9299;
     color: #0f0c0c;
 }
+
+
+/* ############################# modal reportar pago ###################################### */
+
+.modal-dialog {
+    background-color: #00ffff96;
+}
+
+.modal-content {
+    background-color: #1e1f20;
+    color: #b4d9ff;
+}

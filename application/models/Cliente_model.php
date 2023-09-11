@@ -73,7 +73,7 @@ class Cliente_model extends CI_Model
     public  function obtenerFacturas($idCliente = '')
     {
         $datos = array(
-            'campos'    => 'id, fecha, idCliente, total, activo',
+            'campos'    => 'id, fecha, idCliente, total, estado, activo',
             'tabla'     => 'facturas',
             'where'     => 'idCliente =' . $idCliente,
         );
@@ -104,6 +104,38 @@ class Cliente_model extends CI_Model
         $query = $this->db->get();
 
         return $query->result_array();
+    }
+    public function get_total_pagos($factura = '')
+    {
+        $this->db->select_sum('montoPago');
+        $this->db->where('id_factura', $factura);
+        $this->db->from('nu_pagos');
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            $row = $query->row();
+            $total_pagos = $row->montoPago;
+        } else {
+            $total_pagos = NULL;
+        }
+
+        return $total_pagos;
+    }
+    public function registrarPago($datos = '')
+    {
+        $idFactura = $datos['id_factura'];
+        $respuesta = $this->db->insert('nu_pagos', $datos);
+
+
+        $object = array(
+            'estado' => 2,
+        );
+
+
+        $this->db->where('id', $idFactura);
+        $this->db->update('facturas', $object);
+
+        return $respuesta;
     }
     private function getConfig($value = '')
     {

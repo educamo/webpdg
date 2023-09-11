@@ -41,7 +41,14 @@
                                             <td><?= $factura['fecha'] ?></td>
                                             <td>$<?= $factura['total'] ?></td>
                                             <td>
-                                                <a href="#" class="btn btn-success"><i class="fa fa-money"></a></i>
+                                                <?Php
+                                                if ($factura['estado'] <> 3) {
+                                                ?>
+                                                    <a href="#" class="btn btn-success mx-2 pagar" data-bs-toggle="modal" data-bs-target="#pagoFactura" data-id="<?= $factura['id'] ?>" data-total="<?= $factura['total'] ?>"><i class="fa fa-money"></a></i>
+                                                <?Php
+
+                                                }
+                                                ?>
                                                 <a href="<?= base_url('cliente/factura/') . $factura['id'] ?>" target="_blank" class="btn btn-warning"><i class="fa fa-search"></a></i>
                                             </td>
                                         </tr>
@@ -60,4 +67,63 @@
         </div>
 
     </main>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="pagoFactura" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="pagoFacturaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="pagoFacturaLabel"><?= lang('Modaltitle-Pago') ?></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <form action="#" method="POST" id="frm-registrarPago">
+
+                        <div class="form-group">
+                            <label for="id_factura" hidden>ID de factura</label>
+                            <input type="hidden" class="form-control" name="id_factura" id="id_factura">
+                            <input type="hidden" class="form-control" name="totalFactura" id="totalFactura">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fecha">Fecha</label>
+                            <input type="date" class="form-control" name="fecha" id="fecha">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="monto">Monto</label>
+                            <input type="number" class="form-control" step="0.01" name="monto" id="monto">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tipo_pago">Tipo de pago</label>
+                            <select class="form-select" name="tipo_pago" id="tipo_pago">
+                                <option value="1">Efectivo</option>
+                                <option value="2">Transferencia</option>
+                                <option value="3">Pago móvil</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="display: none;" id="referencia-group">
+                            <label for="referencia">Referencia</label>
+                            <input type="text" class="form-control" name="referencia" id="referencia">
+                        </div>
+
+
+                        <div class="botonera">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= lang('btn-CacelarPago') ?></button>
+                            <input type="submit" class="btn btn-primary" value="<?= lang('btn-registrarPago') ?>">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
 </div>

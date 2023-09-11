@@ -65,6 +65,88 @@ class Cliente extends CI_Controller
         $this->plantillaCliente($datos, $view);
     }
 
+    public function facturas($cliente = '')
+    {
+        $cliente = $this->url->segment(3);
+
+        $sessionCliente = $this->session->userdata('idCliente');
+
+        if ($sessionCliente == '' || $sessionCliente != $cliente) {
+
+            redirect(base_url());
+            return false;
+            die();
+        };
+
+        $idCliente       = $cliente;
+        $view = "shop/facturas";
+
+        $facturas = $this->obtenerFacturas($idCliente);
+
+
+        $datos["facturas"] = $facturas;
+        $datos["idCliente"] = $idCliente;
+
+        $this->plantillaCliente($datos, $view);
+    }
+    public function factura($factura = '')
+    {
+        $factura = $this->url->segment(3);
+
+        $facturaPdf = $this->Cliente_model->obtenerFacturaCompleta($factura);
+        $logo            = $this->obtenerLogo();
+
+        $datos['factura'] = $facturaPdf;
+        $datos['logo'] = $logo->configValue;
+
+        $this->load->view('shop/facturaPdf', $datos);
+    }
+
+    public function registrarPago()
+    {
+        $factura = $this->input->post('id_factura');
+        $fecha = $this->input->post('fecha');
+        $monto = $this->input->post('monto');
+        $tipoPago = $this->input->post('tipo_pago');
+        $referencia = $this->input->post('referencia');
+
+        $totalFactura = $this->input->post('totalFactura');
+
+        $totalPagos = $this->obtenerTotalPagos($factura);
+
+        if ($totalPagos == NULL) {
+            $totalPagos = 0;
+        }
+
+        $deuda = $totalFactura - $totalPagos;
+
+        if ($deuda > 0 && $deuda >= $monto) {
+
+            $datos = array(
+                'id_factura'        => $factura,
+                'fechaPago'         => $fecha,
+                'montoPago'         => $monto,
+                'idTipoPago'        => $tipoPago,
+                'referenciaPago'    => $referencia,
+            );
+
+            $respuesta = $this->Cliente_model->registrarPago($datos);
+
+            
+
+            if ($respuesta === true) {
+                $respuesta = "El pago se registro correctamente";
+            }
+            echo $respuesta;
+            return true;
+        } else {
+            $respuesta = "No puede reportar un pago superior a la deuda de la factura";
+            echo $respuesta;
+            header("HTTP/1.1 400 Bad Request");
+            return FALSE;
+        }
+    }
+
     public function register()
     {
         $nombre = $this->input->post('cliente[nombre]');
@@ -205,5 +287,15 @@ class Cliente extends CI_Controller
     {
         $cliente = $this->Cliente_model->obtenerCliente($idCliente);
         return $cliente;
+    }
+    private function obtenerFacturas($idCliente = '')
+    {
+        $facturas = $this->Cliente_model->obtenerFacturas($idCliente);
+        return $facturas;
+    }
+    private function obtenerTotalPagos($factura = '')
+    {
+        $pagos = $this->Cliente_model->get_total_pagos($factura);
+        return $pagos;
     }
 }

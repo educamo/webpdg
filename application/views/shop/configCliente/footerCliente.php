@@ -40,6 +40,7 @@ $creador        = $author->configValue;
 
 <script src="<?= base_url('assets/alertifyjs/alertify.js') ?>"></script>
 
+<script src="<?= base_url('assets/js/datatables.js') ?>"></script>
 
 <script src="<?= base_url('assets/plantillas/shop/js/clientes.js') ?>"></script>
 

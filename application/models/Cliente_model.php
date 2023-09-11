@@ -70,6 +70,73 @@ class Cliente_model extends CI_Model
         $this->db->where('idCliente', $datos["idCliente"]);
         return $this->db->update('nu_clientes', $datos);
     }
+    public  function obtenerFacturas($idCliente = '')
+    {
+        $datos = array(
+            'campos'    => 'id, fecha, idCliente, total, estado, activo',
+            'tabla'     => 'facturas',
+            'where'     => 'idCliente =' . $idCliente,
+        );
+
+        $facturas = $this->getData($datos);
+        return $facturas;
+    }
+    public function obtenerFacturaCompleta($idFactura = '')
+    {
+        $this->db->select('
+  facturas.id,
+  facturas.fecha,
+  facturas.total,
+  detalles_facturas.serviceId,
+  detalles_facturas.cantidad,
+  detalles_facturas.precio_unitario,
+  detalles_facturas.precio_total,
+  nu_services.serviceTitle,
+  nu_clientes.idCliente,
+  nu_clientes.nombre
+');
+        $this->db->from('facturas');
+        $this->db->join('detalles_facturas', 'detalles_facturas.factura_id = facturas.id', 'inner');
+        $this->db->join('nu_services', 'detalles_facturas.serviceId = nu_services.serviceId', 'inner');
+        $this->db->join('nu_clientes', 'facturas.idCliente = nu_clientes.idCliente', 'inner');
+        $this->db->where('facturas.id', $idFactura);
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function get_total_pagos($factura = '')
+    {
+        $this->db->select_sum('montoPago');
+        $this->db->where('id_factura', $factura);
+        $this->db->from('nu_pagos');
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            $row = $query->row();
+            $total_pagos = $row->montoPago;
+        } else {
+            $total_pagos = NULL;
+        }
+
+        return $total_pagos;
+    }
+    public function registrarPago($datos = '')
+    {
+        $idFactura = $datos['id_factura'];
+        $respuesta = $this->db->insert('nu_pagos', $datos);
+
+
+        $object = array(
+            'estado' => 2,
+        );
+
+
+        $this->db->where('id', $idFactura);
+        $this->db->update('facturas', $object);
+
+        return $respuesta;
+    }
     private function getConfig($value = '')
     {
         $this->db->select('configName, configValue');

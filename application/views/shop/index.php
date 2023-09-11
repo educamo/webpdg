@@ -28,6 +28,8 @@ $descriptionUs = NULL;
 $titleContact   = NULL;
 $descriptionContact = NULL;
 
+$titleSocial =NULL;
+
 foreach ($modules as $module) {
   $i = $module['moduleId'];
   switch ($i) {
@@ -51,6 +53,9 @@ foreach ($modules as $module) {
       $titleContact       = $module['moduleName'];
       $descriptionContact = $module['moduleDescription'];
       break;
+
+    case 'social':
+      $titleSocial       = $module['moduleName'];
   }
 }
 
@@ -636,15 +641,22 @@ foreach ($modules as $module) {
   </main>
   <footer class="footer bg-body-tertiary">
     <div class="container">
-      <ul class="social-icons">
-        <?Php
-        foreach ($social as $red) {
-        ?>
-          <li><a href="<?= $red['socialUrl'] ?>" target="_blank"><i class="fa <?= $red['socialIcon'] ?>"></i></a></li>
-        <?Php
-        }
-        ?>
-      </ul>
+      <?Php
+      if ($titleSocial) {
+      ?>
+        <ul class="social-icons">
+          <?Php
+          foreach ($social as $red) {
+          ?>
+            <li><a href="<?= $red['socialUrl'] ?>" target="_blank"><i class="fa <?= $red['socialIcon'] ?>"></i></a></li>
+          <?Php
+          }
+          ?>
+        </ul>
+      <?Php
+      }
+      ?>
+
       <p>Copyright &copy; <span id="fecha"> </span> <?= $company ?>. <?= lang('Design') ?> <?= $creador ?></p>
     </div>
   </footer>
@@ -665,9 +677,9 @@ foreach ($modules as $module) {
             <form method="POST" id="frmloginClient">
               <!-- Email input -->
               <div class="form-group mb-4">
-              <label class="form-label" for="email"> <?= lang('email') ?></label>
+                <label class="form-label" for="email"> <?= lang('email') ?></label>
                 <input type="email" id="email" name="email" class="form-control" required />
-                
+
               </div>
 
               <!-- Password input -->
@@ -680,7 +692,7 @@ foreach ($modules as $module) {
                     <i id="togglePassword" class="fa fa-eye input-group-text"></i>
                   </div>
                 </div>
-               
+
               </div>
               <div class="row mb-4 text-center">
 

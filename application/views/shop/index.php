@@ -171,7 +171,7 @@ foreach ($modules as $module) {
                 ?>
                   <li class="mb-2""> <span class=" text-center">Cuenta</span></li>
                   <li><a class="dropdown-item" href="<?= base_url('cliente/perfil/' . $cliente) ?>">Configuración de Cuenta</a></li>
-                  <li><a href="#" class="dropdown-item">Pagos y Facturación</a></li>
+                  <li><a href="<?= base_url('cliente/facturas/' . $cliente) ?>" class="dropdown-item">Pagos y Facturación</a></li>
 
                   <hr class="dropdown-divider">
 
@@ -626,12 +626,12 @@ foreach ($modules as $module) {
       ?>
 
 
-      <section class="row">
+      <!-- <section class="row">
         <div class="col-12">
           <h3>Esta es la última sección de mi página web</h3>
 
         </div>
-      </section>
+      </section> -->
     </div>
   </main>
   <footer class="footer bg-body-tertiary">

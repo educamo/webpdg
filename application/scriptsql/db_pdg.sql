@@ -11,7 +11,7 @@
  Target Server Version : 100425
  File Encoding         : 65001
 
- Date: 05/09/2023 16:36:57
+ Date: 11/09/2023 03:55:24
 */
 
 SET NAMES utf8mb4;
@@ -51,7 +51,7 @@ CREATE TABLE `carritos`  (
 -- ----------------------------
 -- Records of carritos
 -- ----------------------------
-INSERT INTO `carritos` VALUES (2, '12', '2023-09-05 04:30:35', 0);
+INSERT INTO `carritos` VALUES (2, '12', '2023-09-05 04:30:35', 1);
 
 -- ----------------------------
 -- Table structure for detalles_facturas
@@ -65,11 +65,13 @@ CREATE TABLE `detalles_facturas`  (
   `precio_unitario` decimal(10, 2) NOT NULL,
   `precio_total` decimal(10, 2) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of detalles_facturas
 -- ----------------------------
+INSERT INTO `detalles_facturas` VALUES (1, 1, '01', 1, 12.00, 12.00);
+INSERT INTO `detalles_facturas` VALUES (2, 1, '02', 1, 13.00, 13.00);
 
 -- ----------------------------
 -- Table structure for facturas
@@ -80,14 +82,16 @@ CREATE TABLE `facturas`  (
   `fecha` date NOT NULL,
   `idCliente` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `total` decimal(10, 2) NOT NULL,
-  `estado` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `estado` int NULL DEFAULT 1,
+  `activo` int NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idCliente`(`idCliente` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of facturas
 -- ----------------------------
+INSERT INTO `facturas` VALUES (1, '2023-08-23', '12', 28.00, 1, 1);
 
 -- ----------------------------
 -- Table structure for migrations
@@ -164,14 +168,16 @@ CREATE TABLE `nu_clientes`  (
   `idCliente` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `activo` int NULL DEFAULT 1,
   PRIMARY KEY (`email`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of nu_clientes
 -- ----------------------------
-INSERT INTO `nu_clientes` VALUES ('admin2@pdg.com', '12', 'cesr', '12345');
-INSERT INTO `nu_clientes` VALUES ('carlosc@dmsai.com', '56547', 'carlos', '1234');
+INSERT INTO `nu_clientes` VALUES ('', '', '', '', 1);
+INSERT INTO `nu_clientes` VALUES ('admin2@pdg.com', '12', 'Cesar Carrasco', '12345', 1);
+INSERT INTO `nu_clientes` VALUES ('carlosc@dmsai.com', '56547', 'carlos', '1234', 1);
 
 -- ----------------------------
 -- Table structure for nu_config
@@ -228,12 +234,37 @@ CREATE TABLE `nu_modules`  (
 -- ----------------------------
 -- Records of nu_modules
 -- ----------------------------
-INSERT INTO `nu_modules` VALUES ('1', 'social-icons', 'barra de iconos de redes sociales en el siderbar', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:48:07', '127.0.0.0', '127.0.0.1', 0);
-INSERT INTO `nu_modules` VALUES ('contact', 'Contacta a - Nuestro Equipo', 'lCurabitur hendrerit mauris mollis ipsum vulputate rutrum. Phasellus luctus odio eget dui imperdiet.', '1', '1', '0000-00-00 00:00:00', '2022-11-08 16:21:28', '127.0.0.0', '127.0.0.1', 1);
-INSERT INTO `nu_modules` VALUES ('featured', 'Proyectos - Recientes', 'Estos son solo algunos de nuestros proyectos de mayor calidad Puedes darles un vistazo y decidirlo tu mismo.', '1', '1', '0000-00-00 00:00:00', '2022-11-08 20:08:22', '127.0.0.0', '127.0.0.1', 1);
-INSERT INTO `nu_modules` VALUES ('projects', 'Servicios - Ofrecidos', 'Aqui tenemos algunos de nuestro proyectos mas recientes, puedes mirarlos y decidir por tu mismo. ¿Cual es tu favorito?', '1', '0', '0000-00-00 00:00:00', '2022-11-06 20:47:14', '127.0.0.0', '000.000.000.000', 1);
-INSERT INTO `nu_modules` VALUES ('slider', 'slider', 'modulo del slider de imágenes', '1', '0', '0000-00-00 00:00:00', '2022-11-06 20:47:15', '127.0.0.0', '000.000.000.000', 1);
-INSERT INTO `nu_modules` VALUES ('video', 'Cual es el objetivo de nuestra - Compañía', 'Cosmo <em>Imagine</em> te ofrece un servicio de calidad cuando se trata de cumplir las expectativas del cliente en base al tipo de diseño que ha elegido <br> al igual con la eficiencia y creatividad del mismo.', '1', '1', '0000-00-00 00:00:00', '2022-11-08 16:21:49', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_modules` VALUES ('contact', 'Contacta a - Nuestro Equipo', 'lCurabitur hendrerit mauris mollis ipsum vulputate rutrum. Phasellus luctus odio eget dui imperdiet.', '1', '1', '0000-00-00 00:00:00', '2023-09-11 03:43:44', '127.0.0.0', '127.0.0.1', 0);
+INSERT INTO `nu_modules` VALUES ('featured', 'Proyectos - Recientes', 'Estos son solo algunos de nuestros proyectos de mayor calidad Puedes darles un vistazo y decidirlo tu mismo.', '1', '1', '0000-00-00 00:00:00', '2023-09-11 03:45:38', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_modules` VALUES ('projects', 'Servicios - Ofrecidos', 'Aqui tenemos algunos de nuestro proyectos mas recientes, puedes mirarlos y decidir por tu mismo. ¿Cual es tu favorito?', '1', '0', '0000-00-00 00:00:00', '2023-09-11 03:45:14', '127.0.0.0', '000.000.000.000', 1);
+INSERT INTO `nu_modules` VALUES ('slider', 'slider', 'modulo del slider de imágenes', '1', '0', '0000-00-00 00:00:00', '2023-09-11 03:46:23', '127.0.0.0', '000.000.000.000', 1);
+INSERT INTO `nu_modules` VALUES ('social', 'social-icons', 'barra de iconos de redes sociales en el siderbar', '1', '43535', '0000-00-00 00:00:00', '2023-09-11 03:46:25', '127.0.0.0', '127.0.0.1', 1);
+INSERT INTO `nu_modules` VALUES ('video', 'Cual es el objetivo de nuestra - Compañía', 'Cosmo <em>Imagine</em> te ofrece un servicio de calidad cuando se trata de cumplir las expectativas del cliente en base al tipo de diseño que ha elegido <br> al igual con la eficiencia y creatividad del mismo.', '1', '1', '0000-00-00 00:00:00', '2023-09-11 03:44:18', '127.0.0.0', '127.0.0.1', 1);
+
+-- ----------------------------
+-- Table structure for nu_pagos
+-- ----------------------------
+DROP TABLE IF EXISTS `nu_pagos`;
+CREATE TABLE `nu_pagos`  (
+  `idPago` int NOT NULL AUTO_INCREMENT,
+  `id_factura` int NOT NULL,
+  `fechaPago` date NOT NULL,
+  `montoPago` decimal(10, 2) NOT NULL,
+  `idTipoPago` int NOT NULL,
+  `referenciaPago` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'N/A',
+  `activo` int NULL DEFAULT 1,
+  PRIMARY KEY (`idPago`) USING BTREE,
+  INDEX `id_factura`(`id_factura` ASC) USING BTREE,
+  INDEX `idTipoPago`(`idTipoPago` ASC) USING BTREE,
+  CONSTRAINT `nu_pagos_ibfk_1` FOREIGN KEY (`id_factura`) REFERENCES `facturas` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `nu_pagos_ibfk_2` FOREIGN KEY (`idTipoPago`) REFERENCES `nu_tipo_pagos` (`idTipoPago`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of nu_pagos
+-- ----------------------------
+INSERT INTO `nu_pagos` VALUES (2, 1, '2023-09-11', 15.00, 1, 'N/A', 1);
+INSERT INTO `nu_pagos` VALUES (16, 1, '0000-00-00', 13.00, 1, '', 1);
 
 -- ----------------------------
 -- Table structure for nu_projects
@@ -376,6 +407,25 @@ INSERT INTO `nu_social` VALUES ('3', 'Youtube', 'link de Youtube', 'fa-youtube',
 INSERT INTO `nu_social` VALUES ('4', 'Linkedin', 'link de Linkedin', 'fa-linkedin', 'http://linkedin.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-08-11 08:41:04', '127.0.0.0', '127.0.0.1', 1);
 INSERT INTO `nu_social` VALUES ('5', 'Twitter', 'link de Twitter', 'fa-twitter', 'http://twitter.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 1);
 INSERT INTO `nu_social` VALUES ('6', 'Rss', 'link de Rss', 'fa-rss', 'http://rss.com', '1', '1', '43535', '0000-00-00 00:00:00', '2023-06-26 21:47:04', '127.0.0.0', '127.0.0.1', 1);
+
+-- ----------------------------
+-- Table structure for nu_tipo_pagos
+-- ----------------------------
+DROP TABLE IF EXISTS `nu_tipo_pagos`;
+CREATE TABLE `nu_tipo_pagos`  (
+  `idTipoPago` int NOT NULL AUTO_INCREMENT,
+  `nombreTipoPago` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `descripcion` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `activo` int NULL DEFAULT 1,
+  PRIMARY KEY (`idTipoPago`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of nu_tipo_pagos
+-- ----------------------------
+INSERT INTO `nu_tipo_pagos` VALUES (1, 'efectivo', 'Pago en efectivo', 1);
+INSERT INTO `nu_tipo_pagos` VALUES (2, 'transferencia', 'Pago por transferencia bancaria', 1);
+INSERT INTO `nu_tipo_pagos` VALUES (3, 'pagomovil', 'Pago por pago móvil', 1);
 
 -- ----------------------------
 -- Table structure for nu_users

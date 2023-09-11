@@ -27,7 +27,7 @@ $pdf = new TCPDF($PDF_PAGE_ORIENTATION, PDF_UNIT, $PDF_PAGE_FORMAT, true, 'UTF-8
 
 $logo = base_url('assets/img/'.$logo);
 $title = 'Factura';
-$text = 'Número de factura: '.$noFact;
+$text = 'Número de factura: '. $noFact .' -  Fecha: '. $fecha;
 
 
 

@@ -141,8 +141,8 @@ foreach ($factura as $row) {
                     <td width="10%">' . $serviceId . '</td>
                     <td width="50%">' . $serviceTitle . '</td>
                     <td width="10%">' . $cantidad . '</td>
-                    <td width="15%">' . $precio_unitario . ' </td>
-                    <td width="15%">' . $precio_total . ' </td>
+                    <td width="15%" align="right">$ ' . $precio_unitario . ' </td>
+                    <td width="15%" align="right">$ ' . $precio_total . ' </td>
             </tr>
     </table
                     ';
@@ -150,6 +150,20 @@ foreach ($factura as $row) {
     $pdf->writeHTML($html2, true, false, true, false, '');
 }
 
+// Set some content to print
+$html_total = '
+<table class="table" border="1" cellspacing="0">
+        <thead>
+            <tr align="center">
+                <th width="70%"></th>
+                <th width="15%" align="left">Total: </th>
+                <td width="15%" align="right">$ '.$total.'</td>
+            </tr>
+        </thead>
+</table>
+';
+// output the HTML content
+$pdf->writeHTML($html_total, true, false, true, false, '');
 
 
 // ---------------------------------------------------------

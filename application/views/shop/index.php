@@ -28,7 +28,7 @@ $descriptionUs = NULL;
 $titleContact   = NULL;
 $descriptionContact = NULL;
 
-$titleSocial =NULL;
+$titleSocial = NULL;
 
 foreach ($modules as $module) {
   $i = $module['moduleId'];

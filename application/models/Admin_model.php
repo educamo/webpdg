@@ -408,6 +408,25 @@ class Admin_model extends CI_Model
         return $this->db->insert('nu_users', $datos);
     }
 
+    public function obtenerClientes()
+    {
+
+        $query = $this->db->get('nu_Clientes');
+        $clientes = $query->result();
+        return $clientes;
+    }
+    public function obtenerLogo()
+    {
+        $value = "Logo";
+        $this->db->select('configValue');
+        $this->db->from('nu_config');
+        $this->db->where('configId', $value);
+        $query = $this->db->get();
+        $data = $query->row();
+        return $data;
+    }
+
+
     public function __destruct()
     {
         $this->db->close();

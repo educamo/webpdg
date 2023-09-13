@@ -67,10 +67,12 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     if (data === true) {
+                        alertify.success('Los datos se Guardaron exitosamente');
                         Location.href = url_base;
                     }
                 },
                 error: function(data) {
+                    alertify.error('Ocurrió un error al Guardar los datos');
 
                 },
             });

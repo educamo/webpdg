@@ -70,6 +70,19 @@ class Admin extends CI_Controller
         }
     }
 
+    public function listadoClientes()
+    {
+        $clientes =  $this->Admin_model->obtenerClientes();
+        $logo = $this->Admin_model->obtenerLogo();
+
+        $datos["clientes"] = $clientes;
+
+        $datos["logo"] = $logo->configValue;
+
+
+        $this->load->view('listClientesPDF', $datos);
+    }
+
     //  ----------------- SLIDERS -------------------------
     public function slider()
     {
@@ -288,7 +301,7 @@ class Admin extends CI_Controller
             return false;
         }
     }
-    //------------------- PROYECTOS ------------------
+    //------------------------------------ PROYECTOS ----------------------------------------------
     public function proyectos()
     {
         $data['projects'] = $this->Admin_model->getProyectos();
@@ -503,7 +516,7 @@ class Admin extends CI_Controller
         }
     }
 
-    // ---------------------- CATEGORIAS -------------------
+    // -------------------------------------- CATEGORÍAS -----------------------------------
     public function categorias()
     {
         $data['categorys'] = $this->Admin_model->getcategorys();
@@ -575,7 +588,7 @@ class Admin extends CI_Controller
         return true;
     }
 
-    // ----------------- SERVICIOS ---------------------
+    // ------------------------------------------- SERVICIOS ------------------------------------------------
     public function servicios()
     {
         $data['services'] = $this->Admin_model->getServicios();
@@ -791,7 +804,7 @@ class Admin extends CI_Controller
         return true;
     }
 
-    // ---------------- NOSOTROS ------------------
+    // --------------------------------- NOSOTROS ----------------------------------------------------------------
     public function nosotros()
     {
         $data['nosotros'] = $this->Admin_model->getNosotros();
@@ -868,7 +881,7 @@ class Admin extends CI_Controller
         return true;
     }
 
-    // ---------------- CONFIG CONTACTO  ----------------------
+    // ------------------------------------------ CONFIG CONTACTO  ------------------------------------------
     public function configContacto()
     {
         $configId = 'mailEmp';
@@ -894,7 +907,7 @@ class Admin extends CI_Controller
         return true;
     }
 
-    //  -------------- CONFIG LOGO --------------------------
+    //  ------------------------------------------ CONFIG LOGO -----------------------------------------------
     public function configLogo()
     {
         $configId = 'Logo';
@@ -985,7 +998,7 @@ class Admin extends CI_Controller
         }
     }
 
-    //  --------------- REDES SOCIALES ----------------
+    //  ------------------------------------- REDES SOCIALES ----------------------------------------
     public function listSocial()
     {
         $data['redes'] = $this->Admin_model->getSocial();
@@ -1166,7 +1179,7 @@ class Admin extends CI_Controller
         return true;
     }
 
-    //  ---------------- USUARIOS ------------------------------
+    //  --------------------------------------------- USUARIOS -----------------------------------------------
     public function listUsuarios()
     {
         $data['users'] = $this->Admin_model->getUsers();
@@ -1248,7 +1261,7 @@ class Admin extends CI_Controller
         return true;
     }
 
-    //  ----------------- CONFIGURACIONES -----------------
+    //  ------------------------------------- CONFIGURACIONES --------------------------------------------
     public function listconfig()
     {
         $data['configs'] = $this->Admin_model->getConfig();
@@ -1303,7 +1316,7 @@ class Admin extends CI_Controller
         return true;
     }
 
-    //  --------------- ROLES ------------------
+    //  ----------------------------------- ROLES -----------------------------------------------------
     public function listRols()
     {
         $all = "todos";
@@ -1366,6 +1379,8 @@ class Admin extends CI_Controller
         echo json_encode($r);
         return true;
     }
+
+    // --------------------- FUNCIONES GENERALES DEL PANEL ADMINISTRATIVO ----------------------------------
     private function plantilla()
     {
         if (!$this->session->userdata('userId')) {

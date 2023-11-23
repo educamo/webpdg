@@ -88,8 +88,6 @@ class Carrito extends CI_Controller
 		//se crea la orden de servicio
 		$insertOrden = $this->Carrito_model->addOrden($carrito);
 
-		//TODO: arreglar workflow luego de que pasa al finalizar la compra y como debe generar la factura
-
 		$idOrden = json_encode($insertOrden);
 		if ($idOrden != false) {
 			$mostrarOrden = $this->Carrito_model->showOrden($idOrden);

@@ -19,6 +19,9 @@ $lang['perfil']                     = "Perfil";
 $lang['logout']                     = "Cerrar sesión";
 $lang['desea-salir']                = "¿está seguro que desea salir?";
 $lang['dashboard']                  = "Dashboard";
+$lang['shop']     		            = "Tienda";
+$lang['orders']     		        = "Ordenes de trabajo";
+$lang['bills']     		            = "Facturas por Cobrar";
 $lang['contents']                   = "Contenidos";
 $lang['slider']                     = "Slider";
 $lang['projects']                   = "Proyectos";
@@ -83,6 +86,11 @@ $lang['exists']                     = "El archivo ya existe.";
 $lang['size']                       = "Su archivo es demasiado grande.";
 $lang['onlyJpeg']                   = "Solo se permiten archivos JPG y JPEG.";
 $lang['noDimension']                = "El archivo no es de 1400px X 750px";
+$lang['title-ordenes']				= "Ordenes de trabajo";
+$lang['list-ordenes']				= "Lista de Ordenes de trabajo";
+$lang['no-orden']				    = "No. Orden";
+$lang['status-orden']				= "Estado de la Orden";
+$lang['id-cliente']				    = "Código del Cliente";
 
 ## etiquetas de la view project
 $lang['title-project']              = "Proyectos";

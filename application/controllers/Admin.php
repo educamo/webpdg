@@ -55,11 +55,13 @@ class Admin extends CI_Controller
 			$login = $this->Admin_model->loginUser($_POST);
 
 			if ($login) {
+				$configPlantilla = $this->Admin_model->getConfig('ptlla');
 				$arrayUser = array(
 					'userId'             => $login[0]->userId,
 					'userName'           => $login[0]->userName,
 					'mail'               => $login[0]->mail,
 					'rolId'              => $login[0]->rolId,
+					'plantilla'			 => $configPlantilla->configValue,
 				);
 				$this->session->set_userdata($arrayUser);
 				redirect('admin');
@@ -1378,6 +1380,18 @@ class Admin extends CI_Controller
 		$r = $this->Admin_model->deleteRol($id);
 		echo json_encode($r);
 		return true;
+	}
+
+	// ------------------------- TIENDA (ORDENES TRABAJO Y FACTURAS) ======================================
+	public function ordenes()
+	{
+		$ordenes = $this->Admin_model->obtenerOrdenes();
+		$data = array(
+			'ordenes' => $ordenes,
+		);
+		$this->plantilla();
+		$this->load->view('shop/ordenes', $data);
+		$this->footer();
 	}
 
 	// --------------------- FUNCIONES GENERALES DEL PANEL ADMINISTRATIVO ----------------------------------

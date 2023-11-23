@@ -96,7 +96,7 @@ class Welcome extends CI_Controller
 			if ($plantilla->configValue == '') {
 				$plantilla = 'welcome';
 			} else {
-				$plantilla = $plantilla->configValue;
+				$plantilla = $plantilla->configValue . '/index';
 			}
 			$this->load->view($plantilla, $data);
 		}

@@ -1,59 +1,58 @@
-<?Php
-$admin = $this->session->rolId;
-$plantilla = $this->session->plantilla;
-?>
-<!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800"><?= lang('title-ordenes') ?></h1>
+<div class="container-fluid">
+	<?Php
+	$admin = $this->session->rolId;
+	$plantilla = $this->session->plantilla;
+	?>
+	<!-- Page Heading -->
+	<h1 class="h3 mb-2 text-gray-800"><?= lang('title-ordenes') ?></h1>
 
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary"><?= lang('list-ordenes') ?></h6>
-	</div>
-	<div class="row">
-	</div>
-	<div class="card-body">
-		<div class="container-fluid">
-			<div class="table-responsive">
-				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-					<thead>
-						<tr>
-							<th style="width: 100px;"><?= lang('no-orden') ?></th>
-							<th><?= lang('id-cliente') ?></th>
-							<th style="width: 200px;"><?= lang('status-orden') ?></th>
-							<th style="width: 90px;"><?= lang('action') ?></th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<?Php
-						foreach ($ordenes as $orden) {
-
-							if ($orden->estado == 1) {
-								$activo = 'activa';
-							} else {
-								$activo = 'procesada';
-							}
-						?>
-							<tr>
-								<td><?= $orden->idOrden ?></td>
-								<td><?= $orden->idCliente ?></td>
-								<td><?= $activo ?></td>
-								<td class="text-center">
-									<a href="<?= base_url() ?>Admin/actualizarService/<?= $orden->idOrden ?>" class="btn btn-warning text-ligth"> <i class="fa fa-edit"></i></a>
-									<button type="button" class="btn btn-danger text-light delete" name="delete" data-id="<?= $orden->idOrden ?>"><i class="fa fa-trash"></i></button>
-								</td>
-							</tr>
-						<?Php
-						}
-						?>
-					</tbody>
-				</table>
-			</div>
+	<!-- DataTales Example -->
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+			<h6 class="m-0 font-weight-bold text-primary"><?= lang('list-ordenes') ?></h6>
 		</div>
+		<div class="card-body">
+			<div class="container-fluid">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th style="width: 100px;"><?= lang('no-orden') ?></th>
+								<th><?= lang('id-cliente') ?></th>
+								<th style="width: 200px;"><?= lang('status-orden') ?></th>
+								<th style="width: 90px;"><?= lang('action') ?></th>
+							</tr>
+						</thead>
 
+						<tbody>
+							<?Php
+							foreach ($ordenes as $orden) {
+
+								if ($orden->estado == 1) {
+									$activo = 'activa';
+								} else {
+									$activo = 'procesada';
+								}
+							?>
+								<tr>
+									<td><?= $orden->idOrden ?></td>
+									<td><?= $orden->idCliente ?></td>
+									<td><?= $activo ?></td>
+									<td class="text-center">
+										<a href="<?= base_url() ?>Admin/procesarOrden/<?= $orden->idOrden ?>" class="btn btn-success text-ligth"> <i class="fa fa-check"></i></a>
+										<button type="button" class="btn btn-danger text-light delete" name="delete" data-id="<?= $orden->idOrden ?>"><i class="fa fa-trash"></i></button>
+									</td>
+								</tr>
+							<?Php
+							}
+							?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
 	</div>
-</div>
 
 </div>
 <!-- /.container-fluid -->
@@ -84,7 +83,7 @@ $plantilla = $this->session->plantilla;
 			alertify.confirm('<?= lang('confirm-message') ?>',
 				function() {
 					//creo variable con la url del ajax
-					var urlajax = urlbase + "Admin/borrarService";
+					var urlajax = urlbase + "Admin/borrarOrdenes";
 					// Run $.ajax() here
 					// Using the core $.ajax() method
 					$.ajax({

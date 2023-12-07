@@ -17,10 +17,10 @@
 					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th style="width: 100px;"><?= lang('no-orden') ?></th>
-								<th><?= lang('id-cliente') ?></th>
-								<th style="width: 200px;"><?= lang('status-orden') ?></th>
-								<th style="width: 90px;"><?= lang('action') ?></th>
+								<th style="width: 15%;"><?= lang('no-orden') ?></th>
+								<th style="width: 20%;"><?= lang('id-cliente') ?></th>
+								<th style="width: 25%;"><?= lang('status-orden') ?></th>
+								<th style="width: 40%;"><?= lang('action') ?></th>
 							</tr>
 						</thead>
 
@@ -40,6 +40,7 @@
 									<td><?= $activo ?></td>
 									<td class="text-center">
 										<a href="<?= base_url() ?>Admin/procesarOrden/<?= $orden->idOrden ?>" class="btn btn-success text-ligth"> <i class="fa fa-check"></i></a>
+										<a href="<?= base_url() ?>Admin/verOrden/<?= $orden->idOrden ?>" class="btn btn-warning text-ligth" target="_blank"> <i class="fa fa-search"></i></a>
 										<button type="button" class="btn btn-danger text-light delete" name="delete" data-id="<?= $orden->idOrden ?>"><i class="fa fa-trash"></i></button>
 									</td>
 								</tr>
@@ -93,7 +94,7 @@
 
 						// The data to send (will be converted to a query string)
 						data: {
-							serviceId: id
+							ordenId: id
 						},
 
 						// Whether this is a POST or GET request

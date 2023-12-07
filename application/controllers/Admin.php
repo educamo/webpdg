@@ -1394,6 +1394,26 @@ class Admin extends CI_Controller
 		$this->footer();
 	}
 
+	public function borrarOrdenes($id = NULL)
+	{
+		$id = $this->input->post('ordenId');
+
+		$r = $this->Admin_model->deleteOrden($id);
+		echo json_encode($r);
+		return true;
+	}
+
+	public function verOrden($id = NULL)
+	{
+		$id = $this->uri->segment(3);
+		$mostrarOrden = $id;
+		$mostrarOrden = $this->Admin_model->showOrden($id);
+		$data = array(
+			'datos' => $mostrarOrden,
+		);
+		$this->load->view('shop/vistaOrden', $data);
+	}
+
 	// --------------------- FUNCIONES GENERALES DEL PANEL ADMINISTRATIVO ----------------------------------
 	private function plantilla()
 	{

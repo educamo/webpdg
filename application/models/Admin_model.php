@@ -463,6 +463,29 @@ class Admin_model extends CI_Model
 		return $data;
 	}
 
+	public function deleteOrden($id = NULL)
+	{
+		$value = $id;
+		$this->db->where('idOrden', $value);
+		$orden =  $this->db->delete('ordenesservicios');
+
+		if ($orden) {
+			$this->db->where('idOrden', $value);
+			return $this->db->delete('ordendetalles');
+		} else {
+			return false;
+		}
+	}
+	public function showOrden($idOrden)
+	{
+		$id = $idOrden;
+		$this->db->join('ordendetalles', 'ordenesservicios.idOrden = ordendetalles.idOrden', 'left');
+		$this->db->join('nu_services', 'nu_services.serviceId = ordendetalles.serviceId', 'left');
+		$this->db->where('ordenesservicios.idOrden', $id);
+		$query = $this->db->get('ordenesservicios');
+		return $query->result_array();
+	}
+
 
 	public function __destruct()
 	{
